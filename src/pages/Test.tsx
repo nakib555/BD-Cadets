@@ -191,35 +191,35 @@ export default function Test() {
     const passed = percentage >= 60;
 
     return (
-      <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-20 transition-colors duration-300 animate-in fade-in duration-300">
+      <div className="bg-slate-50 dark:bg-slate-900 h-full flex flex-col overflow-hidden transition-colors duration-300 animate-in fade-in duration-300">
         <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
             <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
             <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Mock Test Result</h1>
             <div className="w-8"></div>
         </header>
 
-        <div className="p-4 space-y-4">
+        <div className="p-4 space-y-4 flex-1 overflow-y-auto">
           {/* Main score badge */}
           <div className="bg-white dark:bg-slate-950 p-6 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm flex flex-col items-center text-center space-y-3 transition-colors duration-300">
               <div className={`w-16 h-16 rounded-full flex items-center justify-center text-[24px] ${passed ? 'bg-green-100 dark:bg-green-950/40 text-green-600 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400'}`}>
                 {passed ? '🏆' : '📚'}
               </div>
               <div>
-                <h2 className="text-[14px] font-[Georgia] font-black text-slate-900 dark:text-white">{passed ? 'Congratulations, Cadet!' : 'Keep Studying, Cadet!'}</h2>
-                <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">{passed ? 'You passed this diagnostic mock exam.' : 'Practice makes perfect.'}</p>
+                <h2 className="text-[16px] font-[Georgia] font-black text-slate-900 dark:text-white">{passed ? 'Congratulations, Cadet!' : 'Keep Studying, Cadet!'}</h2>
+                <p className="text-[12px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">{passed ? 'You passed this diagnostic mock exam.' : 'Practice makes perfect.'}</p>
               </div>
 
               <div className="grid grid-cols-3 gap-6 w-full pt-4 border-t border-[#d8dfe7] dark:border-slate-800/60 text-center">
                 <div>
-                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Score</p>
+                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Score</p>
                   <p className="text-[14px] font-[Georgia] font-black text-slate-800 dark:text-slate-200">{score} / {QUESTIONS.length}</p>
                 </div>
                 <div>
-                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Accuracy</p>
+                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Accuracy</p>
                   <p className="text-[14px] font-[Georgia] font-black text-slate-800 dark:text-slate-200">{percentage}%</p>
                 </div>
                 <div>
-                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Status</p>
+                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Status</p>
                   <p className={`text-[12px] font-black uppercase ${passed ? 'text-green-600 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>{passed ? 'PASS' : 'FAIL'}</p>
                 </div>
               </div>
@@ -227,13 +227,13 @@ export default function Test() {
               <div className="flex gap-2 w-full pt-2">
                 <button 
                   onClick={handleRestart}
-                  className="flex-1 py-2 rounded-[10px] border border-blue-200 dark:border-blue-900/50 text-blue-600 dark:text-blue-400 font-black uppercase tracking-wider text-[9px] hover:bg-blue-50 dark:hover:bg-blue-950/20 transition cursor-pointer"
+                  className="flex-1 py-2 rounded-[10px] border border-blue-200 dark:border-blue-900/50 text-blue-600 dark:text-blue-400 font-black uppercase tracking-wider text-[10px] font-[Georgia] hover:bg-blue-50 dark:hover:bg-blue-950/20 transition cursor-pointer"
                 >
                   <i className="fa-solid fa-rotate-left mr-1"></i> Retake Test
                 </button>
                 <button 
                   onClick={() => navigate('home')}
-                  className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-wider text-[9px] shadow-sm transition cursor-pointer"
+                  className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-wider text-[10px] font-[Georgia] shadow-sm transition cursor-pointer"
                 >
                   <i className="fa-solid fa-house mr-1"></i> Dashboard
                 </button>
@@ -250,14 +250,14 @@ export default function Test() {
               return (
                 <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
                   <div className="flex justify-between items-start gap-2">
-                    <span className="text-[9px] font-black text-slate-400 dark:text-slate-500">Q{idx + 1} ({q.subject})</span>
-                    <span className={`text-[8px] font-black px-1.5 py-0.5 rounded uppercase ${
-                      isCorrect ? 'bg-green-100 dark:bg-green-950/40 text-green-700 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-400'
+                    <span className="text-[11px] font-[Arial] font-black text-slate-400 dark:text-slate-500">Q{idx + 1} ({q.subject})</span>
+                    <span className={`text-[10px] border border-[#f1c0c4] dark:border-red-900/50 rounded-[5px] font-black px-1.5 py-0.5 uppercase ${
+                      isCorrect ? 'bg-green-100 dark:bg-green-950/40 text-green-700 dark:text-green-400 !border-green-200 dark:!border-green-800' : 'bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-400'
                     }`}>
                       {isCorrect ? 'Correct' : 'Incorrect'}
                     </span>
                   </div>
-                  <h4 className="text-[13px] font-[Georgia] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
+                  <h4 className="text-[14px] font-[Georgia] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
                   
                   <div className="grid grid-cols-1 gap-1.5 pt-1">
                     {q.options.map((opt, oIdx) => {
@@ -267,7 +267,7 @@ export default function Test() {
                       return (
                         <div 
                           key={oIdx}
-                          className={`p-2 rounded-[10px] text-[10px] font-black flex justify-between items-center transition ${
+                          className={`p-2 rounded-[10px] text-[14px] font-[Georgia] font-black flex justify-between items-center transition ${
                             isCorrectChoice 
                               ? 'bg-green-50 dark:bg-green-950/20 text-green-800 dark:text-green-400 border border-green-200 dark:border-green-900/40' 
                               : isUserChoice
@@ -283,7 +283,7 @@ export default function Test() {
                     })}
                   </div>
 
-                  <div className="bg-blue-50/50 dark:bg-blue-950/20 p-2.5 rounded-[10px] border border-blue-50 dark:border-blue-900/30 text-[9px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
+                  <div className="bg-blue-50/50 dark:bg-blue-950/20 p-2.5 rounded-[10px] border border-blue-50 dark:border-blue-900/30 text-[12px] font-[Georgia] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                     <span className="text-blue-700 dark:text-blue-400 font-bold block mb-0.5">💡 Explanation</span>
                     {q.explanation}
                   </div>
@@ -297,7 +297,7 @@ export default function Test() {
   }
 
   return (
-    <div className="animate-in fade-in duration-300 relative min-h-full flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <div className="animate-in fade-in duration-300 relative h-full flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
       <header className="flex justify-between items-center p-4 sticky top-0 bg-white dark:bg-slate-950 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shrink-0 transition-colors duration-300">
           <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
           <h1 className="text-[13px] font-[Georgia] font-black text-slate-900 dark:text-white uppercase tracking-wider">Active Admission Mock</h1>
@@ -316,10 +316,10 @@ export default function Test() {
           </div>
       </div>
 
-      <div className="px-5 py-4 pb-28 flex-1 overflow-y-auto">
+      <div className="px-5 py-4 flex-1 overflow-y-auto">
           <div className="flex justify-between items-center mb-3">
-              <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-wider">Question {currentIdx + 1} / {QUESTIONS.length}</span>
-              <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-[8px] font-black px-2 py-0.5 rounded-[10px] flex items-center gap-1 uppercase">
+              <span className="text-[12px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-wider">Question {currentIdx + 1} / {QUESTIONS.length}</span>
+              <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-[10px] font-black px-2 py-0.5 rounded-[10px] flex items-center gap-1 uppercase">
                 <i className="fa-solid fa-shield text-[7px]"></i> {currentQuestion.difficulty}
               </span>
           </div>
@@ -346,7 +346,7 @@ export default function Test() {
                             <div className={`w-7 h-7 rounded-[10px] text-xs font-black flex items-center justify-center transition ${
                               isSelected ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400'
                             }`}>{opt.label}</div>
-                            <span className={`text-[13px] font-[Georgia] font-black ${isSelected ? 'text-indigo-900 dark:text-indigo-200' : 'text-slate-800 dark:text-slate-300'}`}>{opt.text}</span>
+                            <span className={`text-[14px] font-[Georgia] font-black ${isSelected ? 'text-indigo-900 dark:text-indigo-200' : 'text-slate-800 dark:text-slate-300'}`}>{opt.text}</span>
                         </div>
                         {isSelected && <i className="fa-solid fa-circle-check text-indigo-600 dark:text-indigo-400 text-sm"></i>}
                     </button>
@@ -356,7 +356,7 @@ export default function Test() {
       </div>
 
       {/* Bottom controls */}
-      <div className="absolute bottom-0 w-full bg-white dark:bg-slate-950 border-t border-[#d8dfe7] dark:border-slate-800/80 p-3.5 flex justify-between gap-3.5 z-20 shadow-[0_-8px_16px_rgba(0,0,0,0.03)] shrink-0 transition-colors duration-300">
+      <div className="w-full bg-white dark:bg-slate-950 border-t border-[#d8dfe7] dark:border-slate-800/80 p-3.5 flex justify-between gap-3.5 z-20 shadow-[0_-8px_16px_rgba(0,0,0,0.03)] shrink-0 transition-colors duration-300">
           <button 
             onClick={handlePrevious}
             disabled={currentIdx === 0}

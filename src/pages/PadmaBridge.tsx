@@ -418,7 +418,7 @@ export default function PadmaBridge() {
                   <span className="text-fluid-icon-lbl font-normal text-slate-400 dark:text-slate-500 uppercase">Hotspot Specification</span>
                 </div>
                 <p className="text-fluid-body text-slate-700 dark:text-slate-300 font-normal leading-relaxed">{currentHotspot.details}</p>
-                <p className="text-fluid-body text-blue-700 dark:text-blue-400 font-bold leading-relaxed">{currentHotspot.bnDetails}</p>
+                <p className="text-[12px] font-[Georgia] text-blue-700 dark:text-blue-400 font-bold leading-relaxed">{currentHotspot.bnDetails}</p>
               </div>
             </div>
           </div>
@@ -488,10 +488,10 @@ export default function PadmaBridge() {
                 </div>
 
                 <div className="space-y-fluid-small">
-                  <h4 className="text-fluid-heading font-bold text-slate-900 dark:text-white leading-snug">
+                  <h4 className="text-[14px] font-[Georgia] font-black text-slate-900 dark:text-white leading-snug">
                     {QUIZ[quizIdx].question}
                   </h4>
-                  <p className="text-fluid-body text-blue-700 dark:text-blue-400 font-bold leading-relaxed">
+                  <p className="text-[12px] font-[Georgia] text-blue-700 dark:text-blue-400 font-bold leading-relaxed">
                     {QUIZ[quizIdx].bnQuestion}
                   </p>
                 </div>
@@ -521,7 +521,7 @@ export default function PadmaBridge() {
                         id={`option-${i}`}
                         disabled={quizSubmitted}
                         onClick={() => handleSelectOption(i)}
-                        className={`w-full p-fluid-card rounded-[10px] border text-fluid-body font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
+                        className={`w-full p-fluid-card rounded-[10px] border text-[14px] font-[Georgia] font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
                       >
                         <span>{opt}</span>
                         {quizSubmitted && isCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
@@ -565,8 +565,8 @@ export default function PadmaBridge() {
               <div className="flex flex-col items-center text-center space-y-fluid-heading py-4 animate-in zoom-in duration-300">
                 <div className="w-14 h-14 bg-blue-50 dark:bg-blue-950/20 rounded-full flex items-center justify-center text-2xl border border-blue-100 dark:border-blue-900/30">🏆</div>
                 <div>
-                  <h3 className="text-fluid-body font-bold text-slate-900 dark:text-white">Bridge GK Mastered!</h3>
-                  <p className="text-fluid-body text-slate-500 dark:text-slate-400 font-bold mt-0.5">You scored {quizScore} out of {QUIZ.length}</p>
+                  <h3 className="text-[16px] font-[Georgia] font-black text-slate-900 dark:text-white">Bridge GK Mastered!</h3>
+                  <p className="text-[12px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">You scored {quizScore} out of {QUIZ.length}</p>
                 </div>
                 
                 <div className="bg-blue-50 dark:bg-blue-950/20 p-fluid-card rounded-[10px] border border-blue-100 dark:border-blue-900/30 w-full text-fluid-body font-bold text-blue-800 dark:text-blue-400 flex items-center justify-center gap-2">
@@ -577,16 +577,16 @@ export default function PadmaBridge() {
                   <button 
                     id="retry-quiz-btn"
                     onClick={resetQuiz}
-                    className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-fluid-body font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
+                    className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-[10px] font-[Georgia] font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
                   >
                     <i className="fa-solid fa-rotate-left mr-1"></i> Retake
                   </button>
                   <button 
                     id="back-to-facts-btn"
                     onClick={() => setActiveTab('Facts')}
-                    className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-fluid-body font-bold transition cursor-pointer"
+                    className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-[Georgia] font-bold transition cursor-pointer"
                   >
-                    Back to Facts
+                    <i className="fa-solid fa-house mr-1"></i> Back to Facts
                   </button>
                 </div>
               </div>

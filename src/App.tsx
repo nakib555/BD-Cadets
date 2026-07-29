@@ -137,7 +137,7 @@ function AppContent() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.2, ease: 'easeInOut' }}
-                className="w-full min-h-full"
+                className="w-full h-full flex flex-col"
               >
                  {currentRoute.path === 'test-active' && <Test />}
                  {currentRoute.path === 'study-plan' && <StudyPlan />}
