@@ -43,10 +43,10 @@ export default function Achievements() {
   };
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-24 transition-colors duration-300 animate-in fade-in duration-300">
+    <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-6 transition-colors duration-300 animate-in fade-in duration-300">
       
       {/* Header */}
-      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
           <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition">
               <i className="fa-solid fa-arrow-left text-sm"></i>
           </button>
@@ -65,13 +65,13 @@ export default function Achievements() {
 
       {/* Profile Bio Card */}
       <div className="p-4">
-          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 flex gap-4 items-center shadow-sm relative overflow-hidden transition-colors duration-300">
-              
+          <div className="bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800/80 rounded-[10px] p-4 flex gap-4 items-center shadow-sm relative overflow-hidden transition-colors duration-300">
+                  
               {/* Cadet Badge Aura */}
               <div className="w-16 h-16 rounded-[10px] bg-gradient-to-tr from-amber-500 to-yellow-400 p-0.5 flex items-center justify-center shadow-md relative group">
                   <div className="w-full h-full bg-slate-950 rounded-[10px] flex flex-col items-center justify-center">
-                      <span className="text-xl">🎖️</span>
-                      <span className="text-[7px] font-black text-amber-400 uppercase tracking-widest mt-0.5">Rank 1</span>
+                      <span className="text-[20px]">🎖️</span>
+                      <span className="text-[8px] font-black text-amber-400 uppercase tracking-widest mt-0.5">Rank 1</span>
                   </div>
               </div>
 
@@ -100,8 +100,8 @@ export default function Achievements() {
                   ) : (
                     <>
                         <div className="flex justify-between items-start">
-                            <h2 className="text-xs font-black text-slate-950 dark:text-white tracking-wide">{cadetName}</h2>
-                            <button onClick={() => { setNameInput(cadetName); setCollegeInput(cadetCollege); setIsEditingProfile(true); }} className="text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer text-[10px]">
+                            <h2 className="text-[14px] font-[Georgia] font-black text-slate-950 dark:text-white tracking-wide">{cadetName}</h2>
+                            <button onClick={() => { setNameInput(cadetName); setCollegeInput(cadetCollege); setIsEditingProfile(true); }} className="text-slate-400 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer text-[12px]">
                                 <i className="fa-solid fa-pen-to-square"></i>
                             </button>
                         </div>
@@ -117,7 +117,7 @@ export default function Achievements() {
       </div>
 
       {/* Main Navigation Tabs */}
-      <div className="mx-4 mb-4 bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 p-1.5 rounded-[10px] flex shadow-sm transition-colors duration-300">
+      <div className="mx-4 mb-4 bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800/80 p-1.5 rounded-[10px] flex shadow-sm transition-colors duration-300">
           <button 
             onClick={() => setActiveTab('achievements')}
             className={`flex-1 py-2 text-[10px] font-black uppercase tracking-wider rounded-[10px] transition flex items-center justify-center gap-1.5 cursor-pointer ${
@@ -126,7 +126,7 @@ export default function Achievements() {
                 : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
             }`}
           >
-              <i className="fa-solid fa-trophy text-[9px]"></i> Badges & Stats
+              <i className="fa-solid fa-trophy text-[12px]"></i> Badges & Stats
           </button>
           <button 
             onClick={() => setActiveTab('settings')}
@@ -136,7 +136,7 @@ export default function Achievements() {
                 : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
             }`}
           >
-              <i className="fa-solid fa-user-gear text-[9px]"></i> Settings
+              <i className="fa-solid fa-user-gear text-[12px]"></i> Settings
           </button>
       </div>
 
@@ -149,17 +149,17 @@ export default function Achievements() {
               <div className="bg-indigo-50 dark:bg-indigo-950/40 rounded-[10px] p-5 flex justify-between items-center relative overflow-hidden shadow-sm border border-indigo-100/50 dark:border-indigo-900/30">
                   <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:16px_16px]"></div>
                   <div className="relative z-10">
-                      <h2 className="text-sm font-black text-indigo-900 dark:text-indigo-200 mb-1">Keep Going, Cadet!</h2>
+                      <h2 className="text-[14px] font-[Georgia] font-black text-indigo-900 dark:text-indigo-200 mb-1">Keep Going, Cadet!</h2>
                       <p className="text-[10px] font-bold text-indigo-700 dark:text-indigo-400">You're in the top 10% of all learners.</p>
                   </div>
-                  <div className="relative z-10 w-11 h-11 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center shadow-md border border-indigo-100/20 text-yellow-500 text-xl">
+                  <div className="relative z-10 w-11 h-11 bg-white dark:bg-slate-900 rounded-full flex items-center justify-center shadow-md border border-indigo-100/20 text-yellow-500 text-[20px]">
                       <i className="fa-solid fa-trophy"></i>
                   </div>
               </div>
           </div>
 
           {/* Points Card */}
-          <div className="mx-4 bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 flex justify-between items-center shadow-sm transition-colors duration-300">
+          <div className="mx-4 bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800/80 rounded-[10px] p-4 flex justify-between items-center shadow-sm transition-colors duration-300">
               <span className="text-[11px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                   <i className="fa-solid fa-coins text-amber-500"></i> Total Cadet Points
               </span>
@@ -170,7 +170,7 @@ export default function Achievements() {
           </div>
 
           {/* Sub-tabs */}
-          <div className="bg-white dark:bg-slate-950 flex px-4 text-[10px] font-black text-slate-400 dark:text-slate-500 text-center border-b border-slate-100 dark:border-slate-800/60 sticky top-[60px] z-10 transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 flex px-4 text-[10px] font-black text-slate-400 dark:text-slate-500 text-center border-b border-[#d8dfe7] dark:border-slate-800/60 sticky top-[60px] z-10 transition-colors duration-300">
               {(['badges', 'milestones', 'certificates'] as const).map((tab) => {
                 const isSelected = badgeSubTab === tab;
                 return (
@@ -191,9 +191,9 @@ export default function Achievements() {
 
           {/* Content display based on sub-tabs */}
           {badgeSubTab === 'badges' && (
-            <div className="p-4 grid grid-cols-4 gap-y-6 gap-x-2 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60 transition-colors duration-300">
+            <div className="p-4 grid grid-cols-4 gap-y-6 gap-x-2 bg-white dark:bg-slate-950 border-y border-[#d8dfe7] dark:border-slate-800/60 transition-colors duration-300">
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-amber-200 dark:border-amber-900/40 text-amber-500 text-2xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-[#e1d5a7] dark:border-amber-900/40 text-amber-500 text-[24px] relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-shield-cat"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -257,15 +257,15 @@ export default function Achievements() {
           )}
 
           {badgeSubTab === 'milestones' && (
-            <div className="p-4 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60 space-y-3.5 transition-colors duration-300">
-                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-[10px] border border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
+            <div className="p-4 bg-white dark:bg-slate-950 border-y border-[#d8dfe7] dark:border-slate-800/60 space-y-3.5 transition-colors duration-300">
+                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/60 flex justify-between items-center">
                     <div>
                         <h4 className="text-[10px] font-black text-slate-900 dark:text-white uppercase">Sovereign Scholar</h4>
                         <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold">Score above 95% in any 5 mock tests</p>
                     </div>
                     <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">3/5 Completed</span>
                 </div>
-                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-[10px] border border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
+                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/60 flex justify-between items-center">
                     <div>
                         <h4 className="text-[10px] font-black text-slate-900 dark:text-white uppercase">Endurance Driller</h4>
                         <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold">Maintain a study streak of 20 consecutive days</p>
@@ -276,7 +276,7 @@ export default function Achievements() {
           )}
 
           {badgeSubTab === 'certificates' && (
-            <div className="p-8 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60 text-center space-y-4 transition-colors duration-300">
+            <div className="p-8 bg-white dark:bg-slate-950 border-y border-[#d8dfe7] dark:border-slate-800/60 text-center space-y-4 transition-colors duration-300">
                 <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center text-xl mx-auto"><i className="fa-solid fa-graduation-cap"></i></div>
                 <div>
                     <h4 className="text-[11px] font-black text-slate-900 dark:text-white uppercase">College Preparation Cadet</h4>
@@ -293,8 +293,8 @@ export default function Achievements() {
         <div className="p-4 space-y-4 animate-in slide-in-from-bottom-2 duration-300">
           
           {/* Theme custom settings block */}
-          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 space-y-4 transition-colors duration-300 shadow-sm">
-              <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800/60">
+          <div className="bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800/80 rounded-[10px] p-4 space-y-4 transition-colors duration-300 shadow-sm">
+              <div className="flex items-center gap-2 pb-1 border-b border-[#d8dfe7] dark:border-slate-800/60">
                   <i className="fa-solid fa-palette text-blue-600 dark:text-blue-400 text-xs"></i>
                   <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Appearance & Theme</h3>
               </div>
@@ -334,8 +334,8 @@ export default function Achievements() {
           </div>
 
           {/* Localization preferences settings block */}
-          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 space-y-4 transition-colors duration-300 shadow-sm">
-              <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800/60">
+          <div className="bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800/80 rounded-[10px] p-4 space-y-4 transition-colors duration-300 shadow-sm">
+              <div className="flex items-center gap-2 pb-1 border-b border-[#d8dfe7] dark:border-slate-800/60">
                   <i className="fa-solid fa-globe text-blue-600 dark:text-blue-400 text-xs"></i>
                   <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Language & Sound</h3>
               </div>

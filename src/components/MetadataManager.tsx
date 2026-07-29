@@ -72,12 +72,6 @@ const METADATA_MAP: Record<string, PageMetadata> = {
     ogTitle: 'Cadet Colleges Map & Location Guide',
     ogDescription: 'Discover geographic profiles, campus profiles, and complete contact details of the 12 cadet academies.',
   },
-  'ai-assistant': {
-    title: 'AI Cadet Tutor - Gemini Powered Study Desk',
-    description: 'Solve difficult academic doubts, draft essay structures, and query General Knowledge questions instantly.',
-    ogTitle: 'AI Cadet Tutor & Homework Help',
-    ogDescription: 'Get personalized feedback, custom summaries, and study guides from our smart AI model.',
-  },
   photosynthesis: {
     title: 'Photosynthesis Lab - Interactive Science Module',
     description: 'Explore light absorption, carbon dioxide cycles, and chemical formulas with the interactive photosynthesis simulator.',

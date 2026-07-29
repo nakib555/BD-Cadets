@@ -210,14 +210,14 @@ export default function InteractiveMap() {
   };
 
   return (
-    <div className="bg-slate-50/50 dark:bg-slate-900 animate-in fade-in duration-300 min-h-full pb-24 transition-colors duration-300">
-      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+    <div className="bg-slate-50/50 dark:bg-slate-900 animate-in fade-in duration-300 min-h-full pb-6 transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
           <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
-          <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Interactive Bangladesh Map</h1>
+          <h1 className="text-[13px] font-[Georgia] font-black text-slate-900 dark:text-white uppercase tracking-wider">Interactive Bangladesh Map</h1>
           <div className="w-8"></div>
       </header>
 
-      <div className="bg-white dark:bg-slate-950 flex justify-center gap-2 p-3 border-b border-slate-100 dark:border-slate-800/80 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-950 flex justify-center gap-2 p-3 border-b border-[#d8dfe7] dark:border-slate-800/80 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
           <button 
             onClick={() => setActiveTab('divisions')}
             className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'divisions' ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
@@ -240,11 +240,11 @@ export default function InteractiveMap() {
 
       <div className="p-4 space-y-4">
           {/* Main map section */}
-          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm flex flex-col md:flex-row gap-4 transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm flex flex-col md:flex-row gap-4 transition-colors duration-300">
               
               {/* Map Canvas */}
               <div className="flex-1 min-h-[220px] bg-slate-50 dark:bg-slate-900 rounded-[10px] relative flex items-center justify-center p-2 border border-blue-50/50 dark:border-slate-800 shadow-inner overflow-hidden">
-                  <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-white dark:bg-slate-950 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-850">
+                  <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-white dark:bg-slate-950 px-2 py-0.5 rounded border border-[#d8dfe7] dark:border-slate-850">
                     Geographic Explorer
                   </div>
                   {/* Outer Bangladesh Simulated Container */}
@@ -294,7 +294,7 @@ export default function InteractiveMap() {
                         className={`flex-1 md:flex-initial flex items-center justify-between p-2 rounded-[10px] text-left border cursor-pointer transition ${
                           isSelected 
                             ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-600 shadow-sm font-bold' 
-                            : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-100 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                            : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-[#d8dfe7] dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                         }`}
                       >
                         <div className="flex items-center gap-2">
@@ -309,8 +309,8 @@ export default function InteractiveMap() {
           </div>
 
           {/* Details Section */}
-          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-4 transition-colors duration-300">
-              <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800/80 pb-2">
+          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm space-y-4 transition-colors duration-300">
+              <div className="flex justify-between items-center border-b border-[#d8dfe7] dark:border-slate-800/80 pb-2">
                 <div>
                   <h2 className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-2">
                     <span className="text-sm">📍</span> {selectedDiv.name} ({selectedDiv.bnName})
@@ -321,11 +321,11 @@ export default function InteractiveMap() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-[10px] border border-slate-100 dark:border-slate-800/50">
+                <div className="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/50">
                   <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Total Area</p>
                   <p className="text-xs font-bold text-slate-800 dark:text-slate-200">{selectedDiv.area}</p>
                 </div>
-                <div className="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-[10px] border border-slate-100 dark:border-slate-800/50">
+                <div className="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/50">
                   <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Major Rivers</p>
                   <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">{selectedDiv.majorRivers.join(', ')}</p>
                 </div>
@@ -333,7 +333,7 @@ export default function InteractiveMap() {
 
               {/* Cadet Colleges in Division */}
               <div>
-                <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2 flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
+                <h3 className="text-[12px] font-[Georgia] font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2 flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
                   <i className="fa-solid fa-graduation-cap"></i> Cadet Colleges ({selectedDiv.colleges.length})
                 </h3>
                 {selectedDiv.colleges.length > 0 ? (
@@ -361,7 +361,7 @@ export default function InteractiveMap() {
               {/* Geographic Mini Quiz */}
               <div className="bg-indigo-50/50 dark:bg-indigo-950/10 p-4 rounded-[10px] border border-indigo-100/50 dark:border-indigo-900/30 space-y-3">
                 <div className="flex justify-between items-center">
-                  <h4 className="text-[10px] font-black text-indigo-900 dark:text-indigo-300 uppercase tracking-widest flex items-center gap-1.5">
+                  <h4 className="text-[12px] font-[Georgia] font-black text-indigo-900 dark:text-indigo-300 uppercase tracking-widest flex items-center gap-1.5">
                     <i className="fa-regular fa-lightbulb"></i> Divisional GK Quiz
                   </h4>
                   <span className="text-[8px] font-extrabold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950 px-2 py-0.5 rounded-full uppercase">10 Points</span>
@@ -386,7 +386,7 @@ export default function InteractiveMap() {
                               ? 'bg-red-100 dark:bg-red-950/30 border-red-300 dark:border-red-900 text-red-800 dark:text-red-300'
                               : isSelected 
                                 ? 'bg-indigo-600 border-indigo-600 text-white'
-                                : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300'
+                                : 'bg-white dark:bg-slate-900 border-[#d8dfe7] dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300'
                         }`}
                       >
                         <span>{opt}</span>

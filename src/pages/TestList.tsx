@@ -13,19 +13,19 @@ export default function TestList() {
   ];
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-24 transition-colors duration-300 animate-in fade-in duration-300">
-      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+    <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-6 transition-colors duration-300 animate-in fade-in duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
           <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition">
               <i className="fa-solid fa-arrow-left text-sm"></i>
           </button>
-          <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Mock Tests & Past Papers</h1>
+          <h1 className="text-[13px] font-[Georgia] font-black text-slate-900 dark:text-white uppercase tracking-wider">Mock Tests & Past Papers</h1>
           <button className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition">
               <i className="fa-solid fa-trophy text-xs"></i>
           </button>
       </header>
 
       {/* Tabs */}
-      <div className="bg-white dark:bg-slate-950 flex px-4 pt-3 pb-3 gap-2 overflow-x-auto custom-scrollbar border-b border-slate-100 dark:border-slate-800/60 sticky top-[60px] z-10 transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-950 flex px-4 pt-3 pb-3 gap-2 overflow-x-auto custom-scrollbar border-b border-[#d8dfe7] dark:border-slate-800/60 sticky top-[60px] z-10 transition-colors duration-300">
           {tabs.map(tab => (
               <button 
                   key={tab}
@@ -45,29 +45,29 @@ export default function TestList() {
       <div className="p-4 space-y-4">
           {tests.map((test, i) => (
               <div 
-                  key={i} 
-                  className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm hover:border-blue-200 dark:hover:border-blue-500/50 transition duration-300 cursor-pointer" 
+                  key={i}
+                  className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm hover:border-blue-200 dark:hover:border-blue-500/50 transition duration-300 cursor-pointer" 
                   onClick={() => navigate('test-active')}
               >
                   <div className="flex justify-between items-start">
                       <div className="flex-1 pr-4">
-                          <span className="text-[8px] font-black px-2 py-0.5 bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded-[10px] uppercase tracking-wider">{test.type}</span>
-                          <h2 className="text-[12px] font-black text-slate-900 dark:text-white mt-2 mb-1 leading-snug tracking-wide">{test.title}</h2>
-                          <p className="text-[9px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">{test.qns} Marks • {test.qns} Questions</p>
+                          <span className="text-[10px] font-black px-2 py-0.5 bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 rounded-[10px] uppercase tracking-wider">{test.type}</span>
+                          <h2 className="text-[14px] font-[Georgia] font-black text-slate-900 dark:text-white mt-2 mb-1 leading-snug tracking-wide">{test.title}</h2>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">{test.qns} Marks • {test.qns} Questions</p>
                       </div>
-                      <div className={`w-12 h-12 ${test.bg} rounded-[10px] flex items-center justify-center shrink-0`}>
-                          <i className={`${test.icon} ${test.color} text-xl`}></i>
+                      <div className={`w-12 h-12 ${test.bg} border border-[#d8dfe7] rounded-[10px] flex items-center justify-center shrink-0`}>
+                          <i className={`${test.icon} ${test.color} text-[20px]`}></i>
                       </div>
                   </div>
                   
-                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
-                      <div className="flex gap-4 text-[9px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">
-                          <span className="flex items-center gap-1"><i className="fa-regular fa-clock"></i> {test.time}</span>
-                          <span className="flex items-center gap-1"><i className="fa-solid fa-users"></i> {test.taken} Taken</span>
+                  <div className="mt-4 pt-3 border-t border-[#d8dfe7] dark:border-slate-800/60 flex justify-between items-center">
+                      <div className="flex gap-4 text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">
+                          <span className="flex items-center gap-1"><i className="fa-regular fa-clock text-[14px]"></i> {test.time}</span>
+                          <span className="flex items-center gap-1"><i className="fa-solid fa-users text-[14px]"></i> {test.taken} Taken</span>
                       </div>
                       <button 
                           onClick={(e) => { e.stopPropagation(); navigate('test-active'); }} 
-                          className="bg-emerald-500 hover:bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider px-4 py-1.5 rounded-[10px] cursor-pointer transition-colors duration-300"
+                          className="bg-emerald-500 hover:bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider px-4 py-1.5 rounded-[10px] cursor-pointer transition-colors duration-300"
                       >
                           Start Test
                       </button>

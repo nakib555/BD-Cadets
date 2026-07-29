@@ -160,8 +160,8 @@ export default function Photosynthesis() {
   };
 
   return (
-    <div className="bg-slate-50/50 dark:bg-slate-900 min-h-full pb-24 animate-in fade-in duration-300 transition-colors duration-300">
-      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+    <div className="bg-slate-50/50 dark:bg-slate-900 min-h-full pb-6 animate-in fade-in duration-300 transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
           <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
           <div className="flex flex-col items-center">
             <span className="text-[8px] font-black tracking-widest text-emerald-600 dark:text-emerald-400 uppercase">Science Infographics</span>
@@ -171,7 +171,7 @@ export default function Photosynthesis() {
       </header>
 
       {/* Navigation tabs */}
-      <div className="bg-white dark:bg-slate-950 flex justify-center gap-1.5 p-3 border-b border-slate-100 dark:border-slate-800/85 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-950 flex justify-center gap-1.5 p-3 border-b border-[#d8dfe7] dark:border-slate-800/85 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
           {(['Overview', 'Learn', 'Diagram', 'Quiz'] as const).map((tab) => {
             const isSelected = activeTab === tab;
             return (
@@ -194,7 +194,7 @@ export default function Photosynthesis() {
           
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'Overview' && (
-            <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-5 animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
+            <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm space-y-5 animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
               <div className="space-y-1">
                 <h2 className="text-sm font-black text-slate-900 dark:text-white">Introduction to Photosynthesis</h2>
                 <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
@@ -248,7 +248,7 @@ export default function Photosynthesis() {
           {/* TAB 2: LEARN STEPS */}
           {activeTab === 'Learn' && (
             <div className="space-y-3 animate-in slide-in-from-bottom-2 duration-300">
-              <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+              <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
                 <h2 className="text-xs font-black text-slate-900 dark:text-white mb-1">Cadet Fast-Track Lessons</h2>
                 <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Step-by-step Photosynthesis breakdown</p>
               </div>
@@ -260,12 +260,12 @@ export default function Photosynthesis() {
                 { step: '04', title: 'Chemical Transformation (রাসায়নিক রূপান্তর)', desc: 'Inside the leaf cells, light energy is used to split water molecules. Hydrogen combines with CO2 to synthesize glucose, while oxygen is split off.', color: 'border-l-orange-500' },
                 { step: '05', title: 'Food Storage & Breathing (খাদ্য সঞ্চয় ও শ্বসন)', desc: 'The produced glucose is converted to starch for long-term storage in fruits, roots, and stems. O2 gas exits through stomata, facilitating global respiration.', color: 'border-l-emerald-500' }
               ].map((item, index) => (
-                <div key={index} className={`bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 border-l-4 ${item.color} shadow-sm space-y-1.5 transition-colors duration-300`}>
+                <div key={index} className={`bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 border-l-4 ${item.color} shadow-sm space-y-1.5 transition-colors duration-300`}>
                   <div className="flex justify-between items-center">
                     <span className="text-[9px] font-black text-slate-400 dark:text-slate-500">STAGE {item.step}</span>
                     <i className="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i>
                   </div>
-                  <h3 className="text-[11px] font-black text-slate-950 dark:text-white">{item.title}</h3>
+                  <h3 className="text-[12px] font-[Georgia] font-black text-slate-950 dark:text-white">{item.title}</h3>
                   <p className="text-[10px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">{item.desc}</p>
                 </div>
               ))}
@@ -277,14 +277,14 @@ export default function Photosynthesis() {
             <div className="space-y-4 animate-in slide-in-from-bottom-2 duration-300">
               
               {/* Graphic container simulating plant layout */}
-              <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-4 transition-colors duration-300">
+              <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm space-y-4 transition-colors duration-300">
                 <div className="text-center">
                   <h2 className="text-xs font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest">Interactive Leaf Diagram</h2>
                   <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Click any hotspot or use step controls</p>
                 </div>
 
                 {/* Simulated Canvas */}
-                <div className="h-64 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800/50 rounded-[10px] relative overflow-hidden flex items-center justify-center shadow-inner transition-colors duration-300">
+                <div className="h-64 bg-slate-50 dark:bg-slate-900 border border-[#d8dfe7] dark:border-slate-800/50 rounded-[10px] relative overflow-hidden flex items-center justify-center shadow-inner transition-colors duration-300">
                   
                   {/* Sky & Ground gradient background */}
                   <div className="absolute inset-0 bg-gradient-to-b from-sky-100/50 via-sky-50/10 to-amber-100/10 dark:from-sky-950/20 dark:to-slate-900/20 h-[70%]" />
@@ -349,7 +349,7 @@ export default function Photosynthesis() {
                 </div>
 
                 {/* Detailed hotspot panel below */}
-                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 space-y-2 transition-colors duration-300">
+                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 space-y-2 transition-colors duration-300">
                   <div className="flex justify-between items-center border-b border-slate-200/50 dark:border-slate-800 pb-2">
                     <span className="text-[10px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
                       <span>{currentHotspot.icon}</span> {currentHotspot.name} {currentHotspot.chemical && `(${currentHotspot.chemical})`}
@@ -389,11 +389,11 @@ export default function Photosynthesis() {
 
           {/* TAB 4: INTERACTIVE MINI-QUIZ */}
           {activeTab === 'Quiz' && (
-            <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
+            <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
               
               {!quizFinished ? (
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
+                  <div className="flex justify-between items-center border-b border-[#d8dfe7] dark:border-slate-800 pb-2">
                     <div>
                       <h3 className="text-xs font-black text-slate-900 dark:text-white">Topic Cadet Quiz</h3>
                       <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Test your Photosynthesis knowledge</p>
@@ -417,7 +417,7 @@ export default function Photosynthesis() {
                       const isSelected = selectedOpt === i;
                       const isCorrect = QUIZ_QUESTIONS[quizIdx].correctIndex === i;
                       
-                      let btnStyle = 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-850 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700';
+                      let btnStyle = 'bg-white dark:bg-slate-900 border-[#d8dfe7] dark:border-slate-850 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700';
                       if (isSelected) {
                         btnStyle = 'bg-emerald-600 border-emerald-600 text-white dark:text-white';
                       }
@@ -427,7 +427,7 @@ export default function Photosynthesis() {
                         } else if (isSelected) {
                           btnStyle = 'bg-red-100 dark:bg-red-950/30 border-red-300 dark:border-red-800 text-red-800 dark:text-red-400';
                         } else {
-                          btnStyle = 'bg-slate-50 dark:bg-slate-950/50 border-slate-100 dark:border-slate-900 text-slate-400 dark:text-slate-600';
+                          btnStyle = 'bg-slate-50 dark:bg-slate-950/50 border-[#d8dfe7] dark:border-slate-900 text-slate-400 dark:text-slate-600';
                         }
                       }
 
@@ -461,7 +461,7 @@ export default function Photosynthesis() {
                     </button>
                   ) : (
                     <div className="space-y-3">
-                      <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-[10px] border border-slate-100 dark:border-slate-800 text-[9px] text-slate-600 dark:text-slate-400 font-semibold leading-relaxed">
+                      <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800 text-[9px] text-slate-600 dark:text-slate-400 font-semibold leading-relaxed">
                         <span className="text-slate-800 dark:text-slate-200 font-extrabold block mb-0.5">💡 Explanation</span>
                         {QUIZ_QUESTIONS[quizIdx].explanation}
                       </div>

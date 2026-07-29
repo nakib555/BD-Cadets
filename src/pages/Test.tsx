@@ -192,7 +192,7 @@ export default function Test() {
 
     return (
       <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-20 transition-colors duration-300 animate-in fade-in duration-300">
-        <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+        <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shadow-sm transition-colors duration-300">
             <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
             <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Mock Test Result</h1>
             <div className="w-8"></div>
@@ -200,27 +200,27 @@ export default function Test() {
 
         <div className="p-4 space-y-4">
           {/* Main score badge */}
-          <div className="bg-white dark:bg-slate-950 p-6 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm flex flex-col items-center text-center space-y-3 transition-colors duration-300">
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl ${passed ? 'bg-green-100 dark:bg-green-950/40 text-green-600 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400'}`}>
+          <div className="bg-white dark:bg-slate-950 p-6 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm flex flex-col items-center text-center space-y-3 transition-colors duration-300">
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center text-[24px] ${passed ? 'bg-green-100 dark:bg-green-950/40 text-green-600 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400'}`}>
                 {passed ? '🏆' : '📚'}
               </div>
               <div>
-                <h2 className="text-sm font-black text-slate-900 dark:text-white">{passed ? 'Congratulations, Cadet!' : 'Keep Studying, Cadet!'}</h2>
+                <h2 className="text-[14px] font-[Georgia] font-black text-slate-900 dark:text-white">{passed ? 'Congratulations, Cadet!' : 'Keep Studying, Cadet!'}</h2>
                 <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">{passed ? 'You passed this diagnostic mock exam.' : 'Practice makes perfect.'}</p>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 w-full pt-4 border-t border-slate-100 dark:border-slate-800/60 text-center">
+              <div className="grid grid-cols-3 gap-6 w-full pt-4 border-t border-[#d8dfe7] dark:border-slate-800/60 text-center">
                 <div>
                   <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Score</p>
-                  <p className="text-sm font-black text-slate-800 dark:text-slate-200">{score} / {QUESTIONS.length}</p>
+                  <p className="text-[14px] font-[Georgia] font-black text-slate-800 dark:text-slate-200">{score} / {QUESTIONS.length}</p>
                 </div>
                 <div>
                   <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Accuracy</p>
-                  <p className="text-sm font-black text-slate-800 dark:text-slate-200">{percentage}%</p>
+                  <p className="text-[14px] font-[Georgia] font-black text-slate-800 dark:text-slate-200">{percentage}%</p>
                 </div>
                 <div>
                   <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Status</p>
-                  <p className={`text-xs font-black uppercase ${passed ? 'text-green-600 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>{passed ? 'PASS' : 'FAIL'}</p>
+                  <p className={`text-[12px] font-black uppercase ${passed ? 'text-green-600 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>{passed ? 'PASS' : 'FAIL'}</p>
                 </div>
               </div>
 
@@ -242,13 +242,13 @@ export default function Test() {
 
           {/* Question Explanations */}
           <div className="space-y-3">
-            <h3 className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">Review Explanations</h3>
+            <h3 className="text-[12px] font-[Georgia] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">Review Explanations</h3>
             {QUESTIONS.map((q, idx) => {
               const selectedOpt = selectedAnswers[q.id];
               const isCorrect = selectedOpt === q.correctIndex;
 
               return (
-                <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
+                <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
                   <div className="flex justify-between items-start gap-2">
                     <span className="text-[9px] font-black text-slate-400 dark:text-slate-500">Q{idx + 1} ({q.subject})</span>
                     <span className={`text-[8px] font-black px-1.5 py-0.5 rounded uppercase ${
@@ -257,7 +257,7 @@ export default function Test() {
                       {isCorrect ? 'Correct' : 'Incorrect'}
                     </span>
                   </div>
-                  <h4 className="text-[11px] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
+                  <h4 className="text-[13px] font-[Georgia] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
                   
                   <div className="grid grid-cols-1 gap-1.5 pt-1">
                     {q.options.map((opt, oIdx) => {
@@ -298,19 +298,19 @@ export default function Test() {
 
   return (
     <div className="animate-in fade-in duration-300 relative min-h-full flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
-      <header className="flex justify-between items-center p-4 sticky top-0 bg-white dark:bg-slate-950 z-10 border-b border-slate-100 dark:border-slate-800/80 shrink-0 transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 sticky top-0 bg-white dark:bg-slate-950 z-10 border-b border-[#d8dfe7] dark:border-slate-800/80 shrink-0 transition-colors duration-300">
           <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
-          <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Active Admission Mock</h1>
+          <h1 className="text-[13px] font-[Georgia] font-black text-slate-900 dark:text-white uppercase tracking-wider">Active Admission Mock</h1>
           <button onClick={handleSubmit} className="text-red-500 dark:text-red-400 hover:text-red-600 font-bold text-[10px] uppercase cursor-pointer">End Test</button>
       </header>
 
       {/* Timer & Meta Bar */}
-      <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 flex justify-between items-center border-b border-slate-100 dark:border-slate-800/60 shrink-0 transition-colors duration-300">
+      <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 flex justify-between items-center border-b border-[#d8dfe7] dark:border-slate-800/60 shrink-0 transition-colors duration-300">
           <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
             <span className="text-[9px] font-black uppercase tracking-wider">Subject: {currentQuestion.subject}</span>
           </div>
-          <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+          <div className="bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
               <i className="fa-regular fa-clock text-slate-600 dark:text-slate-400 text-[10px] animate-pulse"></i>
               <span className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 font-mono">{formatTime(timeLeft)}</span>
           </div>
@@ -324,7 +324,7 @@ export default function Test() {
               </span>
           </div>
 
-          <h2 className="text-[14px] font-black text-slate-900 dark:text-white mb-6 leading-relaxed bg-slate-50/50 dark:bg-slate-950/40 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-inner">
+          <h2 className="text-[14px] font-[Georgia] font-black text-slate-900 dark:text-white mb-6 leading-relaxed bg-slate-50/50 dark:bg-slate-950/40 p-4 rounded-[10px] border border-[#d8dfe7] dark:border-slate-800/80 shadow-inner">
             {currentQuestion.question}
           </h2>
 
@@ -339,14 +339,14 @@ export default function Test() {
                       className={`border-2 rounded-[10px] p-3 flex justify-between items-center transition w-full text-left cursor-pointer ${
                         isSelected 
                           ? 'border-indigo-600 dark:border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20' 
-                          : 'border-slate-100 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-950'
+                          : 'border-[#d8dfe7] dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-950'
                       }`}
                     >
                         <div className="flex items-center gap-3">
                             <div className={`w-7 h-7 rounded-[10px] text-xs font-black flex items-center justify-center transition ${
                               isSelected ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400'
                             }`}>{opt.label}</div>
-                            <span className={`text-[11px] font-black ${isSelected ? 'text-indigo-900 dark:text-indigo-200' : 'text-slate-800 dark:text-slate-300'}`}>{opt.text}</span>
+                            <span className={`text-[13px] font-[Georgia] font-black ${isSelected ? 'text-indigo-900 dark:text-indigo-200' : 'text-slate-800 dark:text-slate-300'}`}>{opt.text}</span>
                         </div>
                         {isSelected && <i className="fa-solid fa-circle-check text-indigo-600 dark:text-indigo-400 text-sm"></i>}
                     </button>
@@ -356,7 +356,7 @@ export default function Test() {
       </div>
 
       {/* Bottom controls */}
-      <div className="absolute bottom-0 w-full bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/80 p-3.5 flex justify-between gap-3.5 z-20 shadow-[0_-8px_16px_rgba(0,0,0,0.03)] shrink-0 transition-colors duration-300">
+      <div className="absolute bottom-0 w-full bg-white dark:bg-slate-950 border-t border-[#d8dfe7] dark:border-slate-800/80 p-3.5 flex justify-between gap-3.5 z-20 shadow-[0_-8px_16px_rgba(0,0,0,0.03)] shrink-0 transition-colors duration-300">
           <button 
             onClick={handlePrevious}
             disabled={currentIdx === 0}

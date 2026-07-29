@@ -13,7 +13,6 @@ import AllSubjects from './pages/AllSubjects';
 import Achievements from './pages/Achievements';
 import TestList from './pages/TestList';
 import InteractiveMap from './pages/InteractiveMap';
-import AIStudyAssistant from './pages/AIStudyAssistant';
 import Photosynthesis from './pages/Photosynthesis';
 import PadmaBridge from './pages/PadmaBridge';
 import cadetsSplash from './assets/images/cadets_splash_1785297743949.jpg';
@@ -123,7 +122,7 @@ function AppContent() {
                     navigate(MAIN_TABS[activeTabIdx - 1]);
                   }
                 }}
-                className="w-full h-full min-h-full flex flex-col cursor-grab active:cursor-grabbing"
+                className="w-full min-h-full flex flex-col cursor-grab active:cursor-grabbing"
               >
                  {currentRoute.path === 'home' && <Home />}
                  {currentRoute.path === 'study' && <Study />}
@@ -138,14 +137,13 @@ function AppContent() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.2, ease: 'easeInOut' }}
-                className="w-full h-full min-h-full"
+                className="w-full min-h-full"
               >
                  {currentRoute.path === 'test-active' && <Test />}
                  {currentRoute.path === 'study-plan' && <StudyPlan />}
                  {currentRoute.path === 'all-subjects' && <AllSubjects />}
                  {currentRoute.path === 'achievements' && <Achievements />}
                  {currentRoute.path === 'interactive-map' && <InteractiveMap />}
-                 {currentRoute.path === 'ai-assistant' && <AIStudyAssistant />}
                  {currentRoute.path === 'photosynthesis' && <Photosynthesis />}
                  {currentRoute.path === 'padma-bridge' && <PadmaBridge />}
               </motion.div>
