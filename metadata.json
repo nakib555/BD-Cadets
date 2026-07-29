@@ -1,0 +1,6 @@
+{
+  "name": "BD Cadets",
+  "description": "A comprehensive, gamified Cadet College Admission preparation platform with interactive maps, diagnostic mock tests, offline study notes, and an intelligent AI assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

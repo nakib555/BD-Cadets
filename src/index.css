@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .progress-circle {
+    background: conic-gradient(#10b981 78%, #f3f4f6 0);
+    border-radius: 50%;
+  }
+  
+  .goal-circle {
+    background: conic-gradient(#3b82f6 75%, #dbeafe 0);
+    border-radius: 50%;
+  }
+  
+  .map-bg {
+    background-color: #e8f4ff;
+  }
+  
+  .test-option.selected {
+    border-color: #22c55e;
+    background-color: #f0fdf4;
+  }
+  
+  .test-option.selected .opt-letter {
+    background-color: #22c55e;
+    color: #ffffff;
+  }
+}

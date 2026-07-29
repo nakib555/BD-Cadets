@@ -1,11 +1,19 @@
-<div align="center">
+# BD Cadets Application
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+A completely redesigned study application for Cadet College Admission Preparation using a clean, mobile-first 414px container constraint layout.
 
-  <h1>Built with AI Studio</h2>
+## Design Protocol
+- Layout: 414px mobile-first wrapper via `App.tsx`.
+- Visual styling: Flat borders without heavy box-shadows.
+- Icons: FontAwesome.
+- Navigation: Fixed absolute bottom bar.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Pages
+- **Home**: Entry dashboard with quick access and daily goals.
+- **Study Materials**: Notes, Past Papers, Bookmarks.
+- **Mock Tests**: List of active tests.
+- **Progress**: Analytics and performance.
+- **Achievements**: Gamification badges and streak tracking.
+- **AI Assistant**: Intelligent study guide chat.
+- **Test Active**: Exam environment UI.
+- **Interactive Map**: Geographical and historical context map.
