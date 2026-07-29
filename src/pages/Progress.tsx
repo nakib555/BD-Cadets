@@ -22,7 +22,7 @@ export default function Progress() {
       </div>
 
       <div className="p-4 space-y-4">
-          <div className="bg-white dark:bg-slate-950 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800/80 flex items-center justify-between transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] shadow-sm border border-slate-100 dark:border-slate-800/80 flex items-center justify-between transition-colors duration-300">
               <div className="flex flex-col items-center">
                   <span className="text-[10px] font-black text-slate-600 dark:text-slate-400 mb-3 uppercase tracking-wider">Overall Progress</span>
                   <div className="w-[72px] h-[72px] progress-circle flex items-center justify-center shadow-sm">
@@ -55,14 +55,14 @@ export default function Progress() {
               </div>
           </div>
 
-          <div className="bg-white dark:bg-slate-950 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800/80 grid grid-cols-4 divide-x divide-slate-100 dark:divide-slate-800/80 text-center transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] shadow-sm border border-slate-100 dark:border-slate-800/80 grid grid-cols-4 divide-x divide-slate-100 dark:divide-slate-800/80 text-center transition-colors duration-300">
               <div><p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Tests Taken</p><p className="text-sm font-black text-slate-900 dark:text-white">{userData.testsTaken}</p></div>
               <div><p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Avg. Score</p><p className="text-sm font-black text-slate-900 dark:text-white">{userData.avgScore}%</p></div>
               <div><p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Best Score</p><p className="text-sm font-black text-slate-900 dark:text-white">{userData.bestScore}%</p></div>
               <div><p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Streak</p><p className="text-sm font-black text-slate-900 dark:text-white">{userData.studyStreak} <span className="text-[8px] text-slate-500 dark:text-slate-400 font-medium">Days</span></p></div>
           </div>
 
-          <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800/80 transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] shadow-sm border border-slate-100 dark:border-slate-800/80 transition-colors duration-300">
               <h3 className="text-[11px] font-black text-slate-800 dark:text-white uppercase tracking-wider mb-5">Subject Wise Performance</h3>
               <div className="flex flex-col gap-4">
                   <div>

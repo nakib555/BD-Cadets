@@ -35,10 +35,10 @@ export default function Home() {
       {/* Hero Banner */}
       <div className="px-4 py-1">
           <div 
-            className="rounded-2xl p-4 relative overflow-hidden h-36 flex flex-col justify-center bg-cover bg-center shadow-sm transition-all duration-300" 
+            className="rounded-[10px] p-4 relative overflow-hidden h-36 flex flex-col justify-center bg-cover bg-center shadow-sm transition-all duration-300" 
             style={{ backgroundImage: bannerBg, border: bannerBorder }}
           >
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mb-2 shadow text-white"><i className="fa-solid fa-shield-halved"></i></div>
+              <div className="w-8 h-8 bg-blue-600 rounded-[10px] flex items-center justify-center mb-2 shadow text-white"><i className="fa-solid fa-shield-halved"></i></div>
               <h2 className="text-[15px] font-black text-slate-900 dark:text-white tracking-tight">BD CADETS</h2>
               <p className="text-[9px] text-slate-600 dark:text-blue-400 font-black mb-1 tracking-wider uppercase">PREPARE • PRACTICE • ACHIEVE</p>
               <p className="text-[10px] text-slate-600 dark:text-slate-300 w-[65%] mt-1 leading-tight font-bold">Your Complete Platform for Cadet College Admission Preparation</p>
@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* Stats */}
       <div className="flex gap-3 px-4 py-3">
-          <div className="bg-blue-50/50 dark:bg-blue-950/20 flex-1 rounded-2xl p-3 flex justify-between items-center border border-blue-100 dark:border-blue-900/30 shadow-sm transition-colors duration-300">
+          <div className="bg-blue-50/50 dark:bg-blue-950/20 flex-1 rounded-[10px] p-3 flex justify-between items-center border border-blue-100 dark:border-blue-900/30 shadow-sm transition-colors duration-300">
               <div>
                   <h3 className="text-[11px] font-black text-slate-800 dark:text-slate-200">Daily Goal</h3>
                   <p className="text-[9px] text-slate-500 dark:text-slate-400 mb-1">Your daily study target</p>
@@ -59,7 +59,7 @@ export default function Home() {
                   </div>
               </div>
           </div>
-          <div className="bg-white dark:bg-slate-950 flex-1 rounded-2xl p-3 shadow-sm border border-slate-100 dark:border-slate-800/80 flex flex-col justify-between transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 flex-1 rounded-[10px] p-3 shadow-sm border border-slate-100 dark:border-slate-800/80 flex flex-col justify-between transition-colors duration-300">
               <div className="flex justify-between items-start">
                   <div>
                       <h3 className="text-[11px] font-black text-slate-800 dark:text-slate-200">Study Streak</h3>
@@ -85,19 +85,19 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-4 gap-3">
               <button onClick={() => navigate('study-plan')} className="flex flex-col items-center gap-1.5 group cursor-pointer">
-                  <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-xl flex justify-center items-center group-hover:scale-105 transition"><i className="fa-regular fa-calendar-check text-lg"></i></div>
+                  <div className="w-12 h-12 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-[10px] flex justify-center items-center group-hover:scale-105 transition"><i className="fa-regular fa-calendar-check text-lg"></i></div>
                   <span className="text-[9px] text-slate-700 dark:text-slate-300 font-bold">Study Plan</span>
               </button>
               <button onClick={() => navigate('test')} className="flex flex-col items-center gap-1.5 group cursor-pointer">
-                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-xl flex justify-center items-center group-hover:scale-105 transition"><i className="fa-solid fa-laptop-code text-lg"></i></div>
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-[10px] flex justify-center items-center group-hover:scale-105 transition"><i className="fa-solid fa-laptop-code text-lg"></i></div>
                   <span className="text-[9px] text-slate-700 dark:text-slate-300 font-bold">Mock Test</span>
               </button>
               <button onClick={() => navigate('test')} className="flex flex-col items-center gap-1.5 group cursor-pointer">
-                  <div className="w-12 h-12 bg-purple-50 dark:bg-purple-950/30 text-purple-600 dark:text-purple-400 rounded-xl flex justify-center items-center group-hover:scale-105 transition"><i className="fa-regular fa-file-lines text-lg"></i></div>
+                  <div className="w-12 h-12 bg-purple-50 dark:bg-purple-950/30 text-purple-600 dark:text-purple-400 rounded-[10px] flex justify-center items-center group-hover:scale-105 transition"><i className="fa-regular fa-file-lines text-lg"></i></div>
                   <span className="text-[9px] text-slate-700 dark:text-slate-300 font-bold">Past Papers</span>
               </button>
               <button onClick={() => navigate('study')} className="flex flex-col items-center gap-1.5 group cursor-pointer">
-                  <div className="w-12 h-12 bg-orange-50 dark:bg-orange-950/30 text-orange-500 dark:text-orange-400 rounded-xl flex justify-center items-center group-hover:scale-105 transition"><i className="fa-regular fa-bookmark text-lg"></i></div>
+                  <div className="w-12 h-12 bg-orange-50 dark:bg-orange-950/30 text-orange-500 dark:text-orange-400 rounded-[10px] flex justify-center items-center group-hover:scale-105 transition"><i className="fa-regular fa-bookmark text-lg"></i></div>
                   <span className="text-[9px] text-slate-700 dark:text-slate-300 font-bold">Notes</span>
               </button>
           </div>
@@ -109,26 +109,62 @@ export default function Home() {
               <h3 className="text-xs font-black text-slate-900 dark:text-white">Subjects</h3>
               <button onClick={() => navigate('all-subjects')} className="text-[10px] text-blue-600 dark:text-blue-400 font-black cursor-pointer">See All</button>
           </div>
-          <div className="grid grid-cols-4 gap-3">
-              <button onClick={() => navigate('study')} className="bg-blue-500 dark:bg-blue-600 rounded-2xl p-2.5 flex flex-col items-center shadow-[0_2px_10px_-4px_rgba(59,130,246,0.5)] cursor-pointer">
-                  <i className="fa-solid fa-calculator text-white text-lg mb-1.5"></i>
-                  <span className="text-[9px] font-black text-white">Math</span>
-                  <span className="text-[7px] text-blue-100 font-medium">28 Topics</span>
+          <div className="grid grid-cols-4 gap-2.5">
+              <button onClick={() => navigate('study')} className="bg-[#eefcf2] dark:bg-emerald-950/20 rounded-[10px] p-2 flex flex-col items-center border border-[#d1fae5] dark:border-emerald-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
+                  <div className="relative w-12 h-12 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#0f9250] to-[#0a6637] rounded-[8px] relative shadow-[0_4px_8px_rgba(10,102,55,0.3)] flex items-center justify-center">
+                          <div className="absolute top-0.5 left-0.5 right-0.5 h-[30%] bg-white/10 rounded-[6px]"></div>
+                          <span className="text-white font-black text-[13px] tracking-tighter">x²</span>
+                          <div className="absolute -right-1 bottom-1 w-3 h-6 bg-[#6ee7b7] rounded-[3px] border border-[#059669]/20 shadow-sm flex items-center justify-center">
+                              <div className="w-0.5 h-3 bg-[#059669]/40 rounded-full"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <span className="text-[10px] font-black text-slate-900 dark:text-slate-200 mt-2">Math</span>
               </button>
-              <button onClick={() => navigate('study')} className="bg-emerald-50 dark:bg-emerald-950/20 rounded-2xl p-2.5 flex flex-col items-center border border-emerald-100 dark:border-emerald-900/40 cursor-pointer">
-                  <i className="fa-solid fa-book-open text-emerald-600 dark:text-emerald-400 text-lg mb-1.5"></i>
-                  <span className="text-[9px] font-black text-slate-800 dark:text-slate-200">English</span>
-                  <span className="text-[7px] text-slate-500 dark:text-slate-400 font-medium">24 Topics</span>
+              
+              <button onClick={() => navigate('study')} className="bg-[#f5f3ff] dark:bg-purple-950/20 rounded-[10px] p-2 flex flex-col items-center border border-[#ddd6fe] dark:border-purple-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
+                  <div className="relative w-12 h-12 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#6366f1] to-[#4338ca] rounded-[8px] relative shadow-[0_4px_8px_rgba(67,56,202,0.3)] flex flex-col items-center justify-center p-1.5">
+                          <div className="absolute top-0.5 left-0.5 right-0.5 h-[30%] bg-white/10 rounded-[6px]"></div>
+                          <div className="w-6 h-[2px] bg-white/80 rounded-full mb-[3px]"></div>
+                          <div className="w-6 h-[2px] bg-white/80 rounded-full mb-[3px]"></div>
+                          <div className="w-4 h-[2px] bg-white/80 rounded-full self-start ml-0.5"></div>
+                          <div className="absolute -right-1 bottom-1 w-3 h-6 bg-[#a5b4fc] rounded-[3px] border border-[#4f46e5]/20 shadow-sm flex items-center justify-center">
+                              <div className="w-0.5 h-3 bg-[#4f46e5]/40 rounded-full"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <span className="text-[10px] font-black text-slate-900 dark:text-slate-200 mt-2">English</span>
               </button>
-              <button onClick={() => navigate('study')} className="bg-purple-50 dark:bg-purple-950/20 rounded-2xl p-2.5 flex flex-col items-center border border-purple-100 dark:border-purple-900/40 cursor-pointer">
-                  <i className="fa-solid fa-globe text-purple-600 dark:text-purple-400 text-lg mb-1.5"></i>
-                  <span className="text-[9px] font-black text-slate-800 dark:text-slate-200">GK</span>
-                  <span className="text-[7px] text-slate-500 dark:text-slate-400 font-medium">30 Topics</span>
+
+              <button onClick={() => navigate('study')} className="bg-[#fffbeb] dark:bg-amber-950/20 rounded-[10px] p-2 flex flex-col items-center border border-[#fef3c7] dark:border-amber-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
+                  <div className="relative w-12 h-12 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#f59e0b] to-[#d97706] rounded-[8px] relative shadow-[0_4px_8px_rgba(217,119,6,0.3)] flex items-center justify-center">
+                          <div className="absolute top-0.5 left-0.5 right-0.5 h-[30%] bg-white/10 rounded-[6px]"></div>
+                          <span className="text-white font-serif font-black text-[15px] select-none leading-none">অ</span>
+                          <div className="absolute -right-1 bottom-1 w-3 h-6 bg-[#fcd34d] rounded-[3px] border border-[#d97706]/20 shadow-sm flex items-center justify-center">
+                              <div className="w-0.5 h-3 bg-[#d97706]/40 rounded-full"></div>
+                          </div>
+                      </div>
+                  </div>
+                  <span className="text-[10px] font-black text-slate-900 dark:text-slate-200 mt-2">Bangla</span>
               </button>
-              <button onClick={() => navigate('study')} className="bg-orange-50 dark:bg-orange-950/20 rounded-2xl p-2.5 flex flex-col items-center border border-orange-100 dark:border-orange-900/40 cursor-pointer">
-                  <div className="text-orange-500 dark:text-orange-400 text-lg mb-1.5 font-bold font-serif">অ</div>
-                  <span className="text-[9px] font-black text-slate-800 dark:text-slate-200">Bangla</span>
-                  <span className="text-[7px] text-slate-500 dark:text-slate-400 font-medium">20 Topics</span>
+
+              <button onClick={() => navigate('study')} className="bg-[#eff6ff] dark:bg-blue-950/20 rounded-[10px] p-2 flex flex-col items-center border border-[#dbeafe] dark:border-blue-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
+                  <div className="relative w-12 h-12 flex items-center justify-center">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#2563eb] to-[#1d4ed8] rounded-full relative shadow-[0_4px_8px_rgba(29,78,216,0.3)] flex items-center justify-center overflow-hidden">
+                          <div className="absolute top-0.5 left-0.5 right-0.5 h-[30%] bg-white/20 rounded-full"></div>
+                          <div className="absolute inset-0.5 rounded-full border border-white/20 flex items-center justify-center">
+                              <div className="w-6 h-6 rounded-full border border-white/30 absolute"></div>
+                              <div className="w-[1px] h-full bg-white/40 absolute"></div>
+                              <div className="w-full h-[1px] bg-white/40 absolute"></div>
+                              <div className="w-3 h-full rounded-full border border-white/30 absolute"></div>
+                          </div>
+                          <i className="fa-solid fa-earth-americas text-white/90 text-[10px] z-10"></i>
+                      </div>
+                  </div>
+                  <span className="text-[10px] font-black text-slate-900 dark:text-slate-200 mt-2">GK</span>
               </button>
           </div>
       </div>
@@ -144,10 +180,10 @@ export default function Home() {
               {/* Infographic 1: Photosynthesis */}
               <div 
                   onClick={() => navigate('photosynthesis')}
-                  className="bg-white dark:bg-slate-950 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800/80 hover:border-emerald-200 dark:hover:border-emerald-800 shadow-sm hover:shadow transition cursor-pointer flex justify-between items-center group"
+                  className="bg-white dark:bg-slate-950 p-3.5 rounded-[10px] border border-slate-100 dark:border-slate-800/80 hover:border-emerald-200 dark:hover:border-emerald-800 shadow-sm hover:shadow transition cursor-pointer flex justify-between items-center group"
               >
                   <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center text-base group-hover:scale-105 transition">
+                      <div className="w-10 h-10 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-[10px] flex items-center justify-center text-base group-hover:scale-105 transition">
                           <i className="fa-solid fa-leaf"></i>
                       </div>
                       <div>
@@ -163,10 +199,10 @@ export default function Home() {
               {/* Infographic 2: Bangladesh Map */}
               <div 
                   onClick={() => navigate('interactive-map')}
-                  className="bg-white dark:bg-slate-950 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-800/80 hover:border-blue-200 dark:hover:border-blue-800 shadow-sm hover:shadow transition cursor-pointer flex justify-between items-center group"
+                  className="bg-white dark:bg-slate-950 p-3.5 rounded-[10px] border border-slate-100 dark:border-slate-800/80 hover:border-blue-200 dark:hover:border-blue-800 shadow-sm hover:shadow transition cursor-pointer flex justify-between items-center group"
               >
                   <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center text-base group-hover:scale-105 transition">
+                      <div className="w-10 h-10 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-[10px] flex items-center justify-center text-base group-hover:scale-105 transition">
                           <i className="fa-solid fa-map-location-dot"></i>
                       </div>
                       <div>

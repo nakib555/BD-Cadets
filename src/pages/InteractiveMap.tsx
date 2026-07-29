@@ -210,29 +210,29 @@ export default function InteractiveMap() {
   };
 
   return (
-    <div className="bg-slate-50 animate-in fade-in duration-300 min-h-full pb-20">
-      <header className="flex justify-between items-center p-4 bg-white sticky top-0 z-10 border-b border-slate-100 shadow-sm">
-          <button onClick={goBack} className="text-slate-800 w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center cursor-pointer"><i className="fa-solid fa-arrow-left text-sm"></i></button>
-          <h1 className="text-[13px] font-bold text-slate-900">Interactive Bangladesh Map</h1>
+    <div className="bg-slate-50/50 dark:bg-slate-900 animate-in fade-in duration-300 min-h-full pb-24 transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+          <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
+          <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Interactive Bangladesh Map</h1>
           <div className="w-8"></div>
       </header>
 
-      <div className="bg-white flex justify-center gap-2 p-3 border-b border-slate-100 sticky top-[53px] z-10 shadow-sm">
+      <div className="bg-white dark:bg-slate-950 flex justify-center gap-2 p-3 border-b border-slate-100 dark:border-slate-800/80 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
           <button 
             onClick={() => setActiveTab('divisions')}
-            className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'divisions' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500 hover:text-slate-700'}`}
+            className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'divisions' ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
           >
             Divisions
           </button>
           <button 
             onClick={() => setActiveTab('districts')}
-            className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'districts' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500 hover:text-slate-700'}`}
+            className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'districts' ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
           >
             Cadet Colleges
           </button>
           <button 
             onClick={() => setActiveTab('landmarks')}
-            className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'landmarks' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500 hover:text-slate-700'}`}
+            className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors ${activeTab === 'landmarks' ? 'bg-blue-600 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
           >
             Geography GK
           </button>
@@ -240,11 +240,11 @@ export default function InteractiveMap() {
 
       <div className="p-4 space-y-4">
           {/* Main map section */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col md:flex-row gap-4">
+          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm flex flex-col md:flex-row gap-4 transition-colors duration-300">
               
               {/* Map Canvas */}
-              <div className="flex-1 min-h-[220px] bg-slate-50 rounded-xl relative flex items-center justify-center p-2 border border-blue-50 shadow-inner overflow-hidden">
-                  <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 uppercase tracking-widest bg-white/80 px-2 py-0.5 rounded border border-slate-100">
+              <div className="flex-1 min-h-[220px] bg-slate-50 dark:bg-slate-900 rounded-[10px] relative flex items-center justify-center p-2 border border-blue-50/50 dark:border-slate-800 shadow-inner overflow-hidden">
+                  <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-white dark:bg-slate-950 px-2 py-0.5 rounded border border-slate-100 dark:border-slate-850">
                     Geographic Explorer
                   </div>
                   {/* Outer Bangladesh Simulated Container */}
@@ -274,7 +274,7 @@ export default function InteractiveMap() {
                             key={div.id} 
                             className={`absolute ${div.bgPos} pointer-events-none transition-all duration-300 ${isSelected ? 'scale-110 z-20' : 'scale-90 opacity-60'}`}
                           >
-                            <span className="bg-slate-900/90 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow whitespace-nowrap">
+                            <span className="bg-slate-900/90 dark:bg-slate-950/90 text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow whitespace-nowrap">
                               {div.bnName}
                             </span>
                           </div>
@@ -291,15 +291,15 @@ export default function InteractiveMap() {
                       <button 
                         key={div.id}
                         onClick={() => handleSelectDivision(div)}
-                        className={`flex-1 md:flex-initial flex items-center justify-between p-2 rounded-xl text-left border cursor-pointer transition ${
+                        className={`flex-1 md:flex-initial flex items-center justify-between p-2 rounded-[10px] text-left border cursor-pointer transition ${
                           isSelected 
-                            ? 'bg-slate-900 text-white border-slate-900 shadow-sm font-bold' 
-                            : 'bg-white text-slate-700 border-slate-100 hover:border-slate-300'
+                            ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-600 shadow-sm font-bold' 
+                            : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-100 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                         }`}
                       >
                         <div className="flex items-center gap-2">
                           <span className={`w-2 h-2 rounded-full ${div.color}`}></span>
-                          <span className="text-[10px] font-bold truncate">{div.bnName}</span>
+                          <span className="text-[10px] font-black truncate">{div.bnName}</span>
                         </div>
                         <i className={`fa-solid fa-chevron-right text-[8px] ${isSelected ? 'text-white' : 'text-slate-400'}`}></i>
                       </button>
@@ -309,64 +309,64 @@ export default function InteractiveMap() {
           </div>
 
           {/* Details Section */}
-          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm space-y-4">
-              <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+          <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-4 transition-colors duration-300">
+              <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800/80 pb-2">
                 <div>
-                  <h2 className="text-xs font-black text-slate-900 flex items-center gap-2">
+                  <h2 className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-2">
                     <span className="text-sm">📍</span> {selectedDiv.name} ({selectedDiv.bnName})
                   </h2>
-                  <p className="text-[9px] text-slate-500 font-bold mt-0.5">Division Statistics & Cadet Directory</p>
+                  <p className="text-[9px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">Division Statistics & Cadet Directory</p>
                 </div>
-                <span className="text-[10px] font-bold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">{selectedDiv.districts} Districts</span>
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-900 px-3 py-1 rounded-full">{selectedDiv.districts} Districts</span>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                  <p className="text-[8px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Total Area</p>
-                  <p className="text-xs font-bold text-slate-800">{selectedDiv.area}</p>
+                <div className="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-[10px] border border-slate-100 dark:border-slate-800/50">
+                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Total Area</p>
+                  <p className="text-xs font-bold text-slate-800 dark:text-slate-200">{selectedDiv.area}</p>
                 </div>
-                <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100">
-                  <p className="text-[8px] font-bold text-slate-400 mb-1 uppercase tracking-wider">Major Rivers</p>
-                  <p className="text-xs font-bold text-slate-800 truncate">{selectedDiv.majorRivers.join(', ')}</p>
+                <div className="bg-slate-50 dark:bg-slate-900 p-2.5 rounded-[10px] border border-slate-100 dark:border-slate-800/50">
+                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">Major Rivers</p>
+                  <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">{selectedDiv.majorRivers.join(', ')}</p>
                 </div>
               </div>
 
               {/* Cadet Colleges in Division */}
               <div>
-                <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-widest mb-2 flex items-center gap-1.5 text-blue-600">
+                <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2 flex items-center gap-1.5 text-blue-600 dark:text-blue-400">
                   <i className="fa-solid fa-graduation-cap"></i> Cadet Colleges ({selectedDiv.colleges.length})
                 </h3>
                 {selectedDiv.colleges.length > 0 ? (
                   <div className="space-y-2">
                     {selectedDiv.colleges.map((clg, i) => (
-                      <div key={i} className="flex justify-between items-center bg-blue-50/40 p-2.5 rounded-xl border border-blue-50">
+                      <div key={i} className="flex justify-between items-center bg-blue-50/40 dark:bg-blue-950/10 p-2.5 rounded-[10px] border border-blue-50/50 dark:border-blue-900/20">
                         <div className="flex items-center gap-2">
-                          <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-black ${clg.type === 'Boys' ? 'bg-blue-100 text-blue-600' : 'bg-pink-100 text-pink-600'}`}>
+                          <div className={`w-6 h-6 rounded flex items-center justify-center text-[10px] font-black ${clg.type === 'Boys' ? 'bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400' : 'bg-pink-100 dark:bg-pink-950 text-pink-600 dark:text-pink-400'}`}>
                             {clg.type === 'Boys' ? '👦' : '👧'}
                           </div>
                           <div>
-                            <p className="text-[10px] font-bold text-slate-800">{clg.name}</p>
-                            <p className="text-[8px] text-slate-500">Location: {clg.location} • Type: {clg.type}</p>
+                            <p className="text-[10px] font-bold text-slate-800 dark:text-slate-200">{clg.name}</p>
+                            <p className="text-[8px] text-slate-500 dark:text-slate-400">Location: {clg.location} • Type: {clg.type}</p>
                           </div>
                         </div>
-                        <span className="text-[9px] font-bold text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-md">Est. {clg.est}</span>
+                        <span className="text-[9px] font-bold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-2 py-0.5 rounded-md">Est. {clg.est}</span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-[10px] text-slate-500 italic">No direct Cadet Colleges are based in this division's current administrative borders.</p>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 italic">No direct Cadet Colleges are based in this division's current administrative borders.</p>
                 )}
               </div>
 
               {/* Geographic Mini Quiz */}
-              <div className="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100 space-y-3">
+              <div className="bg-indigo-50/50 dark:bg-indigo-950/10 p-4 rounded-[10px] border border-indigo-100/50 dark:border-indigo-900/30 space-y-3">
                 <div className="flex justify-between items-center">
-                  <h4 className="text-[10px] font-black text-indigo-900 uppercase tracking-widest flex items-center gap-1.5">
+                  <h4 className="text-[10px] font-black text-indigo-900 dark:text-indigo-300 uppercase tracking-widest flex items-center gap-1.5">
                     <i className="fa-regular fa-lightbulb"></i> Divisional GK Quiz
                   </h4>
-                  <span className="text-[8px] font-extrabold text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full uppercase">10 Points</span>
+                  <span className="text-[8px] font-extrabold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-950 px-2 py-0.5 rounded-full uppercase">10 Points</span>
                 </div>
-                <p className="text-[11px] font-bold text-slate-800 leading-snug">{selectedDiv.gkQuiz.question}</p>
+                <p className="text-[11px] font-bold text-slate-800 dark:text-slate-200 leading-snug">{selectedDiv.gkQuiz.question}</p>
                 
                 <div className="flex flex-col gap-2">
                   {selectedDiv.gkQuiz.options.map((opt, i) => {
@@ -379,19 +379,19 @@ export default function InteractiveMap() {
                         key={i}
                         disabled={quizSubmitted}
                         onClick={() => handleQuizOption(i)}
-                        className={`w-full p-2.5 rounded-xl border text-[10px] font-bold text-left transition flex items-center justify-between ${
+                        className={`w-full p-2.5 rounded-[10px] border text-[10px] font-bold text-left transition flex items-center justify-between ${
                           showCorrect 
-                            ? 'bg-green-100 border-green-300 text-green-800' 
+                            ? 'bg-green-100 dark:bg-green-950/30 border-green-300 dark:border-green-900 text-green-800 dark:text-green-300' 
                             : showIncorrect 
-                              ? 'bg-red-100 border-red-300 text-red-800'
+                              ? 'bg-red-100 dark:bg-red-950/30 border-red-300 dark:border-red-900 text-red-800 dark:text-red-300'
                               : isSelected 
                                 ? 'bg-indigo-600 border-indigo-600 text-white'
-                                : 'bg-white border-slate-100 hover:border-slate-300 text-slate-700'
+                                : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300'
                         }`}
                       >
                         <span>{opt}</span>
-                        {showCorrect && <i className="fa-solid fa-check text-green-600 text-[10px]"></i>}
-                        {showIncorrect && <i className="fa-solid fa-xmark text-red-600 text-[10px]"></i>}
+                        {showCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
+                        {showIncorrect && <i className="fa-solid fa-xmark text-red-600 dark:text-red-400 text-[10px]"></i>}
                       </button>
                     );
                   })}
@@ -401,22 +401,22 @@ export default function InteractiveMap() {
                   <button 
                     onClick={handleQuizSubmit}
                     disabled={quizAnswer === null}
-                    className={`w-full py-2 rounded-xl text-[10px] font-bold transition ${
-                      quizAnswer !== null ? 'bg-indigo-600 text-white shadow-sm cursor-pointer' : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                    className={`w-full py-2 rounded-[10px] text-[10px] font-bold transition ${
+                      quizAnswer !== null ? 'bg-indigo-600 text-white shadow-sm cursor-pointer' : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'
                     }`}
                   >
                     Submit Answer
                   </button>
                 ) : (
-                  <div className="bg-white p-3 rounded-xl border border-indigo-50 animate-in slide-in-from-bottom-2 fade-in duration-300 space-y-1">
+                  <div className="bg-white dark:bg-slate-900 p-3 rounded-[10px] border border-indigo-50 dark:border-indigo-900/30 animate-in slide-in-from-bottom-2 fade-in duration-300 space-y-1">
                     <p className="text-[10px] font-black flex items-center gap-1.5">
                       {earnedPoints ? (
-                        <span className="text-green-600 flex items-center gap-1"><i className="fa-solid fa-circle-check"></i> Correct! +10 Points</span>
+                        <span className="text-green-600 dark:text-green-400 flex items-center gap-1"><i className="fa-solid fa-circle-check"></i> Correct! +10 Points</span>
                       ) : (
-                        <span className="text-red-600 flex items-center gap-1"><i className="fa-solid fa-triangle-exclamation"></i> Incorrect</span>
+                        <span className="text-red-600 dark:text-red-400 flex items-center gap-1"><i className="fa-solid fa-triangle-exclamation"></i> Incorrect</span>
                       )}
                     </p>
-                    <p className="text-[9px] text-slate-600 leading-relaxed">{selectedDiv.gkQuiz.explanation}</p>
+                    <p className="text-[9px] text-slate-600 dark:text-slate-400 leading-relaxed">{selectedDiv.gkQuiz.explanation}</p>
                   </div>
                 )}
               </div>

@@ -160,18 +160,18 @@ export default function Photosynthesis() {
   };
 
   return (
-    <div className="bg-slate-50 min-h-full pb-20 animate-in fade-in duration-300">
-      <header className="flex justify-between items-center p-4 bg-white sticky top-0 z-10 border-b border-slate-100 shadow-sm">
-          <button onClick={goBack} className="text-slate-800 w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center cursor-pointer"><i className="fa-solid fa-arrow-left text-sm"></i></button>
+    <div className="bg-slate-50/50 dark:bg-slate-900 min-h-full pb-24 animate-in fade-in duration-300 transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+          <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
           <div className="flex flex-col items-center">
-            <span className="text-[8px] font-black tracking-widest text-emerald-600 uppercase">Science Infographics</span>
-            <h1 className="text-[12px] font-bold text-slate-900">Photosynthesis (সালোকসংশ্লেষণ)</h1>
+            <span className="text-[8px] font-black tracking-widest text-emerald-600 dark:text-emerald-400 uppercase">Science Infographics</span>
+            <h1 className="text-[12px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Photosynthesis (সালোকসংশ্লেষণ)</h1>
           </div>
-          <button className="text-emerald-600 w-8 h-8 bg-emerald-50 rounded-full flex items-center justify-center"><i className="fa-solid fa-leaf text-xs"></i></button>
+          <button className="text-emerald-600 dark:text-emerald-400 w-8 h-8 bg-emerald-50 dark:bg-emerald-950/40 rounded-full flex items-center justify-center"><i className="fa-solid fa-leaf text-xs"></i></button>
       </header>
 
       {/* Navigation tabs */}
-      <div className="bg-white flex justify-center gap-1.5 p-3 border-b border-slate-100 sticky top-[53px] z-10 shadow-sm">
+      <div className="bg-white dark:bg-slate-950 flex justify-center gap-1.5 p-3 border-b border-slate-100 dark:border-slate-800/85 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
           {(['Overview', 'Learn', 'Diagram', 'Quiz'] as const).map((tab) => {
             const isSelected = activeTab === tab;
             return (
@@ -181,7 +181,7 @@ export default function Photosynthesis() {
                 className={`flex-1 py-1.5 text-[9px] font-black rounded-full uppercase transition-all tracking-wider ${
                   isSelected 
                     ? 'bg-emerald-600 text-white shadow-sm' 
-                    : 'bg-slate-100 text-slate-500 hover:text-slate-700'
+                    : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                 }`}
               >
                 {tab}
@@ -194,25 +194,25 @@ export default function Photosynthesis() {
           
           {/* TAB 1: OVERVIEW */}
           {activeTab === 'Overview' && (
-            <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm space-y-5 animate-in slide-in-from-bottom-2 duration-300">
+            <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-5 animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
               <div className="space-y-1">
-                <h2 className="text-sm font-black text-slate-900">Introduction to Photosynthesis</h2>
-                <p className="text-[11px] text-slate-600 leading-relaxed font-semibold">
+                <h2 className="text-sm font-black text-slate-900 dark:text-white">Introduction to Photosynthesis</h2>
+                <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                   Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy (from the sun) into chemical energy (glucose) using water and carbon dioxide.
                 </p>
-                <p className="text-[11px] text-emerald-700 leading-relaxed font-bold">
+                <p className="text-[11px] text-emerald-700 dark:text-emerald-400 leading-relaxed font-bold">
                   বাংলায়: যে প্রক্রিয়ায় সবুজ উদ্ভিদ সূর্যালোকের উপস্থিতিতে ক্লোরোফিলের সাহায্যে পানি ও কার্বন ডাই-অক্সাইড ব্যবহার করে নিজের খাদ্য (শর্করা) নিজে তৈরি করে এবং অক্সিজেন নির্গত করে, তাকে সালোকসংশ্লেষণ বলে।
                 </p>
               </div>
 
               {/* Chemical Equation Widget */}
-              <div className="bg-emerald-50/70 p-4 rounded-xl border border-emerald-100 space-y-2">
-                <p className="text-[9px] font-black text-emerald-800 uppercase tracking-widest text-center">Chemical Reaction Formula</p>
-                <div className="p-3 bg-white rounded-lg border border-emerald-100 flex flex-col items-center justify-center shadow-inner">
-                  <span className="text-[12px] font-extrabold text-slate-800 tracking-wide font-mono">
+              <div className="bg-emerald-50/70 dark:bg-emerald-950/10 p-4 rounded-[10px] border border-emerald-100 dark:border-emerald-900/30 space-y-2">
+                <p className="text-[9px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest text-center">Chemical Reaction Formula</p>
+                <div className="p-3 bg-white dark:bg-slate-900 rounded-[10px] border border-emerald-100 dark:border-emerald-900/40 flex flex-col items-center justify-center shadow-inner">
+                  <span className="text-[12px] font-extrabold text-slate-800 dark:text-white tracking-wide font-mono">
                     6CO₂ + 6H₂O + Light ➔ C₆H₁₂O₆ + 6O₂
                   </span>
-                  <span className="text-[8px] font-bold text-slate-400 mt-1 uppercase">
+                  <span className="text-[8px] font-bold text-slate-400 dark:text-slate-500 mt-1 uppercase">
                     Carbon Dioxide + Water + Sun energy ➔ Glucose + Oxygen
                   </span>
                 </div>
@@ -220,22 +220,22 @@ export default function Photosynthesis() {
 
               {/* Input Outputs table */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-blue-50/40 p-3 rounded-xl border border-blue-50 space-y-2">
-                  <h3 className="text-[10px] font-black text-blue-800 uppercase tracking-wider flex items-center gap-1">
+                <div className="bg-blue-50/40 dark:bg-blue-950/10 p-3 rounded-[10px] border border-blue-50/50 dark:border-blue-900/20 space-y-2">
+                  <h3 className="text-[10px] font-black text-blue-800 dark:text-blue-300 uppercase tracking-wider flex items-center gap-1">
                     <span className="text-xs">📥</span> Reactants (Inputs)
                   </h3>
-                  <ul className="text-[9px] font-bold text-slate-600 space-y-1 list-disc list-inside">
+                  <ul className="text-[9px] font-bold text-slate-600 dark:text-slate-400 space-y-1 list-disc list-inside">
                     <li>Carbon Dioxide (from air)</li>
                     <li>Water (from soil)</li>
                     <li>Sunlight (energy source)</li>
                     <li>Chlorophyll (catalyst)</li>
                   </ul>
                 </div>
-                <div className="bg-emerald-50/40 p-3 rounded-xl border border-emerald-50 space-y-2">
-                  <h3 className="text-[10px] font-black text-emerald-800 uppercase tracking-wider flex items-center gap-1">
+                <div className="bg-emerald-50/40 dark:bg-emerald-950/10 p-3 rounded-[10px] border border-emerald-50/50 dark:border-emerald-900/20 space-y-2">
+                  <h3 className="text-[10px] font-black text-emerald-800 dark:text-emerald-300 uppercase tracking-wider flex items-center gap-1">
                     <span className="text-xs">📤</span> Products (Outputs)
                   </h3>
-                  <ul className="text-[9px] font-bold text-slate-600 space-y-1 list-disc list-inside">
+                  <ul className="text-[9px] font-bold text-slate-600 dark:text-slate-400 space-y-1 list-disc list-inside">
                     <li>Glucose (stored food energy)</li>
                     <li>Oxygen (released gas)</li>
                     <li>Water vapor (byproduct)</li>
@@ -248,9 +248,9 @@ export default function Photosynthesis() {
           {/* TAB 2: LEARN STEPS */}
           {activeTab === 'Learn' && (
             <div className="space-y-3 animate-in slide-in-from-bottom-2 duration-300">
-              <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-                <h2 className="text-xs font-black text-slate-900 mb-1">Cadet Fast-Track Lessons</h2>
-                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">Step-by-step Photosynthesis breakdown</p>
+              <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+                <h2 className="text-xs font-black text-slate-900 dark:text-white mb-1">Cadet Fast-Track Lessons</h2>
+                <p className="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Step-by-step Photosynthesis breakdown</p>
               </div>
 
               {[
@@ -260,13 +260,13 @@ export default function Photosynthesis() {
                 { step: '04', title: 'Chemical Transformation (রাসায়নিক রূপান্তর)', desc: 'Inside the leaf cells, light energy is used to split water molecules. Hydrogen combines with CO2 to synthesize glucose, while oxygen is split off.', color: 'border-l-orange-500' },
                 { step: '05', title: 'Food Storage & Breathing (খাদ্য সঞ্চয় ও শ্বসন)', desc: 'The produced glucose is converted to starch for long-term storage in fruits, roots, and stems. O2 gas exits through stomata, facilitating global respiration.', color: 'border-l-emerald-500' }
               ].map((item, index) => (
-                <div key={index} className={`bg-white p-4 rounded-xl border border-slate-100 border-l-4 ${item.color} shadow-sm space-y-1.5`}>
+                <div key={index} className={`bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 border-l-4 ${item.color} shadow-sm space-y-1.5 transition-colors duration-300`}>
                   <div className="flex justify-between items-center">
-                    <span className="text-[9px] font-black text-slate-400">STAGE {item.step}</span>
+                    <span className="text-[9px] font-black text-slate-400 dark:text-slate-500">STAGE {item.step}</span>
                     <i className="fa-solid fa-circle-check text-emerald-500 text-[10px]"></i>
                   </div>
-                  <h3 className="text-[11px] font-black text-slate-950">{item.title}</h3>
-                  <p className="text-[10px] text-slate-600 leading-relaxed font-semibold">{item.desc}</p>
+                  <h3 className="text-[11px] font-black text-slate-950 dark:text-white">{item.title}</h3>
+                  <p className="text-[10px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -277,25 +277,25 @@ export default function Photosynthesis() {
             <div className="space-y-4 animate-in slide-in-from-bottom-2 duration-300">
               
               {/* Graphic container simulating plant layout */}
-              <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm space-y-4">
+              <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-4 transition-colors duration-300">
                 <div className="text-center">
-                  <h2 className="text-xs font-black text-emerald-800 uppercase tracking-widest">Interactive Leaf Diagram</h2>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Click any hotspot or use step controls</p>
+                  <h2 className="text-xs font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest">Interactive Leaf Diagram</h2>
+                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Click any hotspot or use step controls</p>
                 </div>
 
                 {/* Simulated Canvas */}
-                <div className="h-64 bg-slate-50 border border-slate-100 rounded-2xl relative overflow-hidden flex items-center justify-center shadow-inner">
+                <div className="h-64 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800/50 rounded-[10px] relative overflow-hidden flex items-center justify-center shadow-inner transition-colors duration-300">
                   
                   {/* Sky & Ground gradient background */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-sky-100 via-sky-50 to-amber-100/40 h-[70%]" />
-                  <div className="absolute bottom-0 left-0 right-0 bg-amber-900/10 border-t border-amber-900/10 h-[30%] flex items-end p-2 justify-center">
-                    <span className="text-[8px] font-black tracking-widest text-amber-800 uppercase">Sub-Soil Roots Layer</span>
+                  <div className="absolute inset-0 bg-gradient-to-b from-sky-100/50 via-sky-50/10 to-amber-100/10 dark:from-sky-950/20 dark:to-slate-900/20 h-[70%]" />
+                  <div className="absolute bottom-0 left-0 right-0 bg-amber-900/10 dark:bg-slate-950/40 border-t border-amber-900/10 dark:border-slate-800/80 h-[30%] flex items-end p-2 justify-center">
+                    <span className="text-[8px] font-black tracking-widest text-amber-800 dark:text-amber-550 uppercase">Sub-Soil Roots Layer</span>
                   </div>
 
                   {/* Draw Sun in Top-Left */}
                   <div className="absolute top-4 left-4 text-center animate-pulse">
-                    <div className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-lg shadow-lg shadow-amber-200">☀️</div>
-                    <span className="text-[7px] font-bold text-amber-800">Sun Energy</span>
+                    <div className="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-lg shadow-lg shadow-amber-200 dark:shadow-none">☀️</div>
+                    <span className="text-[7px] font-bold text-amber-800 dark:text-amber-550">Sun Energy</span>
                   </div>
 
                   {/* Draw Plant with leaves & roots using clean absolute shapes */}
@@ -349,28 +349,28 @@ export default function Photosynthesis() {
                 </div>
 
                 {/* Detailed hotspot panel below */}
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-2">
-                  <div className="flex justify-between items-center border-b border-slate-200/50 pb-2">
-                    <span className="text-[10px] font-black text-emerald-800 uppercase tracking-widest flex items-center gap-1.5">
+                <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 space-y-2 transition-colors duration-300">
+                  <div className="flex justify-between items-center border-b border-slate-200/50 dark:border-slate-800 pb-2">
+                    <span className="text-[10px] font-black text-emerald-800 dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
                       <span>{currentHotspot.icon}</span> {currentHotspot.name} {currentHotspot.chemical && `(${currentHotspot.chemical})`}
                     </span>
-                    <span className="text-[8px] font-black text-slate-400 uppercase">Process Step {activeStep + 1} of 5</span>
+                    <span className="text-[8px] font-black text-slate-400 dark:text-slate-550 uppercase">Process Step {activeStep + 1} of 5</span>
                   </div>
-                  <p className="text-[10px] text-slate-800 font-bold leading-relaxed">{currentHotspot.description}</p>
-                  <p className="text-[9px] text-emerald-700 font-extrabold leading-relaxed">{currentHotspot.bnDescription}</p>
+                  <p className="text-[10px] text-slate-800 dark:text-slate-200 font-bold leading-relaxed">{currentHotspot.description}</p>
+                  <p className="text-[9px] text-emerald-700 dark:text-emerald-400 font-extrabold leading-relaxed">{currentHotspot.bnDescription}</p>
                 </div>
 
                 {/* Step Switcher Buttons */}
                 <div className="flex justify-between gap-3 pt-1">
                   <button 
                     onClick={handlePrevStep}
-                    className="flex-1 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold text-[10px] transition flex items-center justify-center gap-1 cursor-pointer"
+                    className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-[10px] transition flex items-center justify-center gap-1 cursor-pointer"
                   >
                     <i className="fa-solid fa-chevron-left text-[8px]"></i> Previous Step
                   </button>
                   <button 
                     onClick={handleNextStep}
-                    className="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] shadow-md shadow-emerald-100 transition flex items-center justify-center gap-1 cursor-pointer"
+                    className="flex-1 py-2 rounded-[10px] bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] shadow-md shadow-emerald-100/20 transition flex items-center justify-center gap-1 cursor-pointer border border-transparent"
                   >
                     Next Step <i className="fa-solid fa-chevron-right text-[8px]"></i>
                   </button>
@@ -378,9 +378,9 @@ export default function Photosynthesis() {
               </div>
 
               {/* Science Summary banner */}
-              <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-2xl flex items-center gap-3">
+              <div className="bg-emerald-50 dark:bg-emerald-950/10 border border-emerald-100 dark:border-emerald-900/30 p-4 rounded-[10px] flex items-center gap-3 transition-colors duration-300">
                 <span className="text-xl">💡</span>
-                <p className="text-[9px] font-black text-emerald-900 leading-snug">
+                <p className="text-[9px] font-black text-emerald-900 dark:text-emerald-400 leading-snug">
                   Remember, Cadet! Photosynthesis occurs primarily in chloroplasts during daylight. Without sunlight and chlorophyll, the chemical Magic can never happen. Keep this formula stored in your head for the admission test!
                 </p>
               </div>
@@ -389,25 +389,25 @@ export default function Photosynthesis() {
 
           {/* TAB 4: INTERACTIVE MINI-QUIZ */}
           {activeTab === 'Quiz' && (
-            <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm animate-in slide-in-from-bottom-2 duration-300">
+            <div className="bg-white dark:bg-slate-950 p-5 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
               
               {!quizFinished ? (
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                  <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
                     <div>
-                      <h3 className="text-xs font-black text-slate-900">Topic Cadet Quiz</h3>
-                      <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest mt-0.5">Test your Photosynthesis knowledge</p>
+                      <h3 className="text-xs font-black text-slate-900 dark:text-white">Topic Cadet Quiz</h3>
+                      <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Test your Photosynthesis knowledge</p>
                     </div>
-                    <span className="text-[9px] font-black text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+                    <span className="text-[9px] font-black text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/30 px-2 py-0.5 rounded-full">
                       Q {quizIdx + 1} of {QUIZ_QUESTIONS.length}
                     </span>
                   </div>
 
                   <div className="space-y-1">
-                    <h4 className="text-[11px] font-bold text-slate-900 leading-snug">
+                    <h4 className="text-[11px] font-bold text-slate-900 dark:text-white leading-snug">
                       {QUIZ_QUESTIONS[quizIdx].question}
                     </h4>
-                    <p className="text-[10px] text-emerald-700 font-extrabold leading-relaxed">
+                    <p className="text-[10px] text-emerald-700 dark:text-emerald-400 font-extrabold leading-relaxed">
                       {QUIZ_QUESTIONS[quizIdx].bnQuestion}
                     </p>
                   </div>
@@ -417,17 +417,17 @@ export default function Photosynthesis() {
                       const isSelected = selectedOpt === i;
                       const isCorrect = QUIZ_QUESTIONS[quizIdx].correctIndex === i;
                       
-                      let btnStyle = 'bg-white border-slate-100 hover:border-slate-300 text-slate-700';
+                      let btnStyle = 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-850 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700';
                       if (isSelected) {
-                        btnStyle = 'bg-emerald-600 border-emerald-600 text-white';
+                        btnStyle = 'bg-emerald-600 border-emerald-600 text-white dark:text-white';
                       }
                       if (quizSubmitted) {
                         if (isCorrect) {
-                          btnStyle = 'bg-green-100 border-green-300 text-green-800';
+                          btnStyle = 'bg-green-100 dark:bg-green-950/30 border-green-300 dark:border-green-800 text-green-800 dark:text-green-400';
                         } else if (isSelected) {
-                          btnStyle = 'bg-red-100 border-red-300 text-red-800';
+                          btnStyle = 'bg-red-100 dark:bg-red-950/30 border-red-300 dark:border-red-800 text-red-800 dark:text-red-400';
                         } else {
-                          btnStyle = 'bg-slate-50 border-slate-100 text-slate-400';
+                          btnStyle = 'bg-slate-50 dark:bg-slate-950/50 border-slate-100 dark:border-slate-900 text-slate-400 dark:text-slate-600';
                         }
                       }
 
@@ -436,11 +436,11 @@ export default function Photosynthesis() {
                           key={i}
                           disabled={quizSubmitted}
                           onClick={() => handleSelectOption(i)}
-                          className={`w-full p-2.5 rounded-xl border text-[10px] font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
+                          className={`w-full p-2.5 rounded-[10px] border text-[10px] font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
                         >
                           <span>{opt}</span>
-                          {quizSubmitted && isCorrect && <i className="fa-solid fa-check text-green-600 text-[10px]"></i>}
-                          {quizSubmitted && isSelected && !isCorrect && <i className="fa-solid fa-xmark text-red-600 text-[10px]"></i>}
+                          {quizSubmitted && isCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
+                          {quizSubmitted && isSelected && !isCorrect && <i className="fa-solid fa-xmark text-red-600 dark:text-red-400 text-[10px]"></i>}
                         </button>
                       );
                     })}
@@ -451,23 +451,23 @@ export default function Photosynthesis() {
                     <button
                       onClick={handleQuizSubmit}
                       disabled={selectedOpt === null}
-                      className={`w-full py-2.5 rounded-xl text-[10px] font-bold transition ${
+                      className={`w-full py-2.5 rounded-[10px] text-[10px] font-bold transition ${
                         selectedOpt !== null 
                           ? 'bg-emerald-600 text-white shadow-sm cursor-pointer' 
-                          : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                          : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600 cursor-not-allowed'
                       }`}
                     >
                       Submit Answer
                     </button>
                   ) : (
                     <div className="space-y-3">
-                      <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-[9px] text-slate-600 font-semibold leading-relaxed">
-                        <span className="text-slate-800 font-extrabold block mb-0.5">💡 explanation</span>
+                      <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-[10px] border border-slate-100 dark:border-slate-800 text-[9px] text-slate-600 dark:text-slate-400 font-semibold leading-relaxed">
+                        <span className="text-slate-800 dark:text-slate-200 font-extrabold block mb-0.5">💡 Explanation</span>
                         {QUIZ_QUESTIONS[quizIdx].explanation}
                       </div>
                       <button
                         onClick={handleNextQuiz}
-                        className="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 cursor-pointer"
+                        className="w-full py-2.5 rounded-[10px] bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 cursor-pointer"
                       >
                         {quizIdx < QUIZ_QUESTIONS.length - 1 ? 'Next Question' : 'Finish Quiz'} <i className="fa-solid fa-chevron-right text-[8px]"></i>
                       </button>
@@ -476,26 +476,26 @@ export default function Photosynthesis() {
                 </div>
               ) : (
                 <div className="flex flex-col items-center text-center space-y-4 py-4 animate-in zoom-in duration-300">
-                  <div className="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-2xl border border-emerald-100">🏆</div>
+                  <div className="w-14 h-14 bg-emerald-50 dark:bg-emerald-950/20 rounded-full flex items-center justify-center text-2xl border border-emerald-100 dark:border-emerald-900/30">🏆</div>
                   <div>
-                    <h3 className="text-xs font-black text-slate-900">Quiz Completed, Cadet!</h3>
-                    <p className="text-[9px] text-slate-500 font-bold mt-0.5">You scored {score} out of {QUIZ_QUESTIONS.length}</p>
+                    <h3 className="text-xs font-black text-slate-900 dark:text-white">Quiz Completed, Cadet!</h3>
+                    <p className="text-[9px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">You scored {score} out of {QUIZ_QUESTIONS.length}</p>
                   </div>
                   
-                  <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-100 w-full text-[10px] font-bold text-emerald-800 flex items-center justify-center gap-2">
+                  <div className="bg-emerald-50 dark:bg-emerald-950/20 p-3 rounded-[10px] border border-emerald-100 dark:border-emerald-900/30 w-full text-[10px] font-bold text-emerald-800 dark:text-emerald-400 flex items-center justify-center gap-2">
                     <span>🌟 Daily Goal Progress Incremented!</span>
                   </div>
 
                   <div className="flex gap-2.5 w-full">
                     <button 
                       onClick={resetQuiz}
-                      className="flex-1 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-[10px] font-bold text-slate-700 transition cursor-pointer"
+                      className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
                     >
                       <i className="fa-solid fa-rotate-left mr-1"></i> Retake
                     </button>
                     <button 
                       onClick={() => setActiveTab('Diagram')}
-                      className="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold transition cursor-pointer"
+                      className="flex-1 py-2 rounded-[10px] bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold transition cursor-pointer"
                     >
                       Back to Diagram
                     </button>

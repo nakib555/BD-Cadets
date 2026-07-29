@@ -80,7 +80,7 @@ export default function AIStudyAssistant() {
               <button 
                 key={idx} 
                 onClick={() => sendMessage(preset.text)}
-                className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-xl p-2.5 text-left hover:border-blue-400 dark:hover:border-blue-500 transition cursor-pointer shadow-sm flex flex-col justify-between"
+                className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-2.5 text-left hover:border-blue-400 dark:hover:border-blue-500 transition cursor-pointer shadow-sm flex flex-col justify-between"
               >
                 <span className="text-[9px] font-bold text-blue-600 dark:text-blue-400 mb-1">{preset.label}</span>
                 <span className="text-[9px] text-slate-600 dark:text-slate-300 line-clamp-1">{preset.text}</span>

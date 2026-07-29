@@ -191,49 +191,49 @@ export default function Test() {
     const passed = percentage >= 60;
 
     return (
-      <div className="bg-slate-50 animate-in fade-in duration-300 min-h-full pb-20">
-        <header className="flex justify-between items-center p-4 bg-white sticky top-0 z-10 border-b border-slate-100 shadow-sm">
-            <button onClick={goBack} className="text-slate-800 w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center cursor-pointer"><i className="fa-solid fa-arrow-left text-sm"></i></button>
-            <h1 className="text-[13px] font-bold text-slate-900">Mock Test Result</h1>
+      <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-20 transition-colors duration-300 animate-in fade-in duration-300">
+        <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+            <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
+            <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Mock Test Result</h1>
             <div className="w-8"></div>
         </header>
 
         <div className="p-4 space-y-4">
           {/* Main score badge */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center space-y-3">
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl ${passed ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+          <div className="bg-white dark:bg-slate-950 p-6 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm flex flex-col items-center text-center space-y-3 transition-colors duration-300">
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl ${passed ? 'bg-green-100 dark:bg-green-950/40 text-green-600 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400'}`}>
                 {passed ? '🏆' : '📚'}
               </div>
               <div>
-                <h2 className="text-sm font-black text-slate-900">{passed ? 'Congratulations, Cadet!' : 'Keep Studying, Cadet!'}</h2>
-                <p className="text-[10px] text-slate-500 font-bold mt-0.5">{passed ? 'You passed this diagnostic mock exam.' : 'Practice makes perfect.'}</p>
+                <h2 className="text-sm font-black text-slate-900 dark:text-white">{passed ? 'Congratulations, Cadet!' : 'Keep Studying, Cadet!'}</h2>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">{passed ? 'You passed this diagnostic mock exam.' : 'Practice makes perfect.'}</p>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 w-full pt-4 border-t border-slate-100 text-center">
+              <div className="grid grid-cols-3 gap-6 w-full pt-4 border-t border-slate-100 dark:border-slate-800/60 text-center">
                 <div>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Score</p>
-                  <p className="text-sm font-black text-slate-800">{score} / {QUESTIONS.length}</p>
+                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Score</p>
+                  <p className="text-sm font-black text-slate-800 dark:text-slate-200">{score} / {QUESTIONS.length}</p>
                 </div>
                 <div>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Accuracy</p>
-                  <p className="text-sm font-black text-slate-800">{percentage}%</p>
+                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Accuracy</p>
+                  <p className="text-sm font-black text-slate-800 dark:text-slate-200">{percentage}%</p>
                 </div>
                 <div>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-wider">Status</p>
-                  <p className={`text-xs font-black uppercase ${passed ? 'text-green-600' : 'text-red-500'}`}>{passed ? 'PASS' : 'FAIL'}</p>
+                  <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Status</p>
+                  <p className={`text-xs font-black uppercase ${passed ? 'text-green-600 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>{passed ? 'PASS' : 'FAIL'}</p>
                 </div>
               </div>
 
               <div className="flex gap-2 w-full pt-2">
                 <button 
                   onClick={handleRestart}
-                  className="flex-1 py-2 rounded-xl border border-blue-200 text-blue-600 font-bold text-[10px] hover:bg-blue-50 transition cursor-pointer"
+                  className="flex-1 py-2 rounded-[10px] border border-blue-200 dark:border-blue-900/50 text-blue-600 dark:text-blue-400 font-black uppercase tracking-wider text-[9px] hover:bg-blue-50 dark:hover:bg-blue-950/20 transition cursor-pointer"
                 >
                   <i className="fa-solid fa-rotate-left mr-1"></i> Retake Test
                 </button>
                 <button 
                   onClick={() => navigate('home')}
-                  className="flex-1 py-2 rounded-xl bg-blue-600 text-white font-bold text-[10px] hover:bg-blue-700 shadow-md shadow-blue-200 transition cursor-pointer"
+                  className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-wider text-[9px] shadow-sm transition cursor-pointer"
                 >
                   <i className="fa-solid fa-house mr-1"></i> Dashboard
                 </button>
@@ -242,22 +242,22 @@ export default function Test() {
 
           {/* Question Explanations */}
           <div className="space-y-3">
-            <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-wider">Review Explanations</h3>
+            <h3 className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">Review Explanations</h3>
             {QUESTIONS.map((q, idx) => {
               const selectedOpt = selectedAnswers[q.id];
               const isCorrect = selectedOpt === q.correctIndex;
 
               return (
-                <div key={q.id} className="bg-white p-4 rounded-xl border border-slate-100 shadow-sm space-y-2">
+                <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
                   <div className="flex justify-between items-start gap-2">
-                    <span className="text-[9px] font-black text-slate-400">Q{idx + 1} ({q.subject})</span>
-                    <span className={`text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase ${
-                      isCorrect ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                    <span className="text-[9px] font-black text-slate-400 dark:text-slate-500">Q{idx + 1} ({q.subject})</span>
+                    <span className={`text-[8px] font-black px-1.5 py-0.5 rounded uppercase ${
+                      isCorrect ? 'bg-green-100 dark:bg-green-950/40 text-green-700 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-400'
                     }`}>
                       {isCorrect ? 'Correct' : 'Incorrect'}
                     </span>
                   </div>
-                  <h4 className="text-[11px] font-bold text-slate-900 leading-snug">{q.question}</h4>
+                  <h4 className="text-[11px] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
                   
                   <div className="grid grid-cols-1 gap-1.5 pt-1">
                     {q.options.map((opt, oIdx) => {
@@ -267,24 +267,24 @@ export default function Test() {
                       return (
                         <div 
                           key={oIdx}
-                          className={`p-2 rounded-lg text-[10px] font-bold flex justify-between items-center ${
+                          className={`p-2 rounded-[10px] text-[10px] font-black flex justify-between items-center transition ${
                             isCorrectChoice 
-                              ? 'bg-green-50 text-green-800 border border-green-200' 
+                              ? 'bg-green-50 dark:bg-green-950/20 text-green-800 dark:text-green-400 border border-green-200 dark:border-green-900/40' 
                               : isUserChoice
-                                ? 'bg-red-50 text-red-800 border border-red-200'
-                                : 'bg-slate-50 text-slate-600 border border-transparent'
+                                ? 'bg-red-50 dark:bg-red-950/20 text-red-800 dark:text-red-400 border border-red-200 dark:border-red-900/40'
+                                : 'bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-transparent'
                           }`}
                         >
                           <span>{opt.label}. {opt.text}</span>
-                          {isCorrectChoice && <i className="fa-solid fa-check text-green-600 text-[10px]"></i>}
-                          {isUserChoice && !isCorrectChoice && <i className="fa-solid fa-xmark text-red-500 text-[10px]"></i>}
+                          {isCorrectChoice && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
+                          {isUserChoice && !isCorrectChoice && <i className="fa-solid fa-xmark text-red-500 dark:text-red-400 text-[10px]"></i>}
                         </div>
                       );
                     })}
                   </div>
 
-                  <div className="bg-blue-50/50 p-2.5 rounded-lg border border-blue-50 text-[9px] text-slate-600 leading-relaxed font-semibold">
-                    <span className="text-blue-700 font-bold block mb-0.5">💡 Explanation</span>
+                  <div className="bg-blue-50/50 dark:bg-blue-950/20 p-2.5 rounded-[10px] border border-blue-50 dark:border-blue-900/30 text-[9px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
+                    <span className="text-blue-700 dark:text-blue-400 font-bold block mb-0.5">💡 Explanation</span>
                     {q.explanation}
                   </div>
                 </div>
@@ -297,34 +297,34 @@ export default function Test() {
   }
 
   return (
-    <div className="animate-in fade-in duration-300 relative h-full flex flex-col bg-white">
-      <header className="flex justify-between items-center p-4 sticky top-0 bg-white z-10 border-b border-slate-100 shrink-0">
-          <button onClick={goBack} className="text-slate-800 w-8 h-8 bg-slate-50 rounded-full flex items-center justify-center cursor-pointer"><i className="fa-solid fa-arrow-left text-sm"></i></button>
-          <h1 className="text-[13px] font-bold text-slate-900">Active Admission Mock</h1>
-          <button onClick={handleSubmit} className="text-red-500 hover:text-red-600 font-bold text-[10px] uppercase cursor-pointer">End Test</button>
+    <div className="animate-in fade-in duration-300 relative min-h-full flex flex-col bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 sticky top-0 bg-white dark:bg-slate-950 z-10 border-b border-slate-100 dark:border-slate-800/80 shrink-0 transition-colors duration-300">
+          <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
+          <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Active Admission Mock</h1>
+          <button onClick={handleSubmit} className="text-red-500 dark:text-red-400 hover:text-red-600 font-bold text-[10px] uppercase cursor-pointer">End Test</button>
       </header>
 
       {/* Timer & Meta Bar */}
-      <div className="bg-slate-50 px-4 py-2 flex justify-between items-center border-b border-slate-100 shrink-0">
-          <div className="flex items-center gap-1.5 text-slate-600">
+      <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 flex justify-between items-center border-b border-slate-100 dark:border-slate-800/60 shrink-0 transition-colors duration-300">
+          <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-            <span className="text-[9px] font-bold uppercase tracking-wider">Subject: {currentQuestion.subject}</span>
+            <span className="text-[9px] font-black uppercase tracking-wider">Subject: {currentQuestion.subject}</span>
           </div>
-          <div className="bg-white border border-slate-200 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
-              <i className="fa-regular fa-clock text-slate-600 text-[10px] animate-pulse"></i>
-              <span className="text-[10px] font-extrabold text-slate-800 font-mono">{formatTime(timeLeft)}</span>
+          <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
+              <i className="fa-regular fa-clock text-slate-600 dark:text-slate-400 text-[10px] animate-pulse"></i>
+              <span className="text-[10px] font-extrabold text-slate-800 dark:text-slate-200 font-mono">{formatTime(timeLeft)}</span>
           </div>
       </div>
 
       <div className="px-5 py-4 pb-28 flex-1 overflow-y-auto">
           <div className="flex justify-between items-center mb-3">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Question {currentIdx + 1} / {QUESTIONS.length}</span>
-              <span className="bg-blue-50 text-blue-600 border border-blue-100 text-[8px] font-black px-2 py-0.5 rounded flex items-center gap-1 uppercase">
+              <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-wider">Question {currentIdx + 1} / {QUESTIONS.length}</span>
+              <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-[8px] font-black px-2 py-0.5 rounded-[10px] flex items-center gap-1 uppercase">
                 <i className="fa-solid fa-shield text-[7px]"></i> {currentQuestion.difficulty}
               </span>
           </div>
 
-          <h2 className="text-[14px] font-extrabold text-slate-900 mb-6 leading-relaxed bg-slate-50/50 p-4 rounded-xl border border-slate-100 shadow-inner">
+          <h2 className="text-[14px] font-black text-slate-900 dark:text-white mb-6 leading-relaxed bg-slate-50/50 dark:bg-slate-950/40 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 shadow-inner">
             {currentQuestion.question}
           </h2>
 
@@ -336,19 +336,19 @@ export default function Test() {
                     <button 
                       key={index}
                       onClick={() => handleSelectOption(index)}
-                      className={`border-2 rounded-xl p-3 flex justify-between items-center transition w-full text-left cursor-pointer ${
+                      className={`border-2 rounded-[10px] p-3 flex justify-between items-center transition w-full text-left cursor-pointer ${
                         isSelected 
-                          ? 'border-indigo-600 bg-indigo-50/20' 
-                          : 'border-slate-100 hover:border-slate-300 bg-white'
+                          ? 'border-indigo-600 dark:border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20' 
+                          : 'border-slate-100 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 bg-white dark:bg-slate-950'
                       }`}
                     >
                         <div className="flex items-center gap-3">
-                            <div className={`w-7 h-7 rounded-lg text-xs font-black flex items-center justify-center transition ${
-                              isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600'
+                            <div className={`w-7 h-7 rounded-[10px] text-xs font-black flex items-center justify-center transition ${
+                              isSelected ? 'bg-indigo-600 dark:bg-indigo-500 text-white' : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400'
                             }`}>{opt.label}</div>
-                            <span className={`text-[11px] font-bold ${isSelected ? 'text-indigo-900' : 'text-slate-800'}`}>{opt.text}</span>
+                            <span className={`text-[11px] font-black ${isSelected ? 'text-indigo-900 dark:text-indigo-200' : 'text-slate-800 dark:text-slate-300'}`}>{opt.text}</span>
                         </div>
-                        {isSelected && <i className="fa-solid fa-circle-check text-indigo-600 text-sm"></i>}
+                        {isSelected && <i className="fa-solid fa-circle-check text-indigo-600 dark:text-indigo-400 text-sm"></i>}
                     </button>
                   );
               })}
@@ -356,12 +356,12 @@ export default function Test() {
       </div>
 
       {/* Bottom controls */}
-      <div className="absolute bottom-0 w-full bg-white border-t border-slate-100 p-3.5 flex justify-between gap-3.5 z-20 shadow-[0_-8px_16px_rgba(0,0,0,0.03)] shrink-0">
+      <div className="absolute bottom-0 w-full bg-white dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800/80 p-3.5 flex justify-between gap-3.5 z-20 shadow-[0_-8px_16px_rgba(0,0,0,0.03)] shrink-0 transition-colors duration-300">
           <button 
             onClick={handlePrevious}
             disabled={currentIdx === 0}
-            className={`flex-1 py-2.5 rounded-xl border border-slate-200 text-[10px] font-bold text-slate-600 flex items-center justify-center gap-1 transition ${
-              currentIdx === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-slate-50 cursor-pointer'
+            className={`flex-1 py-2.5 rounded-[10px] border border-slate-200 dark:border-slate-800 text-[9px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1 transition ${
+              currentIdx === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-slate-50 dark:hover:bg-slate-900 cursor-pointer'
             }`}
           >
             <i className="fa-solid fa-chevron-left text-[8px]"></i> Previous
@@ -369,10 +369,10 @@ export default function Test() {
           
           <button 
             onClick={handleToggleMark}
-            className={`flex-1 py-2.5 rounded-xl border text-[10px] font-bold flex items-center justify-center gap-1.5 transition cursor-pointer ${
+            className={`flex-1 py-2.5 rounded-[10px] border text-[9px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer ${
               markedQuestions[currentQuestion.id] 
-                ? 'bg-amber-100 border-amber-300 text-amber-700' 
-                : 'border-slate-200 text-slate-500 hover:bg-slate-50'
+                ? 'bg-amber-100 dark:bg-amber-950/40 border-amber-300 dark:border-amber-900/50 text-amber-700 dark:text-amber-400' 
+                : 'border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900'
             }`}
           >
             <i className="fa-regular fa-bookmark"></i> {markedQuestions[currentQuestion.id] ? 'Marked' : 'Mark'}
@@ -381,14 +381,14 @@ export default function Test() {
           {currentIdx === QUESTIONS.length - 1 ? (
             <button 
               onClick={handleSubmit}
-              className="flex-1 py-2.5 rounded-xl bg-emerald-600 text-white text-[10px] font-bold hover:bg-emerald-700 shadow-md shadow-emerald-200 transition cursor-pointer"
+              className="flex-1 py-2.5 rounded-[10px] bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider hover:bg-emerald-700 shadow-sm transition cursor-pointer"
             >
               Submit Exam
             </button>
           ) : (
             <button 
               onClick={handleNext}
-              className="flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-[10px] font-bold hover:bg-indigo-700 shadow-md shadow-indigo-200 transition cursor-pointer flex items-center justify-center gap-1"
+              className="flex-1 py-2.5 rounded-[10px] bg-indigo-600 text-white text-[9px] font-black uppercase tracking-wider hover:bg-indigo-700 shadow-sm transition cursor-pointer flex items-center justify-center gap-1"
             >
               Next <i className="fa-solid fa-chevron-right text-[8px]"></i>
             </button>

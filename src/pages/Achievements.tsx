@@ -65,11 +65,11 @@ export default function Achievements() {
 
       {/* Profile Bio Card */}
       <div className="p-4">
-          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-3xl p-4 flex gap-4 items-center shadow-sm relative overflow-hidden transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 flex gap-4 items-center shadow-sm relative overflow-hidden transition-colors duration-300">
               
               {/* Cadet Badge Aura */}
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-yellow-400 p-0.5 flex items-center justify-center shadow-md relative group">
-                  <div className="w-full h-full bg-slate-950 rounded-2xl flex flex-col items-center justify-center">
+              <div className="w-16 h-16 rounded-[10px] bg-gradient-to-tr from-amber-500 to-yellow-400 p-0.5 flex items-center justify-center shadow-md relative group">
+                  <div className="w-full h-full bg-slate-950 rounded-[10px] flex flex-col items-center justify-center">
                       <span className="text-xl">🎖️</span>
                       <span className="text-[7px] font-black text-amber-400 uppercase tracking-widest mt-0.5">Rank 1</span>
                   </div>
@@ -82,19 +82,19 @@ export default function Achievements() {
                           type="text" 
                           value={nameInput} 
                           onChange={(e) => setNameInput(e.target.value)}
-                          className="w-full px-2 py-1 border border-slate-200 dark:border-slate-700 rounded-lg text-[11px] font-bold bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" 
+                          className="w-full px-2 py-1 border border-slate-200 dark:border-slate-700 rounded-[10px] text-[11px] font-bold bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" 
                           placeholder="Cadet Name"
                         />
                         <input 
                           type="text" 
                           value={collegeInput} 
                           onChange={(e) => setCollegeInput(e.target.value)}
-                          className="w-full px-2 py-1 border border-slate-200 dark:border-slate-700 rounded-lg text-[9px] font-bold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500" 
+                          className="w-full px-2 py-1 border border-slate-200 dark:border-slate-700 rounded-[10px] text-[9px] font-bold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 focus:outline-none focus:ring-1 focus:ring-blue-500" 
                           placeholder="Cadet College"
                         />
                         <div className="flex gap-2">
-                            <button onClick={saveProfile} className="px-2 py-1 bg-green-600 hover:bg-green-700 text-white rounded text-[8px] font-black uppercase cursor-pointer">Save</button>
-                            <button onClick={() => setIsEditingProfile(false)} className="px-2 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded text-[8px] font-black uppercase cursor-pointer">Cancel</button>
+                            <button onClick={saveProfile} className="px-2 py-1 bg-green-600 hover:bg-green-700 text-white rounded-[10px] text-[8px] font-black uppercase cursor-pointer">Save</button>
+                            <button onClick={() => setIsEditingProfile(false)} className="px-2 py-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-[10px] text-[8px] font-black uppercase cursor-pointer">Cancel</button>
                         </div>
                     </div>
                   ) : (
@@ -117,10 +117,10 @@ export default function Achievements() {
       </div>
 
       {/* Main Navigation Tabs */}
-      <div className="mx-4 mb-4 bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 p-1.5 rounded-2xl flex shadow-sm transition-colors duration-300">
+      <div className="mx-4 mb-4 bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 p-1.5 rounded-[10px] flex shadow-sm transition-colors duration-300">
           <button 
             onClick={() => setActiveTab('achievements')}
-            className={`flex-1 py-2 text-[10px] font-black uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`flex-1 py-2 text-[10px] font-black uppercase tracking-wider rounded-[10px] transition flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTab === 'achievements' 
                 ? 'bg-blue-600 text-white shadow-sm' 
                 : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
@@ -130,7 +130,7 @@ export default function Achievements() {
           </button>
           <button 
             onClick={() => setActiveTab('settings')}
-            className={`flex-1 py-2 text-[10px] font-black uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`flex-1 py-2 text-[10px] font-black uppercase tracking-wider rounded-[10px] transition flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTab === 'settings' 
                 ? 'bg-blue-600 text-white shadow-sm' 
                 : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
@@ -146,7 +146,7 @@ export default function Achievements() {
           
           {/* Motivation Quote */}
           <div className="px-4">
-              <div className="bg-indigo-50 dark:bg-indigo-950/40 rounded-2xl p-5 flex justify-between items-center relative overflow-hidden shadow-sm border border-indigo-100/50 dark:border-indigo-900/30">
+              <div className="bg-indigo-50 dark:bg-indigo-950/40 rounded-[10px] p-5 flex justify-between items-center relative overflow-hidden shadow-sm border border-indigo-100/50 dark:border-indigo-900/30">
                   <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:16px_16px]"></div>
                   <div className="relative z-10">
                       <h2 className="text-sm font-black text-indigo-900 dark:text-indigo-200 mb-1">Keep Going, Cadet!</h2>
@@ -159,7 +159,7 @@ export default function Achievements() {
           </div>
 
           {/* Points Card */}
-          <div className="mx-4 bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-2xl p-4 flex justify-between items-center shadow-sm transition-colors duration-300">
+          <div className="mx-4 bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 flex justify-between items-center shadow-sm transition-colors duration-300">
               <span className="text-[11px] font-black text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
                   <i className="fa-solid fa-coins text-amber-500"></i> Total Cadet Points
               </span>
@@ -193,7 +193,7 @@ export default function Achievements() {
           {badgeSubTab === 'badges' && (
             <div className="p-4 grid grid-cols-4 gap-y-6 gap-x-2 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60 transition-colors duration-300">
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-950/40 rounded-2xl flex items-center justify-center shadow-inner border border-amber-200 dark:border-amber-900/40 text-amber-500 text-2xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-amber-100 dark:bg-amber-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-amber-200 dark:border-amber-900/40 text-amber-500 text-2xl relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-shield-cat"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -201,7 +201,7 @@ export default function Achievements() {
                 </div>
                 
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-orange-100 dark:bg-orange-950/40 rounded-2xl flex items-center justify-center shadow-inner border border-orange-200 dark:border-orange-900/40 text-orange-500 text-2xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-orange-100 dark:bg-orange-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-orange-200 dark:border-orange-900/40 text-orange-500 text-2xl relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-fire"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -209,7 +209,7 @@ export default function Achievements() {
                 </div>
                 
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-indigo-100 dark:bg-indigo-950/40 rounded-2xl flex items-center justify-center shadow-inner border border-indigo-200 dark:border-indigo-900/40 text-indigo-500 text-2xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-indigo-100 dark:bg-indigo-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-indigo-200 dark:border-indigo-900/40 text-indigo-500 text-2xl relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-medal"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -217,14 +217,14 @@ export default function Achievements() {
                 </div>
                 
                 <div className="flex flex-col items-center gap-2 group cursor-pointer opacity-50 hover:opacity-100 transition">
-                    <div className="w-14 h-14 bg-slate-100 dark:bg-slate-900 rounded-2xl flex items-center justify-center shadow-inner border border-slate-200 dark:border-slate-800 text-slate-400 text-xl">
+                    <div className="w-14 h-14 bg-slate-100 dark:bg-slate-900 rounded-[10px] flex items-center justify-center shadow-inner border border-slate-200 dark:border-slate-800 text-slate-400 text-xl">
                         <i className="fa-solid fa-layer-group"></i>
                     </div>
                     <span className="text-[8px] font-black text-slate-400 dark:text-slate-500 text-center leading-tight">1000+<br />Questions</span>
                 </div>
 
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-yellow-100 dark:bg-yellow-950/40 rounded-2xl flex items-center justify-center shadow-inner border border-yellow-200 dark:border-yellow-900/40 text-yellow-500 text-xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-yellow-100 dark:bg-yellow-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-yellow-200 dark:border-yellow-900/40 text-yellow-500 text-xl relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-star"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -232,7 +232,7 @@ export default function Achievements() {
                 </div>
 
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-blue-100 dark:bg-blue-950/40 rounded-2xl flex items-center justify-center shadow-inner border border-blue-200 dark:border-blue-900/40 text-blue-500 text-xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-blue-100 dark:bg-blue-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-blue-200 dark:border-blue-900/40 text-blue-500 text-xl relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-crown"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -240,7 +240,7 @@ export default function Achievements() {
                 </div>
 
                 <div className="flex flex-col items-center gap-2 group cursor-pointer">
-                    <div className="w-14 h-14 bg-red-100 dark:bg-red-950/40 rounded-2xl flex items-center justify-center shadow-inner border border-red-200 dark:border-red-900/40 text-red-500 text-xl relative group-hover:scale-105 transition">
+                    <div className="w-14 h-14 bg-red-100 dark:bg-red-950/40 rounded-[10px] flex items-center justify-center shadow-inner border border-red-200 dark:border-red-900/40 text-red-500 text-xl relative group-hover:scale-105 transition">
                         <i className="fa-solid fa-heart"></i>
                         <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-950 flex items-center justify-center text-[8px] text-white"><i className="fa-solid fa-check"></i></div>
                     </div>
@@ -248,7 +248,7 @@ export default function Achievements() {
                 </div>
 
                 <div className="flex flex-col items-center gap-2">
-                    <div className="w-14 h-14 bg-slate-50 dark:bg-slate-900/20 rounded-2xl flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-300 dark:text-slate-700 text-lg">
+                    <div className="w-14 h-14 bg-slate-50 dark:bg-slate-900/20 rounded-[10px] flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-300 dark:text-slate-700 text-lg">
                         <i className="fa-solid fa-lock"></i>
                     </div>
                     <span className="text-[8px] font-black text-slate-400 dark:text-slate-500 text-center leading-tight">More</span>
@@ -258,14 +258,14 @@ export default function Achievements() {
 
           {badgeSubTab === 'milestones' && (
             <div className="p-4 bg-white dark:bg-slate-950 border-y border-slate-100 dark:border-slate-800/60 space-y-3.5 transition-colors duration-300">
-                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
+                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-[10px] border border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
                     <div>
                         <h4 className="text-[10px] font-black text-slate-900 dark:text-white uppercase">Sovereign Scholar</h4>
                         <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold">Score above 95% in any 5 mock tests</p>
                     </div>
                     <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">3/5 Completed</span>
                 </div>
-                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
+                <div className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-[10px] border border-slate-100 dark:border-slate-800/60 flex justify-between items-center">
                     <div>
                         <h4 className="text-[10px] font-black text-slate-900 dark:text-white uppercase">Endurance Driller</h4>
                         <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold">Maintain a study streak of 20 consecutive days</p>
@@ -282,7 +282,7 @@ export default function Achievements() {
                     <h4 className="text-[11px] font-black text-slate-900 dark:text-white uppercase">College Preparation Cadet</h4>
                     <p className="text-[9px] text-slate-500 dark:text-slate-400 font-semibold max-w-[220px] mx-auto mt-1">Unlock this digital cadet badge & certificate by completing the entire entrance syllabus mock exams.</p>
                 </div>
-                <button className="px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-400 dark:text-slate-500 rounded-xl text-[9px] font-black uppercase tracking-wider cursor-not-allowed">Locked • Complete Syllabi</button>
+                <button className="px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-400 dark:text-slate-500 rounded-[10px] text-[9px] font-black uppercase tracking-wider cursor-not-allowed">Locked • Complete Syllabi</button>
             </div>
           )}
         </div>
@@ -293,7 +293,7 @@ export default function Achievements() {
         <div className="p-4 space-y-4 animate-in slide-in-from-bottom-2 duration-300">
           
           {/* Theme custom settings block */}
-          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-2xl p-4 space-y-4 transition-colors duration-300 shadow-sm">
+          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 space-y-4 transition-colors duration-300 shadow-sm">
               <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800/60">
                   <i className="fa-solid fa-palette text-blue-600 dark:text-blue-400 text-xs"></i>
                   <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Appearance & Theme</h3>
@@ -322,7 +322,7 @@ export default function Achievements() {
               </div>
 
               {/* Visual Status Indicator */}
-              <div className={`p-3 rounded-xl border text-[9px] font-black text-center transition-all ${
+              <div className={`p-3 rounded-[10px] border text-[9px] font-black text-center transition-all ${
                 isDark 
                   ? 'bg-slate-900 border-slate-800 text-emerald-400' 
                   : 'bg-emerald-50/50 border-emerald-100/40 text-emerald-800'
@@ -334,7 +334,7 @@ export default function Achievements() {
           </div>
 
           {/* Localization preferences settings block */}
-          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-2xl p-4 space-y-4 transition-colors duration-300 shadow-sm">
+          <div className="bg-white dark:bg-slate-950 border border-slate-100 dark:border-slate-800/80 rounded-[10px] p-4 space-y-4 transition-colors duration-300 shadow-sm">
               <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800/60">
                   <i className="fa-solid fa-globe text-blue-600 dark:text-blue-400 text-xs"></i>
                   <h3 className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Language & Sound</h3>
@@ -388,7 +388,7 @@ export default function Achievements() {
           </div>
 
           {/* Academic Info & Terms */}
-          <div className="bg-slate-100/50 dark:bg-slate-950/40 border border-slate-200/20 dark:border-slate-800/40 p-4 rounded-2xl text-[9px] text-slate-500 dark:text-slate-400 space-y-2">
+          <div className="bg-slate-100/50 dark:bg-slate-950/40 border border-slate-200/20 dark:border-slate-800/40 p-4 rounded-[10px] text-[9px] text-slate-500 dark:text-slate-400 space-y-2">
               <p className="font-extrabold text-slate-700 dark:text-slate-300 uppercase tracking-widest text-center">Cadet Applet Metadata</p>
               <div className="grid grid-cols-2 gap-y-1.5 pt-1.5 border-t border-slate-200/50 dark:border-slate-800/40">
                   <span className="font-bold">App Version</span>
