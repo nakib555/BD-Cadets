@@ -93,6 +93,23 @@ export default function Study() {
                               <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">Divisions & Landmarks</p>
                           </div>
                       </div>
+
+                      {/* Padma Bridge card */}
+                      <div 
+                          onClick={() => navigate('padma-bridge')}
+                          className="col-span-2 bg-gradient-to-br from-blue-50/50 to-indigo-50/10 dark:from-blue-950/20 dark:to-indigo-950/5 hover:from-blue-50 dark:hover:from-blue-950 border border-blue-100 dark:border-blue-900/30 p-3 rounded-[10px] shadow-sm hover:shadow transition cursor-pointer flex flex-col justify-between h-28 group"
+                      >
+                          <div className="flex justify-between items-start">
+                              <div className="w-8 h-8 bg-blue-600 rounded-[10px] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
+                                  <span className="text-xs">🌉</span>
+                              </div>
+                              <span className="text-[7px] font-black uppercase text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-950 border border-blue-100 dark:border-blue-900/30 px-1.5 py-0.5 rounded-[10px]">General GK</span>
+                          </div>
+                          <div>
+                              <h4 className="text-[10px] font-black text-slate-900 dark:text-white leading-tight">Padma Bridge Infographic</h4>
+                              <p className="text-[8px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">Interactive Multi-Decker Layout & Quiz</p>
+                          </div>
+                      </div>
                   </div>
               </div>
           )}

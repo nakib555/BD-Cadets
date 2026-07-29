@@ -13,6 +13,7 @@ import TestList from './pages/TestList';
 import InteractiveMap from './pages/InteractiveMap';
 import AIStudyAssistant from './pages/AIStudyAssistant';
 import Photosynthesis from './pages/Photosynthesis';
+import PadmaBridge from './pages/PadmaBridge';
 import cadetsSplash from './assets/images/cadets_splash_1785297743949.jpg';
 
 function SplashScreen({ onComplete }: { onComplete: () => void }) {
@@ -87,6 +88,7 @@ function AppContent() {
            {currentRoute.path === 'interactive-map' && <InteractiveMap />}
            {currentRoute.path === 'ai-assistant' && <AIStudyAssistant />}
            {currentRoute.path === 'photosynthesis' && <Photosynthesis />}
+           {currentRoute.path === 'padma-bridge' && <PadmaBridge />}
         </main>
         
         <Navigation />
