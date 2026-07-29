@@ -32,8 +32,8 @@ export default function Navigation() {
                 : 'text-slate-400 hover:text-blue-500 dark:text-slate-500 dark:hover:text-blue-400'
             }`}
           >
-            <i className={`${item.iconClass} text-[17px] mb-1 group-hover:scale-110 transition`}></i>
-            <span className={`text-[9px] ${isActive ? 'font-bold' : 'font-semibold group-hover:font-bold'}`}>
+            <i className={`${item.iconClass} text-[18px] mb-1 group-hover:scale-110 transition`}></i>
+            <span className={`text-[10px] ${isActive ? 'font-bold' : 'font-semibold group-hover:font-bold'}`}>
               {item.label}
             </span>
           </button>

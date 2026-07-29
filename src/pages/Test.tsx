@@ -308,7 +308,7 @@ export default function Test() {
       <div className="bg-slate-50 dark:bg-slate-900 px-4 py-2 flex justify-between items-center border-b border-[#d8dfe7] dark:border-slate-800/60 shrink-0 transition-colors duration-300">
           <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-            <span className="text-[9px] font-black uppercase tracking-wider">Subject: {currentQuestion.subject}</span>
+            <span className="text-[10px] font-[Georgia] font-black uppercase tracking-wider">Subject: {currentQuestion.subject}</span>
           </div>
           <div className="bg-white dark:bg-slate-950 border border-[#d8dfe7] dark:border-slate-800 px-3 py-1 rounded-full flex items-center gap-1.5 shadow-sm">
               <i className="fa-regular fa-clock text-slate-600 dark:text-slate-400 text-[10px] animate-pulse"></i>
@@ -360,7 +360,7 @@ export default function Test() {
           <button 
             onClick={handlePrevious}
             disabled={currentIdx === 0}
-            className={`flex-1 py-2.5 rounded-[10px] border border-slate-200 dark:border-slate-800 text-[9px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1 transition ${
+            className={`flex-1 py-2.5 rounded-[10px] border border-slate-200 dark:border-slate-800 text-[10px] font-[Georgia] font-black uppercase tracking-wider text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1 transition ${
               currentIdx === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-slate-50 dark:hover:bg-slate-900 cursor-pointer'
             }`}
           >
@@ -369,7 +369,7 @@ export default function Test() {
           
           <button 
             onClick={handleToggleMark}
-            className={`flex-1 py-2.5 rounded-[10px] border text-[9px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer ${
+            className={`flex-1 py-2.5 rounded-[10px] border text-[10px] font-[Georgia] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 transition cursor-pointer ${
               markedQuestions[currentQuestion.id] 
                 ? 'bg-amber-100 dark:bg-amber-950/40 border-amber-300 dark:border-amber-900/50 text-amber-700 dark:text-amber-400' 
                 : 'border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900'
@@ -381,14 +381,14 @@ export default function Test() {
           {currentIdx === QUESTIONS.length - 1 ? (
             <button 
               onClick={handleSubmit}
-              className="flex-1 py-2.5 rounded-[10px] bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider hover:bg-emerald-700 shadow-sm transition cursor-pointer"
+              className="flex-1 py-2.5 rounded-[10px] bg-emerald-600 text-white text-[10px] font-[Georgia] font-black uppercase tracking-wider hover:bg-emerald-700 shadow-sm transition cursor-pointer"
             >
               Submit Exam
             </button>
           ) : (
             <button 
               onClick={handleNext}
-              className="flex-1 py-2.5 rounded-[10px] bg-indigo-600 text-white text-[9px] font-black uppercase tracking-wider hover:bg-indigo-700 shadow-sm transition cursor-pointer flex items-center justify-center gap-1"
+              className="flex-1 py-2.5 rounded-[10px] bg-indigo-600 text-white text-[10px] font-[Georgia] font-black uppercase tracking-wider hover:bg-indigo-700 shadow-sm transition cursor-pointer flex items-center justify-center gap-1"
             >
               Next <i className="fa-solid fa-chevron-right text-[8px]"></i>
             </button>
