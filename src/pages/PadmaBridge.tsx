@@ -212,7 +212,7 @@ export default function PadmaBridge() {
     <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-24 animate-in fade-in duration-300 transition-colors duration-300">
       
       {/* Header */}
-      <header className="flex justify-between items-center p-3.5 min-[375px]:p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+      <header className="flex justify-between items-center p-fluid-card bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
         <button 
           id="padma-back-btn"
           onClick={goBack} 
@@ -222,7 +222,7 @@ export default function PadmaBridge() {
         </button>
         <div className="flex flex-col items-center">
           <span className="text-[8px] font-black tracking-widest text-blue-600 dark:text-blue-400 uppercase">National Pride GK</span>
-          <h1 className="text-[12px] min-[375px]:text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Padma Bridge Infographic</h1>
+          <h1 className="text-fluid-label font-black text-slate-900 dark:text-white uppercase tracking-wider">Padma Bridge Infographic</h1>
         </div>
         <div className="w-8 h-8 bg-blue-50 dark:bg-blue-950/40 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
           <span className="text-sm">🌉</span>
@@ -230,7 +230,7 @@ export default function PadmaBridge() {
       </header>
 
       {/* Navigation tabs */}
-      <div className="bg-white dark:bg-slate-950 flex justify-center gap-1.5 p-2.5 min-[375px]:p-3 border-b border-slate-100 dark:border-slate-800/85 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-950 flex justify-center gap-1.5 p-fluid-card border-b border-slate-100 dark:border-slate-800/85 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
         {(['Facts', 'Engineering', 'Timeline', 'Quiz'] as const).map((tab) => {
           const isSelected = activeTab === tab;
           return (
@@ -238,7 +238,7 @@ export default function PadmaBridge() {
               key={tab}
               id={`padma-tab-${tab.toLowerCase()}`}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-1.5 text-[8.5px] min-[375px]:text-[9px] font-black rounded-full uppercase transition-all tracking-wider cursor-pointer ${
+              className={`flex-1 py-1.5 text-fluid-icon-lbl font-black rounded-full uppercase transition-all tracking-wider cursor-pointer ${
                 isSelected 
                   ? 'bg-blue-600 text-white shadow-sm' 
                   : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
@@ -251,14 +251,14 @@ export default function PadmaBridge() {
       </div>
 
       {/* Outer padding 20-24px dynamic as requested */}
-      <div className="p-5 min-[375px]:p-6 space-y-6 min-[375px]:space-y-7">
+      <div className="p-fluid-outer space-y-fluid-section">
         
         {/* Title Block with Exact Requested Typography Sizes */}
-        <div className="text-center space-y-1 min-[375px]:space-y-1.5">
-          <h1 className="text-[28px] min-[375px]:text-[32px] font-black text-slate-900 dark:text-white uppercase leading-[1.15] tracking-tight">
+        <div className="text-center space-y-fluid-small">
+          <h1 className="text-fluid-title font-black text-slate-900 dark:text-white uppercase leading-[1.15] tracking-tight">
             PADMA BRIDGE
           </h1>
-          <p className="text-[15px] min-[375px]:text-[17px] font-medium text-slate-500 dark:text-slate-400 leading-tight">
+          <p className="text-fluid-subtitle font-medium text-slate-500 dark:text-slate-400 leading-tight">
             Bangladesh's Longest Multipurpose Bridge
           </p>
           <div className="w-12 h-1 bg-blue-500 mx-auto rounded-full mt-2"></div>
@@ -266,36 +266,36 @@ export default function PadmaBridge() {
 
         {/* TAB 1: KEY FACTS */}
         {activeTab === 'Facts' && (
-          <div className="space-y-6 min-[375px]:space-y-7 animate-in slide-in-from-bottom-2 duration-300">
+          <div className="space-y-fluid-section animate-in slide-in-from-bottom-2 duration-300">
             
             {/* Section heading: Key Facts (Size: 18-20 px) */}
-            <div className="space-y-2.5 min-[375px]:space-y-3">
-              <h2 className="text-[18px] min-[375px]:text-[20px] font-bold text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
+            <div className="space-y-fluid-heading">
+              <h2 className="text-fluid-heading font-bold text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-fluid-small">
                 <span>📊</span> KEY FACTS
               </h2>
-              <p className="text-[14px] min-[375px]:text-[15px] font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-fluid-body font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
                 Padma Bridge is a dream project of Bangladesh, executed completely with national funding. It acts as a massive economic booster and connects the capital directly with 21 southwest districts.
               </p>
             </div>
 
             {/* Facts Grid */}
-            <div className="grid grid-cols-2 gap-3 min-[375px]:gap-4">
+            <div className="grid grid-cols-2 gap-fluid-medium">
               {FACTS.map((fact, index) => (
                 <div 
                   key={index} 
-                  className="bg-white dark:bg-slate-950 p-3.5 min-[375px]:p-4 rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-1.5 min-[375px]:space-y-2 transition duration-300 hover:border-blue-200 dark:hover:border-blue-900/50"
+                  className="bg-white dark:bg-slate-950 p-fluid-card rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-fluid-small transition duration-300 hover:border-blue-200 dark:hover:border-blue-900/50"
                 >
                   <div className="flex justify-between items-center">
                     <span className="text-base min-[375px]:text-lg">{fact.icon}</span>
-                    <span className="text-[9px] min-[375px]:text-[10px] font-black text-blue-500 bg-blue-50 dark:bg-blue-950/40 px-1.5 min-[375px]:px-2 py-0.5 rounded-full uppercase">GK Stat</span>
+                    <span className="text-fluid-icon-lbl font-black text-blue-500 bg-blue-50 dark:bg-blue-950/40 px-1.5 min-[375px]:px-2 py-0.5 rounded-full uppercase">GK Stat</span>
                   </div>
                   <div>
                     {/* Fact Number: 22-24 px */}
-                    <p className="text-[22px] min-[375px]:text-[24px] font-bold text-blue-600 dark:text-blue-400 leading-none">
+                    <p className="text-fluid-stat font-bold text-blue-600 dark:text-blue-400 leading-none">
                       {fact.number}
                     </p>
                     {/* Fact Label: 13-14 px */}
-                    <p className="text-[13px] min-[375px]:text-[14px] font-medium text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    <p className="text-fluid-label font-medium text-slate-500 dark:text-slate-400 mt-1 leading-snug">
                       {fact.label}
                     </p>
                   </div>
@@ -304,14 +304,14 @@ export default function PadmaBridge() {
             </div>
 
             {/* Detailed Body Paragraph */}
-            <div className="bg-white dark:bg-slate-950 p-4 min-[375px]:p-5 rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-3">
-              <h3 className="text-[14px] min-[375px]:text-[15px] font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-2">
+            <div className="bg-white dark:bg-slate-950 p-fluid-card rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-fluid-heading">
+              <h3 className="text-fluid-body font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-100 dark:border-slate-800 pb-2">
                 💡 Historical Significance
               </h3>
-              <p className="text-[14px] min-[375px]:text-[15px] font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-fluid-body font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
                 Before this mega-structure, travelers had to rely on slow, unpredictable ferries to cross the ferocious Padma River. During monsoons, these crossings were highly perilous and caused massive cargo bottlenecks. The bridge reduces travel times from days to mere minutes.
               </p>
-              <div className="bg-blue-50/50 dark:bg-blue-950/10 p-3 rounded-[10px] border border-blue-100/50 dark:border-blue-900/20 text-[12px] min-[375px]:text-[13px] font-medium text-blue-800 dark:text-blue-300 leading-snug">
+              <div className="bg-blue-50/50 dark:bg-blue-950/10 p-3 rounded-[10px] border border-blue-100/50 dark:border-blue-900/20 text-fluid-icon-lbl font-medium text-blue-800 dark:text-blue-300 leading-snug">
                 🇧🇩 <strong>Did you know?</strong> Bangladesh rejected international credit offers and built this bridge entirely on self-financing, cementing it as a symbol of domestic sovereignty.
               </div>
             </div>
@@ -320,37 +320,37 @@ export default function PadmaBridge() {
 
         {/* TAB 2: ENGINEERING MARVEL */}
         {activeTab === 'Engineering' && (
-          <div className="space-y-6 min-[375px]:space-y-7 animate-in slide-in-from-bottom-2 duration-300">
+          <div className="space-y-fluid-section animate-in slide-in-from-bottom-2 duration-300">
             
             {/* Section heading: Engineering (Size: 18-20 px) */}
-            <div className="space-y-2.5 min-[375px]:space-y-3">
-              <h2 className="text-[18px] min-[375px]:text-[20px] font-bold text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
+            <div className="space-y-fluid-heading">
+              <h2 className="text-fluid-heading font-bold text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-fluid-small">
                 <span>⚙️</span> ENGINEERING
               </h2>
-              <p className="text-[14px] min-[375px]:text-[15px] font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-fluid-body font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
                 The Padma River ranks among the most turbulent and fast-flowing rivers in the world, second only to the Amazon in river discharge. Designing a stable structure on shifting sandy silts was a historic triumph.
               </p>
             </div>
 
             {/* Interactive Bridge schematic view (Width: 390-430 px) */}
-            <div className="bg-white dark:bg-slate-950 p-3.5 min-[375px]:p-4 rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-4">
+            <div className="bg-white dark:bg-slate-950 p-fluid-card rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm space-y-fluid-heading">
               <div className="text-center">
-                <span className="text-[9px] min-[375px]:text-[10px] font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase">Interactive Double-Decker Schematic</span>
-                <p className="text-[12px] min-[375px]:text-[13px] font-bold text-slate-500 dark:text-slate-400 mt-0.5">Click a hotspot badge to view specs</p>
+                <span className="text-fluid-icon-lbl font-black tracking-widest text-slate-400 dark:text-slate-500 uppercase">Interactive Double-Decker Schematic</span>
+                <p className="text-fluid-body font-bold text-slate-500 dark:text-slate-400 mt-0.5">Click a hotspot badge to view specs</p>
               </div>
 
               {/* Dynamic Map Canvas / Schematic */}
-              <div className="h-60 min-[375px]:h-64 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800/50 rounded-[10px] relative overflow-hidden flex flex-col justify-between p-3.5 min-[375px]:p-4 shadow-inner">
+              <div className="h-60 min-[375px]:h-64 bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800/50 rounded-[10px] relative overflow-hidden flex flex-col justify-between p-fluid-card shadow-inner">
                 
                 {/* Sky Layer with Cloud & birds */}
                 <div className="absolute top-2 right-4 flex gap-1 items-center opacity-40">
-                  <span className="text-[10px] min-[375px]:text-xs">☁️</span>
-                  <span className="text-base min-[375px]:text-lg">☁️</span>
+                  <span className="text-fluid-icon-lbl">☁️</span>
+                  <span className="text-fluid-body">☁️</span>
                 </div>
 
                 {/* River water bottom layer */}
                 <div className="absolute bottom-0 left-0 right-0 h-[28%] bg-gradient-to-t from-sky-300/40 to-sky-100/10 dark:from-sky-950/50 dark:to-slate-900/10 border-t border-sky-200/50 dark:border-sky-900/30 flex items-end justify-center p-1.5 z-0">
-                  <span className="text-[11px] min-[375px]:text-[12px] font-bold text-sky-700/60 dark:text-sky-400/40 tracking-widest uppercase">Padma River Flow</span>
+                  <span className="text-fluid-icon-lbl font-bold text-sky-700/60 dark:text-sky-400/40 tracking-widest uppercase">Padma River Flow</span>
                 </div>
 
                 {/* Drawn Bridge structure using beautiful absolute positioning */}
@@ -358,7 +358,7 @@ export default function PadmaBridge() {
                   
                   {/* Upper deck road line */}
                   <div className="h-2 bg-slate-700 dark:bg-slate-800 rounded-full w-full relative flex items-center justify-between z-10">
-                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-[10px] min-[375px]:text-[11px] font-medium text-slate-400 bg-white dark:bg-slate-950 px-1 rounded border border-slate-100 dark:border-slate-900 scale-90">Upper Roadway</span>
+                    <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-fluid-icon-lbl font-medium text-slate-400 bg-white dark:bg-slate-950 px-1 rounded border border-slate-100 dark:border-slate-900 scale-90">Upper Roadway</span>
                   </div>
 
                   {/* Steel Truss Warren zig-zag lines */}
@@ -366,15 +366,15 @@ export default function PadmaBridge() {
                     {/* Visual zig-zags */}
                     <div className="absolute inset-0 flex justify-around items-center opacity-30 select-none pointer-events-none">
                       {[...Array(6)].map((_, i) => (
-                        <span key={i} className="text-slate-400 font-mono text-[18px] min-[375px]:text-[22px]">/\</span>
+                        <span key={i} className="text-slate-400 font-mono text-fluid-heading">/\</span>
                       ))}
                     </div>
-                    <span className="text-[11px] min-[375px]:text-[13px] font-bold text-slate-400 dark:text-slate-500 w-full text-center tracking-widest">WARREN STEEL TRUSS</span>
+                    <span className="text-fluid-label font-bold text-slate-400 dark:text-slate-500 w-full text-center tracking-widest">WARREN STEEL TRUSS</span>
                   </div>
 
                   {/* Lower deck rail line */}
                   <div className="h-2.5 bg-yellow-600/30 border-y-2 border-yellow-700/40 w-full relative flex items-center justify-center z-10">
-                    <span className="text-[10px] min-[375px]:text-[11px] font-medium text-yellow-800 dark:text-yellow-500 scale-90">Lower Railway</span>
+                    <span className="text-fluid-icon-lbl font-medium text-yellow-800 dark:text-yellow-500 scale-90">Lower Railway</span>
                   </div>
 
                   {/* Steel Piers/Piles descending into riverbed */}
@@ -402,23 +402,23 @@ export default function PadmaBridge() {
                         isSelected ? 'bg-blue-600 text-white border-blue-400' : 'bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-800'
                       }`}
                     >
-                      <span className="text-[12px] min-[375px]:text-[13px] px-1">{hot.icon}</span>
-                      <span className="text-[10px] font-black pr-1 hidden min-[380px]:inline">{hot.name.split(' ')[0]}</span>
+                      <span className="text-fluid-icon-lbl px-1">{hot.icon}</span>
+                      <span className="text-fluid-icon-lbl font-black pr-1 hidden min-[380px]:inline">{hot.name.split(' ')[0]}</span>
                     </button>
                   );
                 })}
               </div>
 
               {/* Selected Hotspot Detail Panel */}
-              <div className="bg-slate-50 dark:bg-slate-900 p-4 rounded-[10px] border border-slate-100 dark:border-slate-800/80 space-y-2 transition-colors duration-300">
+              <div className="bg-slate-50 dark:bg-slate-900 p-fluid-card rounded-[10px] border border-slate-100 dark:border-slate-800/80 space-y-fluid-small transition-colors duration-300">
                 <div className="flex justify-between items-center border-b border-slate-200/50 dark:border-slate-800 pb-2">
-                  <span className="text-[13px] min-[375px]:text-[14px] font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="text-fluid-label font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider flex items-center gap-fluid-small">
                     <span>{currentHotspot.icon}</span> {currentHotspot.name}
                   </span>
-                  <span className="text-[11px] min-[375px]:text-[12px] font-normal text-slate-400 dark:text-slate-500 uppercase">Hotspot Specification</span>
+                  <span className="text-fluid-icon-lbl font-normal text-slate-400 dark:text-slate-500 uppercase">Hotspot Specification</span>
                 </div>
-                <p className="text-[13px] min-[375px]:text-[14px] text-slate-700 dark:text-slate-300 font-normal leading-relaxed">{currentHotspot.details}</p>
-                <p className="text-[12px] min-[375px]:text-[13px] text-blue-700 dark:text-blue-400 font-bold leading-relaxed">{currentHotspot.bnDetails}</p>
+                <p className="text-fluid-body text-slate-700 dark:text-slate-300 font-normal leading-relaxed">{currentHotspot.details}</p>
+                <p className="text-fluid-body text-blue-700 dark:text-blue-400 font-bold leading-relaxed">{currentHotspot.bnDetails}</p>
               </div>
             </div>
           </div>
@@ -426,43 +426,43 @@ export default function PadmaBridge() {
 
         {/* TAB 3: TIMELINE */}
         {activeTab === 'Timeline' && (
-          <div className="space-y-6 min-[375px]:space-y-7 animate-in slide-in-from-bottom-2 duration-300">
+          <div className="space-y-fluid-section animate-in slide-in-from-bottom-2 duration-300">
             
             {/* Section heading: Timeline (Size: 18-20 px) */}
-            <div className="space-y-2.5 min-[375px]:space-y-3">
-              <h2 className="text-[18px] min-[375px]:text-[20px] font-bold text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-2">
+            <div className="space-y-fluid-heading">
+              <h2 className="text-fluid-heading font-bold text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-fluid-small">
                 <span>📅</span> TIMELINE
               </h2>
-              <p className="text-[14px] min-[375px]:text-[15px] font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-fluid-body font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
                 Take a look back at the milestone years that defined the successful execution of Bangladesh's premier self-funded national project.
               </p>
             </div>
 
             {/* Vertical timeline layout */}
-            <div className="relative pl-6 border-l-2 border-blue-500/30 dark:border-blue-900/30 space-y-8 py-2">
+            <div className="relative pl-6 border-l-2 border-blue-500/30 dark:border-blue-900/30 space-y-fluid-section py-2">
               {TIMELINE.map((evt, idx) => (
-                <div key={idx} className="relative space-y-1.5">
+                <div key={idx} className="relative space-y-fluid-small">
                   {/* Timeline bullet */}
                   <span className="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-blue-600 border-4 border-white dark:border-slate-900 shadow-sm flex items-center justify-center"></span>
                   
                   <div className="flex justify-between items-baseline">
                     {/* Year: 16-18 px bold */}
-                    <span className="text-[16px] min-[375px]:text-[18px] font-bold text-blue-600 dark:text-blue-400">
+                    <span className="text-fluid-year font-bold text-blue-600 dark:text-blue-400">
                       {evt.year}
                     </span>
-                    <span className="text-[11px] min-[375px]:text-[12px] font-normal text-slate-400 dark:text-slate-500">Stage {idx + 1}</span>
+                    <span className="text-fluid-icon-lbl font-normal text-slate-400 dark:text-slate-500">Stage {idx + 1}</span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-[14px] min-[375px]:text-[15px] font-bold text-slate-900 dark:text-white">
+                  <h3 className="text-fluid-body font-bold text-slate-900 dark:text-white">
                     {evt.title}
                   </h3>
 
                   {/* Description: 13-14 px regular */}
-                  <p className="text-[13px] min-[375px]:text-[14px] font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-fluid-body font-normal text-slate-600 dark:text-slate-300 leading-relaxed">
                     {evt.desc}
                   </p>
-                  <p className="text-[12px] min-[375px]:text-[13px] font-bold text-blue-700 dark:text-blue-400">
+                  <p className="text-fluid-body font-bold text-blue-700 dark:text-blue-400">
                     {evt.bnDesc}
                   </p>
                 </div>
@@ -473,30 +473,30 @@ export default function PadmaBridge() {
 
         {/* TAB 4: GK QUIZ */}
         {activeTab === 'Quiz' && (
-          <div className="bg-white dark:bg-slate-950 p-4 min-[375px]:p-5 rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 p-fluid-card rounded-[12px] border border-slate-100 dark:border-slate-800/80 shadow-sm animate-in slide-in-from-bottom-2 duration-300 transition-colors duration-300">
             
             {!quizFinished ? (
-              <div className="space-y-4">
+              <div className="space-y-fluid-heading">
                 <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-2">
                   <div>
-                    <h3 className="text-[14px] min-[375px]:text-[15px] font-bold text-slate-900 dark:text-white">Topic Cadet Quiz</h3>
-                    <p className="text-[11px] min-[375px]:text-[12px] font-normal text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Test your Padma Bridge knowledge</p>
+                    <h3 className="text-fluid-body font-bold text-slate-900 dark:text-white">Topic Cadet Quiz</h3>
+                    <p className="text-fluid-icon-lbl font-normal text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">Test your Padma Bridge knowledge</p>
                   </div>
-                  <span className="text-[11px] min-[375px]:text-[12px] font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/30 px-2.5 py-0.5 rounded-full">
+                  <span className="text-fluid-icon-lbl font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/30 px-2.5 py-0.5 rounded-full">
                     Q {quizIdx + 1} of {QUIZ.length}
                   </span>
                 </div>
 
-                <div className="space-y-1.5">
-                  <h4 className="text-[14px] min-[375px]:text-[15px] font-bold text-slate-900 dark:text-white leading-snug">
+                <div className="space-y-fluid-small">
+                  <h4 className="text-fluid-heading font-bold text-slate-900 dark:text-white leading-snug">
                     {QUIZ[quizIdx].question}
                   </h4>
-                  <p className="text-[12px] min-[375px]:text-[13px] text-blue-700 dark:text-blue-400 font-bold leading-relaxed">
+                  <p className="text-fluid-body text-blue-700 dark:text-blue-400 font-bold leading-relaxed">
                     {QUIZ[quizIdx].bnQuestion}
                   </p>
                 </div>
 
-                <div className="flex flex-col gap-2 pt-2">
+                <div className="flex flex-col gap-fluid-small pt-2">
                   {QUIZ[quizIdx].options.map((opt, i) => {
                     const isSelected = selectedOpt === i;
                     const isCorrect = QUIZ[quizIdx].correctIndex === i;
@@ -521,7 +521,7 @@ export default function PadmaBridge() {
                         id={`option-${i}`}
                         disabled={quizSubmitted}
                         onClick={() => handleSelectOption(i)}
-                        className={`w-full p-2.5 min-[375px]:p-3 rounded-[10px] border text-[12.5px] min-[375px]:text-[13px] font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
+                        className={`w-full p-fluid-card rounded-[10px] border text-fluid-body font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
                       >
                         <span>{opt}</span>
                         {quizSubmitted && isCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
@@ -537,7 +537,7 @@ export default function PadmaBridge() {
                     id="submit-ans-btn"
                     onClick={handleQuizSubmit}
                     disabled={selectedOpt === null}
-                    className={`w-full py-2.5 rounded-[10px] text-[12.5px] min-[375px]:text-[13px] font-bold transition ${
+                    className={`w-full py-2.5 rounded-[10px] text-fluid-body font-bold transition ${
                       selectedOpt !== null 
                         ? 'bg-blue-600 text-white shadow-sm cursor-pointer' 
                         : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600 cursor-not-allowed'
@@ -546,15 +546,15 @@ export default function PadmaBridge() {
                     Submit Answer
                   </button>
                 ) : (
-                  <div className="space-y-3">
-                    <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-[10px] border border-slate-100 dark:border-slate-800 text-[12px] min-[375px]:text-[13px] text-slate-650 dark:text-slate-400 font-semibold leading-relaxed">
+                  <div className="space-y-fluid-heading">
+                    <div className="bg-slate-50 dark:bg-slate-900 p-fluid-card rounded-[10px] border border-slate-100 dark:border-slate-800 text-fluid-body text-slate-650 dark:text-slate-400 font-semibold leading-relaxed">
                       <span className="text-slate-800 dark:text-slate-200 font-extrabold block mb-0.5">💡 Explanation</span>
                       {QUIZ[quizIdx].explanation}
                     </div>
                     <button
                       id="next-quiz-btn"
                       onClick={handleNextQuiz}
-                      className="w-full py-2.5 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-[12.5px] min-[375px]:text-[13px] font-bold transition flex items-center justify-center gap-1 cursor-pointer"
+                      className="w-full py-2.5 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-fluid-body font-bold transition flex items-center justify-center gap-1 cursor-pointer"
                     >
                       {quizIdx < QUIZ.length - 1 ? 'Next Question' : 'Finish Quiz'} <i className="fa-solid fa-chevron-right text-[8px]"></i>
                     </button>
@@ -562,14 +562,14 @@ export default function PadmaBridge() {
                 )}
               </div>
             ) : (
-              <div className="flex flex-col items-center text-center space-y-4 py-4 animate-in zoom-in duration-300">
+              <div className="flex flex-col items-center text-center space-y-fluid-heading py-4 animate-in zoom-in duration-300">
                 <div className="w-14 h-14 bg-blue-50 dark:bg-blue-950/20 rounded-full flex items-center justify-center text-2xl border border-blue-100 dark:border-blue-900/30">🏆</div>
                 <div>
-                  <h3 className="text-[14px] min-[375px]:text-[15px] font-bold text-slate-900 dark:text-white">Bridge GK Mastered!</h3>
-                  <p className="text-[12px] min-[375px]:text-[13px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">You scored {quizScore} out of {QUIZ.length}</p>
+                  <h3 className="text-fluid-body font-bold text-slate-900 dark:text-white">Bridge GK Mastered!</h3>
+                  <p className="text-fluid-body text-slate-500 dark:text-slate-400 font-bold mt-0.5">You scored {quizScore} out of {QUIZ.length}</p>
                 </div>
                 
-                <div className="bg-blue-50 dark:bg-blue-950/20 p-3 rounded-[10px] border border-blue-100 dark:border-blue-900/30 w-full text-[12px] min-[375px]:text-[13px] font-bold text-blue-800 dark:text-blue-400 flex items-center justify-center gap-2">
+                <div className="bg-blue-50 dark:bg-blue-950/20 p-fluid-card rounded-[10px] border border-blue-100 dark:border-blue-900/30 w-full text-fluid-body font-bold text-blue-800 dark:text-blue-400 flex items-center justify-center gap-2">
                   <span>🌟 Cadet GK Score Incremented in Profile!</span>
                 </div>
 
@@ -577,14 +577,14 @@ export default function PadmaBridge() {
                   <button 
                     id="retry-quiz-btn"
                     onClick={resetQuiz}
-                    className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-[12.5px] min-[375px]:text-[13px] font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
+                    className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-fluid-body font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
                   >
                     <i className="fa-solid fa-rotate-left mr-1"></i> Retake
                   </button>
                   <button 
                     id="back-to-facts-btn"
                     onClick={() => setActiveTab('Facts')}
-                    className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-[12.5px] min-[375px]:text-[13px] font-bold transition cursor-pointer"
+                    className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-fluid-body font-bold transition cursor-pointer"
                   >
                     Back to Facts
                   </button>
@@ -595,7 +595,7 @@ export default function PadmaBridge() {
         )}
 
         {/* Footer: 11-12 px requested */}
-        <footer className="text-center text-[11px] min-[375px]:text-[12px] text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800 pt-4 pb-2">
+        <footer className="text-center text-fluid-footer text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800 pt-4 pb-2">
           Source: Bangladesh Bridge Authority
         </footer>
 

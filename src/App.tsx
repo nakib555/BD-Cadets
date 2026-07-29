@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { DataProvider, useData } from './context/DataContext';
-import { RouterProvider, useRouter } from './context/RouterContext';
+import { RouterProvider, useRouter, MAIN_TABS } from './context/RouterContext';
+import { motion, AnimatePresence } from 'motion/react';
 import Navigation from './components/Navigation';
+import MetadataManager from './components/MetadataManager';
 import Home from './pages/Home';
 import Study from './pages/Study';
 import Test from './pages/Test';
@@ -63,32 +65,92 @@ function SplashScreen({ onComplete }: { onComplete: () => void }) {
 }
 
 function AppContent() {
-  const { currentRoute, isMainTab } = useRouter();
+  const { currentRoute, isMainTab, navigate } = useRouter();
   const { isDark } = useData();
   
   const showNav = isMainTab(currentRoute.path);
+  const [activeTabIdx, setActiveTabIdx] = useState(() => MAIN_TABS.indexOf(currentRoute.path));
+  const [dir, setDir] = useState<number>(0);
+  const mainRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const newIdx = MAIN_TABS.indexOf(currentRoute.path);
+    if (newIdx !== -1) {
+      if (activeTabIdx !== -1 && activeTabIdx !== newIdx) {
+        setDir(newIdx > activeTabIdx ? 1 : -1);
+      }
+      setActiveTabIdx(newIdx);
+    }
+  }, [currentRoute.path, activeTabIdx]);
+
+  useEffect(() => {
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  }, [currentRoute.path]);
 
   return (
     <div className={`flex justify-center items-center h-[100dvh] overflow-hidden bg-slate-100 transition-colors duration-300 ${isDark ? 'dark bg-slate-900' : ''}`}>
+      <MetadataManager />
       <div className="w-full max-w-[414px] h-full bg-white dark:bg-slate-950 relative shadow-[0_0_40px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden transition-colors duration-300">
         
         {/* Main Content Area */}
-        <main className={`flex-1 h-full overflow-y-auto overflow-x-hidden custom-scrollbar bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 ${showNav ? 'pb-20' : ''}`}>
-           {currentRoute.path === 'home' && <Home />}
-           {currentRoute.path === 'study' && <Study />}
-           {currentRoute.path === 'test' && <TestList />}
-           {currentRoute.path === 'test-active' && <Test />}
-           {currentRoute.path === 'progress' && <Progress />}
-           {currentRoute.path === 'profile' && <Achievements />}
-           
-           {/* Additional Routes */}
-           {currentRoute.path === 'study-plan' && <StudyPlan />}
-           {currentRoute.path === 'all-subjects' && <AllSubjects />}
-           {currentRoute.path === 'achievements' && <Achievements />}
-           {currentRoute.path === 'interactive-map' && <InteractiveMap />}
-           {currentRoute.path === 'ai-assistant' && <AIStudyAssistant />}
-           {currentRoute.path === 'photosynthesis' && <Photosynthesis />}
-           {currentRoute.path === 'padma-bridge' && <PadmaBridge />}
+        <main 
+          ref={mainRef}
+          className={`flex-1 h-full overflow-y-auto overflow-x-hidden custom-scrollbar bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 ${showNav ? 'pb-20' : ''}`}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {showNav ? (
+              <motion.div
+                key={currentRoute.path}
+                initial={{ opacity: 0, x: dir === 1 ? 40 : dir === -1 ? -40 : 0 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: dir === 1 ? -40 : dir === -1 ? 40 : 0 }}
+                transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                drag="x"
+                dragDirectionLock
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(event, info) => {
+                  const threshold = 60;
+                  const swipe = info.offset.x;
+                  
+                  if (swipe < -threshold && activeTabIdx < MAIN_TABS.length - 1) {
+                    setDir(1);
+                    navigate(MAIN_TABS[activeTabIdx + 1]);
+                  } else if (swipe > threshold && activeTabIdx > 0) {
+                    setDir(-1);
+                    navigate(MAIN_TABS[activeTabIdx - 1]);
+                  }
+                }}
+                className="w-full h-full min-h-full flex flex-col cursor-grab active:cursor-grabbing"
+              >
+                 {currentRoute.path === 'home' && <Home />}
+                 {currentRoute.path === 'study' && <Study />}
+                 {currentRoute.path === 'test' && <TestList />}
+                 {currentRoute.path === 'progress' && <Progress />}
+                 {currentRoute.path === 'profile' && <Achievements />}
+              </motion.div>
+            ) : (
+              <motion.div
+                key={currentRoute.path}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                className="w-full h-full min-h-full"
+              >
+                 {currentRoute.path === 'test-active' && <Test />}
+                 {currentRoute.path === 'study-plan' && <StudyPlan />}
+                 {currentRoute.path === 'all-subjects' && <AllSubjects />}
+                 {currentRoute.path === 'achievements' && <Achievements />}
+                 {currentRoute.path === 'interactive-map' && <InteractiveMap />}
+                 {currentRoute.path === 'ai-assistant' && <AIStudyAssistant />}
+                 {currentRoute.path === 'photosynthesis' && <Photosynthesis />}
+                 {currentRoute.path === 'padma-bridge' && <PadmaBridge />}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </main>
         
         <Navigation />

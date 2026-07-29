@@ -14,7 +14,7 @@ interface RouterContextType {
 
 const RouterContext = createContext<RouterContextType | undefined>(undefined);
 
-const MAIN_TABS = ['home', 'study', 'test', 'progress', 'profile'];
+export const MAIN_TABS = ['home', 'study', 'test', 'progress', 'profile'];
 
 export function RouterProvider({ children }: { children: React.ReactNode }) {
   const [history, setHistory] = useState<Route[]>([{ path: 'home' }]);

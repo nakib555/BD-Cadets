@@ -34,4 +34,82 @@
     background-color: #22c55e;
     color: #ffffff;
   }
+
+  /* Dynamic Fluid Font Sizes clamping between 375px and 430px following design system */
+  .text-fluid-title {
+    font-size: clamp(28px, calc(28px + 8 * (100vw - 375px) / 55), 36px);
+  }
+  .text-fluid-subtitle {
+    font-size: clamp(15px, calc(15px + 3 * (100vw - 375px) / 55), 18px);
+  }
+  .text-fluid-heading {
+    font-size: clamp(18px, calc(18px + 4 * (100vw - 375px) / 55), 22px);
+  }
+  .text-fluid-stat {
+    font-size: clamp(22px, calc(22px + 6 * (100vw - 375px) / 55), 28px);
+  }
+  .text-fluid-body {
+    font-size: clamp(14px, calc(14px + 2 * (100vw - 375px) / 55), 16px);
+  }
+  .text-fluid-label {
+    font-size: clamp(13px, calc(13px + 2 * (100vw - 375px) / 55), 15px);
+  }
+  .text-fluid-year {
+    font-size: clamp(16px, calc(16px + 2 * (100vw - 375px) / 55), 18px);
+  }
+  .text-fluid-icon-lbl {
+    font-size: clamp(11px, calc(11px + 2 * (100vw - 375px) / 55), 13px);
+  }
+  .text-fluid-footer {
+    font-size: clamp(11px, calc(11px + 1 * (100vw - 375px) / 55), 12px);
+  }
+
+  /* 8-point grid fluid spacing utilities scaling based on viewport width (375px to 430px) */
+  /* Outer layout padding: 20px to 24px */
+  .p-fluid-outer {
+    padding: clamp(20px, calc(20px + 4 * (100vw - 375px) / 55), 24px);
+  }
+  
+  /* Inner container / card padding: 12px to 16px */
+  .p-fluid-card {
+    padding: clamp(12px, calc(12px + 4 * (100vw - 375px) / 55), 16px);
+  }
+
+  /* Grid/flex gaps */
+  /* Small gap (icon to text, or inner lists): 8px to 12px */
+  .gap-fluid-small {
+    gap: clamp(8px, calc(8px + 4 * (100vw - 375px) / 55), 12px);
+  }
+
+  /* Medium gap / card gap: 12px to 16px */
+  .gap-fluid-medium {
+    gap: clamp(12px, calc(12px + 4 * (100vw - 375px) / 55), 16px);
+  }
+
+  /* Large gap / section gap: 24px to 32px */
+  .gap-fluid-large {
+    gap: clamp(24px, calc(24px + 8 * (100vw - 375px) / 55), 32px);
+  }
+
+  /* Vertical spacing utilities */
+  /* Space between main sections (margin-top: 24px to 32px) */
+  .space-y-fluid-section > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(clamp(24px, calc(24px + 8 * (100vw - 375px) / 55), 32px) * (1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(clamp(24px, calc(24px + 8 * (100vw - 375px) / 55), 32px) * var(--tw-space-y-reverse));
+  }
+
+  /* Space between heading and content (margin-top: 12px to 16px) */
+  .space-y-fluid-heading > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(clamp(12px, calc(12px + 4 * (100vw - 375px) / 55), 16px) * (1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(clamp(12px, calc(12px + 4 * (100vw - 375px) / 55), 16px) * var(--tw-space-y-reverse));
+  }
+
+  /* Space between elements in card (margin-top: 8px to 12px) */
+  .space-y-fluid-small > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(clamp(8px, calc(8px + 4 * (100vw - 375px) / 55), 12px) * (1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(clamp(8px, calc(8px + 4 * (100vw - 375px) / 55), 12px) * var(--tw-space-y-reverse));
+  }
 }
