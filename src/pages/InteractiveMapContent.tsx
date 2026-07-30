@@ -700,7 +700,7 @@ export default function InteractiveMapContent() {
 
     // Invalidate size immediately on theme change
     map.invalidateSize();
-  }, [isDarkMode]);
+  }, [isDarkMode, mapType]);
 
   // Invalidate map size whenever activeTab changes to handle container sizing/transitions
   useEffect(() => {
@@ -851,7 +851,7 @@ export default function InteractiveMapContent() {
 
   return (
     <div className="bg-slate-50/50 dark:bg-slate-900 animate-in fade-in duration-300 min-h-full pb-6 transition-colors duration-300">
-      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
+      <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-[2000] border-b border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
         <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition">
           <i className="fa-solid fa-arrow-left text-sm"></i>
         </button>
@@ -861,7 +861,7 @@ export default function InteractiveMapContent() {
         <div className="w-8"></div>
       </header>
 
-      <div className="bg-white dark:bg-slate-950 flex flex-wrap justify-center gap-2 p-3 border-b border-slate-200 dark:border-slate-800/80 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-950 flex flex-wrap justify-center gap-2 p-3 border-b border-slate-200 dark:border-slate-800/80 sticky top-[53px] z-[2000] shadow-sm transition-colors duration-300">
         <button 
           onClick={() => { setActiveTab('divisions'); setDrillDownDivId(null); }}
           className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors cursor-pointer ${activeTab === 'divisions' ? 'bg-blue-600 text-white font-bold' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
