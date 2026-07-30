@@ -518,16 +518,16 @@ export default function PadmaBridge() {
                   </div>
 
                   {/* Panoramic Visual Canvas Wrapper */}
-                  <div className="relative aspect-[3/2] w-full bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-[10px] overflow-hidden group shadow-md">
+                  <div className="relative aspect-[3/2] w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-[10px] overflow-hidden group shadow-md">
                     
                     {/* The Interactive Panning Image */}
-                    <div className="absolute inset-0 w-full h-full overflow-hidden">
+                    <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center p-2">
                       <AnimatePresence mode="wait">
                         <motion.img
                           key={`step-${activeStepNum}`}
                           src={CONSTRUCTION_STEPS.find(s => s.step === activeStepNum)?.image}
                           alt={`Step ${activeStepNum}`}
-                          className="w-full h-full object-cover select-none"
+                          className="max-w-full max-h-full object-contain select-none"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
@@ -537,15 +537,9 @@ export default function PadmaBridge() {
                     </div>
 
                     {/* Step indicator overlay */}
-                    <div className="absolute top-2.5 right-2.5 bg-slate-900/80 backdrop-blur-md px-2 py-1 rounded border border-slate-700/50 text-[10px] font-black text-white uppercase tracking-wider flex items-center gap-1.5 z-10 select-none">
+                    <div className="absolute top-2.5 right-2.5 bg-slate-800/90 dark:bg-slate-950/90 backdrop-blur-md px-2 py-1 rounded border border-slate-700/50 text-[10px] font-black text-white uppercase tracking-wider flex items-center gap-1.5 z-10 select-none">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                       <span>ধাপ: {activeStepNum} / ৮</span>
-                    </div>
-
-                    {/* Dynamic overlay visual locator frame */}
-                    <div className="absolute inset-0 border-[6px] border-blue-500/10 pointer-events-none z-10 flex items-center justify-center">
-                      <div className="w-16 h-16 border-2 border-dashed border-blue-500/30 rounded animate-ping absolute"></div>
-                      <div className="w-20 h-20 border-2 border-blue-400/25 rounded relative"></div>
                     </div>
                   </div>
 
