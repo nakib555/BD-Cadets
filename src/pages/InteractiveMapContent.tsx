@@ -894,7 +894,7 @@ export default function InteractiveMapContent() {
         <div className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-200 dark:border-slate-800/80 shadow-sm flex flex-col md:flex-row gap-4 transition-colors duration-300">
           
           {/* Map Canvas */}
-          <div className="flex-1 min-h-[350px] bg-slate-50 dark:bg-slate-900 rounded-[10px] relative border border-blue-50/50 dark:border-slate-800 shadow-inner overflow-hidden">
+          <div className="flex-1 min-h-[350px] bg-slate-50 dark:bg-slate-900 rounded-[10px] relative z-0 border border-blue-50/50 dark:border-slate-800 shadow-inner overflow-hidden">
             <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-white/90 dark:bg-slate-950/90 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800 z-[1000] flex items-center gap-2">
               {activeTab === 'divisions' && (drillDownDivId ? (lang === 'bn' ? 'জেলার মানচিত্র' : 'Districts Map') : (lang === 'bn' ? 'বিভাগ মানচিত্র' : 'Divisions Map'))}
               {activeTab === 'districts' && (lang === 'bn' ? 'ক্যাডেট কলেজ ম্যাপ' : 'Cadet Colleges')}
