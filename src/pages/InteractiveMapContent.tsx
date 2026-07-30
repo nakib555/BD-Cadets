@@ -338,14 +338,8 @@ export default function InteractiveMapContent() {
     setGeoJsonError(null);
     
     Promise.all([
-      fetch('https://raw.githubusercontent.com/sadikanso/bangladesh-geojson/master/divisions.json').then(res => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      }),
-      fetch('https://raw.githubusercontent.com/sadikanso/bangladesh-geojson/master/districts.json').then(res => {
-        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-        return res.json();
-      })
+      import('../data/divisions.json').then(m => m.default),
+      import('../data/districts.json').then(m => m.default)
     ])
     .then(([divisions, districts]) => {
       setDivisionGeoJson(divisions);
