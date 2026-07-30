@@ -3,6 +3,7 @@ import { useRouter } from '../context/RouterContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 interface CadetCollege {
   name: string;
@@ -281,7 +282,20 @@ export default function InteractiveMap() {
 
     mapRef.current = map;
 
+    // Periodically invalidate map size during the first 2 seconds to accommodate transitions/loading
+    const interval = setInterval(() => {
+      if (mapRef.current) {
+        mapRef.current.invalidateSize();
+      }
+    }, 150);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+    }, 2000);
+
     return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
@@ -298,9 +312,10 @@ export default function InteractiveMap() {
       tileLayerRef.current.remove();
     }
 
+    // Use standard CartoDB templates without the potential {r} placeholder issue
     const tileUrl = isDarkMode
-      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-      : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+      : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
 
     const attribution = isDarkMode
       ? '&copy; OpenStreetMap &copy; CARTO'
@@ -312,7 +327,22 @@ export default function InteractiveMap() {
     }).addTo(map);
 
     tileLayerRef.current = tileLayer;
+
+    // Invalidate size immediately on theme change
+    map.invalidateSize();
   }, [isDarkMode]);
+
+  // Invalidate map size whenever activeTab changes to handle container sizing/transitions
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [activeTab]);
 
   // Sync markers and zoom layers based on activeTab and selectedDiv
   useEffect(() => {
@@ -350,14 +380,15 @@ export default function InteractiveMap() {
 
         marker.on('click', () => {
           handleSelectDivision(div);
+          map.flyTo(div.coords, 8.5, { animate: true, duration: 1.2 });
         });
 
         if (isSelected) {
-          map.setView(div.coords, 8, { animate: true });
+          map.flyTo(div.coords, 8.5, { animate: true, duration: 1.2 });
           // Open popup slightly later to ensure smooth transition
           setTimeout(() => {
             marker.openPopup();
-          }, 100);
+          }, 200);
         }
       });
     } else if (activeTab === 'districts') {
@@ -367,7 +398,7 @@ export default function InteractiveMap() {
           const markerColor = clg.type === 'Boys' ? 'bg-blue-600' : 'bg-pink-500';
           const icon = createCustomMarker(markerColor, 'fa-solid fa-graduation-cap');
 
-          L.marker(clg.coords, { icon })
+          const marker = L.marker(clg.coords, { icon })
             .bindPopup(`
               <div class="p-1 font-sans text-xs">
                 <strong class="text-slate-900 dark:text-white block font-bold text-[13px]">${clg.name}</strong>
@@ -380,6 +411,10 @@ export default function InteractiveMap() {
               </div>
             `)
             .addTo(layerGroup);
+
+          marker.on('click', () => {
+            map.flyTo(clg.coords, 11, { animate: true, duration: 1.2 });
+          });
         });
       });
       // Set view to overview of Bangladesh when opening colleges
@@ -388,7 +423,7 @@ export default function InteractiveMap() {
       LANDMARKS.forEach((lm) => {
         const icon = createCustomMarker('bg-amber-500', lm.icon);
 
-        L.marker(lm.coords, { icon })
+        const marker = L.marker(lm.coords, { icon })
           .bindPopup(`
             <div class="p-1.5 font-sans text-xs max-w-[200px]">
               <strong class="text-slate-900 dark:text-white block font-bold text-[13px] mb-0.5">${lm.bnName}</strong>
@@ -397,6 +432,10 @@ export default function InteractiveMap() {
             </div>
           `)
           .addTo(layerGroup);
+
+        marker.on('click', () => {
+          map.flyTo(lm.coords, 11, { animate: true, duration: 1.2 });
+        });
       });
       map.setView([23.6850, 90.3563], 7, { animate: true });
     }
@@ -514,7 +553,25 @@ export default function InteractiveMap() {
                     if (parentDiv) {
                       handleSelectDivision(parentDiv);
                       if (mapRef.current) {
-                        mapRef.current.setView(clg.coords, 10, { animate: true });
+                        mapRef.current.flyTo(clg.coords, 11, { animate: true, duration: 1.2 });
+                        setTimeout(() => {
+                          if (mapRef.current) {
+                            L.popup()
+                              .setLatLng(clg.coords)
+                              .setContent(`
+                                <div class="p-1 font-sans text-xs">
+                                  <strong class="text-slate-900 dark:text-white block font-bold text-[13px]">${clg.name}</strong>
+                                  <span class="text-slate-400 dark:text-slate-500 block text-[9px] font-medium mb-1">${clg.location}</span>
+                                  <div class="text-slate-600 dark:text-slate-300 space-y-0.5 text-[11px]">
+                                    <p>ধরণ: <strong>${clg.type === 'Boys' ? 'ছাত্র ক্যাডেট কলেজ' : 'ছাত্রী ক্যাডেট কলেজ'}</strong></p>
+                                    <p>প্রতিষ্ঠা সাল: <strong>${clg.est}</strong></p>
+                                    <p>বিভাগ: <strong>${parentDiv.bnName}</strong></p>
+                                  </div>
+                                </div>
+                              `)
+                              .openOn(mapRef.current);
+                          }
+                        }, 250);
                       }
                     }
                   }}
@@ -537,7 +594,21 @@ export default function InteractiveMap() {
                   key={lm.name}
                   onClick={() => {
                     if (mapRef.current) {
-                      mapRef.current.setView(lm.coords, 11, { animate: true });
+                      mapRef.current.flyTo(lm.coords, 11.5, { animate: true, duration: 1.2 });
+                      setTimeout(() => {
+                        if (mapRef.current) {
+                          L.popup()
+                            .setLatLng(lm.coords)
+                            .setContent(`
+                              <div class="p-1.5 font-sans text-xs max-w-[200px]">
+                                <strong class="text-slate-900 dark:text-white block font-bold text-[13px] mb-0.5">${lm.bnName}</strong>
+                                <span class="text-slate-400 dark:text-slate-500 block text-[9px] font-medium mb-1.5">${lm.name}</span>
+                                <p class="text-slate-600 dark:text-slate-300 text-[11px] leading-relaxed">${lm.bnDescription}</p>
+                              </div>
+                            `)
+                            .openOn(mapRef.current);
+                        }
+                      }, 250);
                     }
                   }}
                   className="flex items-center gap-2.5 p-2.5 rounded-[10px] border border-slate-200 dark:border-slate-800 text-left hover:bg-slate-50 dark:hover:bg-slate-900 transition"
