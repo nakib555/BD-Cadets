@@ -4,8 +4,10 @@ import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
 import { Bell, Search, BookOpen, Clock, TrendingUp, Trophy, ArrowRight, ShieldCheck, CheckCircle2, ChevronRight, Calculator, Globe, Languages } from 'lucide-react';
 import MathIcon from '../components/MathIcon';
+import EnglishIcon from '../components/EnglishIcon';
 import DailyGoalTracker from '../components/DailyGoalTracker';
 import cadetsSplash from '../assets/images/cadets_splash_1785297743949.jpg';
+import bdCadetsLogo from '../assets/images/BD-cadets-logo.png';
 
 export default function Home() {
   const { navigate } = useRouter();
@@ -25,11 +27,11 @@ export default function Home() {
   return (
     <div className="animate-in fade-in duration-300">
       <header className="flex justify-between items-center p-4 sticky top-0 bg-white/95 dark:bg-slate-950/95 backdrop-blur-sm z-20 transition-colors duration-300">
-          <div className="flex items-center gap-3">
-              <button className="text-slate-800 dark:text-slate-200 p-1 cursor-pointer"><i className="fa-solid fa-bars-staggered text-lg"></i></button>
+          <div className="flex items-center gap-2.5">
+              <img src={bdCadetsLogo} alt="BD Cadets Logo" className="w-9 h-9 object-contain rounded-lg border border-slate-100 dark:border-slate-800/80 p-0.5 bg-slate-50 dark:bg-slate-900 shadow-sm" />
               <div>
                   <h1 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1">{t('greeting_morning')} <span className="text-base">👋</span></h1>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium font-sans">{t('motto')}</p>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-semibold font-sans">{t('motto')}</p>
               </div>
           </div>
           <div className="flex gap-2 items-center">
@@ -49,7 +51,7 @@ export default function Home() {
             className="rounded-[10px] p-4 relative overflow-hidden h-36 flex flex-col justify-center bg-cover bg-center shadow-sm transition-all duration-300" 
             style={{ backgroundImage: bannerBg, border: bannerBorder }}
           >
-              <div className="w-8 h-8 bg-blue-600 rounded-[10px] flex items-center justify-center mb-2 shadow text-white"><i className="fa-solid fa-shield-halved"></i></div>
+              <img src={bdCadetsLogo} alt="BD Cadets Logo" className="w-8 h-8 object-contain mb-2 shadow-sm rounded-lg bg-white/90 p-0.5" />
               <h2 className="text-[15px] font-black text-slate-900 dark:text-white tracking-tight">{t('app_title')}</h2>
               <p className="text-[9px] text-slate-600 dark:text-blue-400 font-black mb-1 tracking-wider uppercase">{t('hero_subtitle')}</p>
               <p className="text-[10px] text-slate-600 dark:text-slate-300 w-[65%] mt-1 leading-tight font-bold">{t('hero_desc')}</p>
@@ -125,12 +127,10 @@ export default function Home() {
               
               <button onClick={() => navigate('study')} className="bg-[#f5f3ff] dark:bg-purple-950/20 rounded-[10px] p-2 flex flex-col items-center border border-[#ddd6fe] dark:border-purple-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
                   <div className="relative w-12 h-12 flex items-center justify-center">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#6366f1] to-[#4338ca] rounded-[8px] relative shadow-[0_4px_8px_rgba(67,56,202,0.3)] flex flex-col items-center justify-center p-1.5">
+                      <div className="w-10 h-10 flex items-center justify-center relative">
                           <div className="absolute top-0.5 left-0.5 right-0.5 h-[30%] bg-white/10 rounded-[6px]"></div>
-                          <div className="w-6 h-[2px] bg-white/80 rounded-full mb-[3px]"></div>
-                          <div className="w-6 h-[2px] bg-white/80 rounded-full mb-[3px]"></div>
-                          <div className="w-4 h-[2px] bg-white/80 rounded-full self-start ml-0.5"></div>
-                          <div className="absolute -right-1 bottom-1 w-3 h-6 bg-[#a5b4fc] rounded-[3px] border border-[#4f46e5]/20 shadow-sm flex items-center justify-center">
+                          <EnglishIcon className="w-10 h-10" />
+                          <div className="absolute -right-1 bottom-1 w-3 h-6 bg-[#a5b4fc] rounded-[3px] border border-[#4f46e5]/20 shadow-sm hidden flex items-center justify-center">
                               <div className="w-0.5 h-3 bg-[#4f46e5]/40 rounded-full"></div>
                           </div>
                       </div>

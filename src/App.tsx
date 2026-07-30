@@ -20,6 +20,7 @@ import InteractiveMap from './pages/InteractiveMap';
 import Photosynthesis from './pages/Photosynthesis';
 import PadmaBridge from './pages/PadmaBridge';
 import cadetsSplash from './assets/images/cadets_splash_1785297743949.jpg';
+import bdCadetsLogo from './assets/images/BD-cadets-logo.png';
 
 function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -52,8 +53,8 @@ function SplashScreen({ onComplete }: { onComplete: () => void }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
         </div>
         <div className="flex items-center gap-3 mb-2 animate-in slide-in-from-bottom-4 fade-in duration-700 delay-100">
-          <div className="w-12 h-12 bg-white border border-gray-200  rounded-2xl flex items-center justify-center">
-            <span className="text-2xl">🎓</span>
+          <div className="w-12 h-12 bg-white border border-gray-150 rounded-2xl flex items-center justify-center p-1.5 shadow-sm">
+            <img src={bdCadetsLogo} alt="BD Cadets Logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900 tracking-tight">{lang === 'bn' ? 'বিডি ক্যাডেট' : 'BD Cadet'}</h1>
         </div>

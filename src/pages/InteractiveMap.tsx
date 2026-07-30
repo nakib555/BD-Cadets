@@ -232,12 +232,18 @@ export default function InteractiveMap() {
   const [quizAnswer, setQuizAnswer] = useState<number | null>(null);
   const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
   const [earnedPoints, setEarnedPoints] = useState<boolean>(false);
+  const [selectedCollegeName, setSelectedCollegeName] = useState<string | null>(null);
+
+  // GeoJSON datasets
+  const [divisionGeoJson, setDivisionGeoJson] = useState<any>(null);
+  const [districtGeoJson, setDistrictGeoJson] = useState<any>(null);
 
   // Leaflet references
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const tileLayerRef = useRef<L.TileLayer | null>(null);
   const markersLayerRef = useRef<L.LayerGroup | null>(null);
+  const boundaryLayerRef = useRef<L.GeoJSON | null>(null);
 
   // Detect theme state reactively
   const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
@@ -302,6 +308,266 @@ export default function InteractiveMap() {
       }
     };
   }, []);
+
+  // Fetch GeoJSON boundary data for Bangladesh divisions and districts
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/sadikanso/bangladesh-geojson/master/divisions.json')
+      .then(res => res.json())
+      .then(data => {
+        setDivisionGeoJson(data);
+      })
+      .catch(err => console.error('Failed to load divisions GeoJSON:', err));
+
+    fetch('https://raw.githubusercontent.com/sadikanso/bangladesh-geojson/master/districts.json')
+      .then(res => res.json())
+      .then(data => {
+        setDistrictGeoJson(data);
+      })
+      .catch(err => console.error('Failed to load districts GeoJSON:', err));
+  }, []);
+
+  // Select first cadet college on activeTab change to 'districts'
+  useEffect(() => {
+    if (activeTab === 'districts' && selectedDiv && selectedDiv.colleges.length > 0) {
+      setSelectedCollegeName(selectedDiv.colleges[0].name);
+    }
+  }, [activeTab]);
+
+  // Sync GeoJSON boundary outlines on the map
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    // Helper to extract division name
+    const getFeatureDivisionName = (properties: any): string => {
+      if (!properties) return '';
+      return properties.division || properties.NAME_1 || properties.name || properties.Division || '';
+    };
+
+    // Helper to extract district name
+    const getFeatureDistrictName = (properties: any): string => {
+      if (!properties) return '';
+      return properties.district || properties.NAME_2 || properties.name || properties.District || '';
+    };
+
+    // Helper to match division
+    const matchDivision = (featName: string, selectedId: string) => {
+      const normFeat = featName.toLowerCase().replace(/[\s-]/g, '');
+      const normSel = selectedId.toLowerCase().replace(/[\s-]/g, '');
+      return normFeat === normSel ||
+             (normSel === 'chattogram' && normFeat === 'chittagong') ||
+             (normSel === 'barishal' && normFeat === 'barisal');
+    };
+
+    // Helper to match district
+    const matchDistrictName = (clgLocation: string, geoJsonDistrict: string) => {
+      const locationMap: Record<string, string> = {
+        'টাঙ্গাইল': 'Tangail',
+        'ময়মনসিংহ': 'Mymensingh',
+        'চট্টগ্রাম': 'Chittagong',
+        'কুমিল্লা': 'Comilla',
+        'ফেনী': 'Feni',
+        'সারদাহ': 'Rajshahi',
+        'জয়পুরহাট': 'Joypurhat',
+        'ঝিনাইদহ': 'Jhenaidah',
+        'বাবুগঞ্জ': 'Barisal',
+        'সিলেট': 'Sylhet',
+        'রংপুর': 'Rangpur'
+      };
+      const englishLocation = locationMap[clgLocation] || clgLocation;
+      const normLoc = englishLocation.toLowerCase().replace(/[\s-]/g, '');
+      const normGeo = geoJsonDistrict.toLowerCase().replace(/[\s-]/g, '');
+      return normLoc === normGeo || 
+             (normLoc === 'comilla' && normGeo === 'cumilla') ||
+             (normLoc === 'cumilla' && normGeo === 'comilla') ||
+             normGeo.includes(normLoc) || 
+             normLoc.includes(normGeo);
+    };
+
+    const boundaryStyle = (feature: any) => {
+      const isDark = document.documentElement.classList.contains('dark');
+      
+      if (activeTab === 'divisions') {
+        const divName = getFeatureDivisionName(feature.properties);
+        const isSelected = matchDivision(divName, selectedDiv.id);
+        
+        if (isSelected) {
+          let strokeColor = '#3b82f6';
+          if (selectedDiv.id === 'dhaka') strokeColor = '#ef4444';
+          if (selectedDiv.id === 'chattogram') strokeColor = '#10b981';
+          if (selectedDiv.id === 'rajshahi') strokeColor = '#f97316';
+          if (selectedDiv.id === 'khulna') strokeColor = '#3b82f6';
+          if (selectedDiv.id === 'barishal') strokeColor = '#a855f7';
+          if (selectedDiv.id === 'sylhet') strokeColor = '#ec4899';
+          if (selectedDiv.id === 'rangpur') strokeColor = '#14b8a6';
+          
+          return {
+            color: strokeColor,
+            weight: 3.5,
+            opacity: 0.9,
+            fillColor: strokeColor,
+            fillOpacity: 0.12,
+            className: 'transition-all duration-300'
+          };
+        } else {
+          return {
+            color: isDark ? '#475569' : '#cbd5e1',
+            weight: 1,
+            opacity: 0.45,
+            fillColor: 'transparent',
+            fillOpacity: 0,
+            interactive: true
+          };
+        }
+      } else if (activeTab === 'districts') {
+        const distName = getFeatureDistrictName(feature.properties);
+        let isSelected = false;
+        
+        if (selectedCollegeName) {
+          const clg = DIVISIONS.flatMap(d => d.colleges).find(c => c.name === selectedCollegeName);
+          if (clg && matchDistrictName(clg.location, distName)) {
+            isSelected = true;
+          }
+        }
+        
+        if (isSelected) {
+          return {
+            color: '#2563eb',
+            weight: 3.5,
+            opacity: 0.9,
+            fillColor: '#3b82f6',
+            fillOpacity: 0.15,
+            className: 'transition-all duration-300'
+          };
+        } else {
+          return {
+            color: isDark ? '#334155' : '#e2e8f0',
+            weight: 0.8,
+            opacity: 0.35,
+            fillColor: 'transparent',
+            fillOpacity: 0,
+            interactive: true
+          };
+        }
+      }
+      
+      return {
+        color: 'transparent',
+        weight: 0,
+        fillOpacity: 0,
+        interactive: false
+      };
+    };
+
+    const onEachFeature = (feature: any, layer: L.Layer) => {
+      layer.on({
+        click: (e) => {
+          L.DomEvent.stopPropagation(e);
+          
+          if (activeTab === 'divisions') {
+            const divName = getFeatureDivisionName(feature.properties);
+            const matchingDiv = DIVISIONS.find(d => matchDivision(divName, d.id));
+            if (matchingDiv) {
+              handleSelectDivision(matchingDiv);
+              map.flyTo(matchingDiv.coords, 8.5, { animate: true, duration: 1.2 });
+            }
+          } else if (activeTab === 'districts') {
+            const distName = getFeatureDistrictName(feature.properties);
+            const allColleges = DIVISIONS.flatMap(d => d.colleges.map(c => ({ ...c, parentDiv: d })));
+            const districtColleges = allColleges.filter(c => matchDistrictName(c.location, distName));
+            
+            if (districtColleges.length > 0) {
+              setSelectedCollegeName(districtColleges[0].name);
+              handleSelectDivision(districtColleges[0].parentDiv);
+              map.flyTo(districtColleges[0].coords, 11, { animate: true, duration: 1.2 });
+            } else {
+              const displayName = feature.properties.bn_name || feature.properties.bnName || distName;
+              L.popup()
+                .setLatLng(e.latlng)
+                .setContent(`
+                  <div class="p-1.5 font-sans text-xs max-w-[180px]">
+                    <strong class="text-slate-900 dark:text-white block font-bold text-[13px] mb-0.5">
+                      ${displayName}
+                    </strong>
+                    <span class="text-slate-400 dark:text-slate-500 block text-[9px] font-medium mb-1">
+                      District: ${distName}
+                    </span>
+                    <p class="text-slate-600 dark:text-slate-400 text-[11px] leading-relaxed italic mt-1">
+                      ${lang === 'bn' ? 'এই জেলায় কোনো ক্যাডেট কলেজ নেই।' : 'No cadet colleges located in this district.'}
+                    </p>
+                  </div>
+                `)
+                .openOn(map);
+            }
+          }
+        },
+        mouseover: (e) => {
+          const layerTarget = e.target;
+          if (activeTab === 'divisions') {
+            const divName = getFeatureDivisionName(feature.properties);
+            const isSelected = matchDivision(divName, selectedDiv.id);
+            if (!isSelected) {
+              layerTarget.setStyle({
+                color: '#3b82f6',
+                weight: 2,
+                opacity: 0.8,
+                fillColor: '#3b82f6',
+                fillOpacity: 0.05
+              });
+            }
+          } else if (activeTab === 'districts') {
+            const distName = getFeatureDistrictName(feature.properties);
+            let isSelected = false;
+            if (selectedCollegeName) {
+              const clg = DIVISIONS.flatMap(d => d.colleges).find(c => c.name === selectedCollegeName);
+              if (clg && matchDistrictName(clg.location, distName)) isSelected = true;
+            }
+            if (!isSelected) {
+              layerTarget.setStyle({
+                color: '#2563eb',
+                weight: 1.8,
+                opacity: 0.7,
+                fillColor: '#3b82f6',
+                fillOpacity: 0.05
+              });
+            }
+          }
+        },
+        mouseout: (e) => {
+          const layerTarget = e.target;
+          if (boundaryLayerRef.current) {
+            boundaryLayerRef.current.resetStyle(layerTarget);
+          }
+        }
+      });
+    };
+
+    // Remove existing boundary layer if any
+    if (boundaryLayerRef.current) {
+      boundaryLayerRef.current.remove();
+      boundaryLayerRef.current = null;
+    }
+
+    let geoJsonData = null;
+    if (activeTab === 'divisions') {
+      geoJsonData = divisionGeoJson;
+    } else if (activeTab === 'districts') {
+      geoJsonData = districtGeoJson;
+    }
+
+    if (!geoJsonData) return;
+
+    try {
+      const geoJsonLayer = L.geoJSON(geoJsonData, {
+        style: boundaryStyle,
+        onEachFeature: onEachFeature
+      }).addTo(map);
+
+      boundaryLayerRef.current = geoJsonLayer;
+    } catch (e) {
+      console.error('Error rendering GeoJSON layers:', e);
+    }
+  }, [activeTab, selectedDiv, selectedCollegeName, divisionGeoJson, districtGeoJson, isDarkMode]);
 
   // Sync tile layer with dark/light mode
   useEffect(() => {
@@ -393,6 +659,7 @@ export default function InteractiveMap() {
       });
     } else if (activeTab === 'districts') {
       // Cadet Colleges tab
+      let foundCollege = false;
       DIVISIONS.forEach((div) => {
         div.colleges.forEach((clg) => {
           const markerColor = clg.type === 'Boys' ? 'bg-blue-600' : 'bg-pink-500';
@@ -413,12 +680,25 @@ export default function InteractiveMap() {
             .addTo(layerGroup);
 
           marker.on('click', () => {
+            setSelectedCollegeName(clg.name);
+            handleSelectDivision(div);
             map.flyTo(clg.coords, 11, { animate: true, duration: 1.2 });
           });
+
+          // Open popup and fly to if it is the selected college
+          if (selectedCollegeName && clg.name === selectedCollegeName) {
+            foundCollege = true;
+            map.flyTo(clg.coords, 11, { animate: true, duration: 1.2 });
+            setTimeout(() => {
+              marker.openPopup();
+            }, 250);
+          }
         });
       });
-      // Set view to overview of Bangladesh when opening colleges
-      map.setView([23.6850, 90.3563], 7, { animate: true });
+      // Set view to overview of Bangladesh only if no college is selected
+      if (!selectedCollegeName && !foundCollege) {
+        map.setView([23.6850, 90.3563], 7, { animate: true });
+      }
     } else if (activeTab === 'landmarks') {
       LANDMARKS.forEach((lm) => {
         const icon = createCustomMarker('bg-amber-500', lm.icon);
@@ -439,7 +719,7 @@ export default function InteractiveMap() {
       });
       map.setView([23.6850, 90.3563], 7, { animate: true });
     }
-  }, [activeTab, selectedDiv]);
+  }, [activeTab, selectedDiv, selectedCollegeName]);
 
   const handleSelectDivision = (division: DivisionData) => {
     setSelectedDiv(division);
@@ -545,42 +825,50 @@ export default function InteractiveMap() {
               <div className="p-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-900">
                 {lang === 'bn' ? 'ক্যাডেট কলেজ ডিরেক্টরি' : 'College Directory'}
               </div>
-              {DIVISIONS.flatMap(d => d.colleges).map((clg) => (
-                <button
-                  key={clg.name}
-                  onClick={() => {
-                    const parentDiv = DIVISIONS.find(d => d.colleges.some(c => c.name === clg.name));
-                    if (parentDiv) {
-                      handleSelectDivision(parentDiv);
-                      if (mapRef.current) {
-                        mapRef.current.flyTo(clg.coords, 11, { animate: true, duration: 1.2 });
-                        setTimeout(() => {
-                          if (mapRef.current) {
-                            L.popup()
-                              .setLatLng(clg.coords)
-                              .setContent(`
-                                <div class="p-1 font-sans text-xs">
-                                  <strong class="text-slate-900 dark:text-white block font-bold text-[13px]">${clg.name}</strong>
-                                  <span class="text-slate-400 dark:text-slate-500 block text-[9px] font-medium mb-1">${clg.location}</span>
-                                  <div class="text-slate-600 dark:text-slate-300 space-y-0.5 text-[11px]">
-                                    <p>ধরণ: <strong>${clg.type === 'Boys' ? 'ছাত্র ক্যাডেট কলেজ' : 'ছাত্রী ক্যাডেট কলেজ'}</strong></p>
-                                    <p>প্রতিষ্ঠা সাল: <strong>${clg.est}</strong></p>
-                                    <p>বিভাগ: <strong>${parentDiv.bnName}</strong></p>
+              {DIVISIONS.flatMap(d => d.colleges).map((clg) => {
+                const isSelected = selectedCollegeName === clg.name;
+                return (
+                  <button
+                    key={clg.name}
+                    onClick={() => {
+                      const parentDiv = DIVISIONS.find(d => d.colleges.some(c => c.name === clg.name));
+                      if (parentDiv) {
+                        handleSelectDivision(parentDiv);
+                        setSelectedCollegeName(clg.name);
+                        if (mapRef.current) {
+                          mapRef.current.flyTo(clg.coords, 11, { animate: true, duration: 1.2 });
+                          setTimeout(() => {
+                            if (mapRef.current) {
+                              L.popup()
+                                .setLatLng(clg.coords)
+                                .setContent(`
+                                  <div class="p-1 font-sans text-xs">
+                                    <strong class="text-slate-900 dark:text-white block font-bold text-[13px]">${clg.name}</strong>
+                                    <span class="text-slate-400 dark:text-slate-500 block text-[9px] font-medium mb-1">${clg.location}</span>
+                                    <div class="text-slate-600 dark:text-slate-300 space-y-0.5 text-[11px]">
+                                      <p>ধরণ: <strong>${clg.type === 'Boys' ? 'ছাত্র ক্যাডেট কলেজ' : 'ছাত্রী ক্যাডেট কলেজ'}</strong></p>
+                                      <p>প্রতিষ্ঠা সাল: <strong>${clg.est}</strong></p>
+                                      <p>বিভাগ: <strong>${parentDiv.bnName}</strong></p>
+                                    </div>
                                   </div>
-                                </div>
-                              `)
-                              .openOn(mapRef.current);
-                          }
-                        }, 250);
+                                `)
+                                .openOn(mapRef.current);
+                            }
+                          }, 250);
+                        }
                       }
-                    }
-                  }}
-                  className="flex flex-col p-2.5 rounded-[10px] border border-slate-200 dark:border-slate-800 text-left hover:bg-slate-50 dark:hover:bg-slate-900 transition"
-                >
-                  <span className="text-[10px] font-black text-slate-800 dark:text-slate-100 leading-snug">{clg.name}</span>
-                  <span className="text-[8px] text-slate-400 dark:text-slate-500 font-bold mt-0.5">{clg.location} • {clg.type === 'Boys' ? 'ছাত্র' : 'ছাত্রী'}</span>
-                </button>
-              ))}
+                    }}
+                    className={`flex flex-col p-2.5 rounded-[10px] border cursor-pointer text-left transition duration-250 ${
+                      isSelected
+                        ? 'bg-slate-900 dark:bg-blue-600 text-white border-slate-900 dark:border-blue-600 shadow-sm font-bold'
+                        : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                    }`}
+                  >
+                    <span className={`text-[10px] font-black leading-snug ${isSelected ? 'text-white' : 'text-slate-800 dark:text-slate-100'}`}>{clg.name}</span>
+                    <span className={`text-[8px] font-bold mt-0.5 ${isSelected ? 'text-blue-100 dark:text-slate-200' : 'text-slate-400 dark:text-slate-500'}`}>{clg.location} • {clg.type === 'Boys' ? 'ছাত্র' : 'ছাত্রী'}</span>
+                  </button>
+                );
+              })}
             </div>
           )}
 
