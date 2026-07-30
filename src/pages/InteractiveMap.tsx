@@ -233,6 +233,27 @@ export default function InteractiveMap() {
   const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
   const [earnedPoints, setEarnedPoints] = useState<boolean>(false);
   const [selectedCollegeName, setSelectedCollegeName] = useState<string | null>(null);
+  const [mapType, setMapType] = useState<'standard' | 'satellite'>('standard');
+  const [showOverlays, setShowOverlays] = useState<boolean>(true);
+  const [drillDownDivId, setDrillDownDivId] = useState<string | null>(null);
+  const [mapQuizState, setMapQuizState] = useState<{
+    targetDistrictName: string | null;
+    targetDivisionId: string | null;
+    options: DivisionData[];
+    selectedDivId: string | null;
+    isSubmitted: boolean;
+    score: number;
+    targetCoords: [number, number] | null;
+  }>({
+    targetDistrictName: null,
+    targetDivisionId: null,
+    options: [],
+    selectedDivId: null,
+    isSubmitted: false,
+    score: 0,
+    targetCoords: null
+  });
+  const [isLayerControlOpen, setIsLayerControlOpen] = useState(false);
 
   // GeoJSON datasets
   const [divisionGeoJson, setDivisionGeoJson] = useState<any>(null);
@@ -333,31 +354,68 @@ export default function InteractiveMap() {
     }
   }, [activeTab]);
 
+  // Helper to extract division name
+  const getFeatureDivisionName = (properties: any): string => {
+    if (!properties) return '';
+    return properties.division || properties.NAME_1 || properties.name || properties.Division || '';
+  };
+
+  // Helper to extract district name
+  const getFeatureDistrictName = (properties: any): string => {
+    if (!properties) return '';
+    return properties.district || properties.NAME_2 || properties.name || properties.District || '';
+  };
+
+  // Helper to match division
+  const matchDivision = (featName: string, selectedId: string) => {
+    const normFeat = featName.toLowerCase().replace(/[\s-]/g, '');
+    const normSel = selectedId.toLowerCase().replace(/[\s-]/g, '');
+    return normFeat === normSel ||
+           (normSel === 'chattogram' && normFeat === 'chittagong') ||
+           (normSel === 'barishal' && normFeat === 'barisal');
+  };
+
+  const startQuizRound = () => {
+    if (!districtGeoJson || !districtGeoJson.features || districtGeoJson.features.length === 0) return;
+    
+    // Pick random district
+    const randomIndex = Math.floor(Math.random() * districtGeoJson.features.length);
+    const targetFeature = districtGeoJson.features[randomIndex];
+    const targetDistName = getFeatureDistrictName(targetFeature.properties);
+    const targetDivName = getFeatureDivisionName(targetFeature.properties);
+    
+    const targetDiv = DIVISIONS.find(d => matchDivision(targetDivName, d.id)) || DIVISIONS[0];
+    
+    // Get 3 other random divisions
+    const otherDivisions = DIVISIONS.filter(d => d.id !== targetDiv.id);
+    const shuffledOthers = [...otherDivisions].sort(() => 0.5 - Math.random());
+    const options = [targetDiv, ...shuffledOthers.slice(0, 3)].sort(() => 0.5 - Math.random());
+    
+    setMapQuizState(prev => ({
+      targetDistrictName: targetDistName,
+      targetDivisionId: targetDiv.id,
+      options,
+      selectedDivId: null,
+      isSubmitted: false,
+      score: prev.score,
+      targetCoords: targetDiv.coords
+    }));
+
+    if (mapRef.current && targetDiv.coords) {
+      mapRef.current.flyTo(targetDiv.coords, 8, { animate: true, duration: 1.2 });
+    }
+  };
+
+  useEffect(() => {
+    if (activeTab === 'quiz' && !mapQuizState.targetDistrictName && districtGeoJson) {
+      startQuizRound();
+    }
+  }, [activeTab, districtGeoJson]);
+
   // Sync GeoJSON boundary outlines on the map
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
-
-    // Helper to extract division name
-    const getFeatureDivisionName = (properties: any): string => {
-      if (!properties) return '';
-      return properties.division || properties.NAME_1 || properties.name || properties.Division || '';
-    };
-
-    // Helper to extract district name
-    const getFeatureDistrictName = (properties: any): string => {
-      if (!properties) return '';
-      return properties.district || properties.NAME_2 || properties.name || properties.District || '';
-    };
-
-    // Helper to match division
-    const matchDivision = (featName: string, selectedId: string) => {
-      const normFeat = featName.toLowerCase().replace(/[\s-]/g, '');
-      const normSel = selectedId.toLowerCase().replace(/[\s-]/g, '');
-      return normFeat === normSel ||
-             (normSel === 'chattogram' && normFeat === 'chittagong') ||
-             (normSel === 'barishal' && normFeat === 'barisal');
-    };
 
     // Helper to match district
     const matchDistrictName = (clgLocation: string, geoJsonDistrict: string) => {
@@ -389,33 +447,36 @@ export default function InteractiveMap() {
       
       if (activeTab === 'divisions') {
         const divName = getFeatureDivisionName(feature.properties);
+        const matchingDiv = DIVISIONS.find(d => matchDivision(divName, d.id));
         const isSelected = matchDivision(divName, selectedDiv.id);
         
+        let baseColor = '#3b82f6';
+        if (matchingDiv) {
+          if (matchingDiv.id === 'dhaka') baseColor = '#ef4444';
+          if (matchingDiv.id === 'chattogram') baseColor = '#10b981';
+          if (matchingDiv.id === 'rajshahi') baseColor = '#f97316';
+          if (matchingDiv.id === 'khulna') baseColor = '#3b82f6';
+          if (matchingDiv.id === 'barishal') baseColor = '#a855f7';
+          if (matchingDiv.id === 'sylhet') baseColor = '#ec4899';
+          if (matchingDiv.id === 'rangpur') baseColor = '#14b8a6';
+        }
+        
         if (isSelected) {
-          let strokeColor = '#3b82f6';
-          if (selectedDiv.id === 'dhaka') strokeColor = '#ef4444';
-          if (selectedDiv.id === 'chattogram') strokeColor = '#10b981';
-          if (selectedDiv.id === 'rajshahi') strokeColor = '#f97316';
-          if (selectedDiv.id === 'khulna') strokeColor = '#3b82f6';
-          if (selectedDiv.id === 'barishal') strokeColor = '#a855f7';
-          if (selectedDiv.id === 'sylhet') strokeColor = '#ec4899';
-          if (selectedDiv.id === 'rangpur') strokeColor = '#14b8a6';
-          
           return {
-            color: strokeColor,
+            color: baseColor,
             weight: 3.5,
             opacity: 0.9,
-            fillColor: strokeColor,
-            fillOpacity: 0.12,
+            fillColor: baseColor,
+            fillOpacity: 0.25,
             className: 'transition-all duration-300'
           };
         } else {
           return {
-            color: isDark ? '#475569' : '#cbd5e1',
-            weight: 1,
-            opacity: 0.45,
-            fillColor: 'transparent',
-            fillOpacity: 0,
+            color: drillDownDivId ? (isDark ? '#475569' : '#cbd5e1') : baseColor,
+            weight: drillDownDivId ? 1 : 1.5,
+            opacity: 0.7,
+            fillColor: drillDownDivId ? 'transparent' : baseColor,
+            fillOpacity: drillDownDivId ? 0 : 0.05,
             interactive: true
           };
         }
@@ -449,6 +510,29 @@ export default function InteractiveMap() {
             interactive: true
           };
         }
+      } else if (activeTab === 'quiz') {
+        const distName = getFeatureDistrictName(feature.properties);
+        const isTarget = mapQuizState.targetDistrictName && distName === mapQuizState.targetDistrictName;
+        
+        if (isTarget) {
+          return {
+            color: '#eab308',
+            weight: 3.5,
+            opacity: 1,
+            fillColor: '#fef08a',
+            fillOpacity: 0.5,
+            className: 'transition-all duration-300'
+          };
+        } else {
+          return {
+            color: isDark ? '#334155' : '#e2e8f0',
+            weight: 0.8,
+            opacity: 0.35,
+            fillColor: 'transparent',
+            fillOpacity: 0,
+            interactive: true
+          };
+        }
       }
       
       return {
@@ -469,6 +553,7 @@ export default function InteractiveMap() {
             const matchingDiv = DIVISIONS.find(d => matchDivision(divName, d.id));
             if (matchingDiv) {
               handleSelectDivision(matchingDiv);
+              setDrillDownDivId(matchingDiv.id);
               map.flyTo(matchingDiv.coords, 8.5, { animate: true, duration: 1.2 });
             }
           } else if (activeTab === 'districts') {
@@ -548,10 +633,19 @@ export default function InteractiveMap() {
       boundaryLayerRef.current = null;
     }
 
+    if (!showOverlays) return;
+
     let geoJsonData = null;
     if (activeTab === 'divisions') {
-      geoJsonData = divisionGeoJson;
-    } else if (activeTab === 'districts') {
+      if (drillDownDivId && districtGeoJson) {
+        geoJsonData = {
+          ...districtGeoJson,
+          features: districtGeoJson.features.filter((f: any) => matchDivision(getFeatureDivisionName(f.properties), drillDownDivId))
+        };
+      } else {
+        geoJsonData = divisionGeoJson;
+      }
+    } else if (activeTab === 'districts' || activeTab === 'quiz') {
       geoJsonData = districtGeoJson;
     }
 
@@ -567,9 +661,9 @@ export default function InteractiveMap() {
     } catch (e) {
       console.error('Error rendering GeoJSON layers:', e);
     }
-  }, [activeTab, selectedDiv, selectedCollegeName, divisionGeoJson, districtGeoJson, isDarkMode]);
+  }, [activeTab, selectedDiv, drillDownDivId, selectedCollegeName, divisionGeoJson, districtGeoJson, isDarkMode, showOverlays, mapQuizState]);
 
-  // Sync tile layer with dark/light mode
+  // Sync tile layer with dark/light mode and mapType
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -578,14 +672,18 @@ export default function InteractiveMap() {
       tileLayerRef.current.remove();
     }
 
-    // Use standard CartoDB templates without the potential {r} placeholder issue
-    const tileUrl = isDarkMode
-      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
-      : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
-
-    const attribution = isDarkMode
-      ? '&copy; OpenStreetMap &copy; CARTO'
-      : '&copy; OpenStreetMap &copy; CARTO';
+    let tileUrl = '';
+    let attribution = '';
+    
+    if (mapType === 'satellite') {
+      tileUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+      attribution = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+    } else {
+      tileUrl = isDarkMode
+        ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+        : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png';
+      attribution = '&copy; OpenStreetMap &copy; CARTO';
+    }
 
     const tileLayer = L.tileLayer(tileUrl, {
       attribution,
@@ -757,9 +855,9 @@ export default function InteractiveMap() {
         <div className="w-8"></div>
       </header>
 
-      <div className="bg-white dark:bg-slate-950 flex justify-center gap-2 p-3 border-b border-slate-200 dark:border-slate-800/80 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-950 flex flex-wrap justify-center gap-2 p-3 border-b border-slate-200 dark:border-slate-800/80 sticky top-[53px] z-10 shadow-sm transition-colors duration-300">
         <button 
-          onClick={() => setActiveTab('divisions')}
+          onClick={() => { setActiveTab('divisions'); setDrillDownDivId(null); }}
           className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors cursor-pointer ${activeTab === 'divisions' ? 'bg-blue-600 text-white font-bold' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
         >
           {lang === 'bn' ? 'বিভাগসমূহ' : 'Divisions'}
@@ -776,6 +874,13 @@ export default function InteractiveMap() {
         >
           {lang === 'bn' ? 'দর্শনীয় স্থানসমূহ' : 'Key Landmarks'}
         </button>
+        <button 
+          onClick={() => setActiveTab('quiz')}
+          className={`px-4 py-1.5 text-[10px] font-bold rounded-full transition-colors cursor-pointer ${activeTab === 'quiz' ? 'bg-indigo-600 text-white font-bold' : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
+        >
+          <i className="fa-solid fa-map-location-dot mr-1"></i>
+          {lang === 'bn' ? 'ম্যাপ কুইজ' : 'Map Quiz'}
+        </button>
       </div>
 
       <div className="p-4 space-y-4">
@@ -784,12 +889,103 @@ export default function InteractiveMap() {
           
           {/* Map Canvas */}
           <div className="flex-1 min-h-[350px] bg-slate-50 dark:bg-slate-900 rounded-[10px] relative border border-blue-50/50 dark:border-slate-800 shadow-inner overflow-hidden">
-            <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-white/90 dark:bg-slate-950/90 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800 z-[1000]">
-              {activeTab === 'divisions' && (lang === 'bn' ? 'বিভাগ মানচিত্র' : 'Divisions Map')}
+            <div className="absolute top-2 left-2 text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest bg-white/90 dark:bg-slate-950/90 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-800 z-[1000] flex items-center gap-2">
+              {activeTab === 'divisions' && (drillDownDivId ? (lang === 'bn' ? 'জেলার মানচিত্র' : 'Districts Map') : (lang === 'bn' ? 'বিভাগ মানচিত্র' : 'Divisions Map'))}
               {activeTab === 'districts' && (lang === 'bn' ? 'ক্যাডেট কলেজ ম্যাপ' : 'Cadet Colleges')}
               {activeTab === 'landmarks' && (lang === 'bn' ? 'দর্শনীয় স্থান ম্যাপ' : 'Key Landmarks')}
+              {activeTab === 'quiz' && (lang === 'bn' ? 'ভৌগোলিক কুইজ' : 'Geographic Quiz')}
+              
+              {activeTab === 'divisions' && drillDownDivId && (
+                <button 
+                  onClick={() => {
+                    setDrillDownDivId(null);
+                    if (mapRef.current) mapRef.current.setView([23.6850, 90.3563], 7, { animate: true });
+                  }}
+                  className="ml-2 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-1.5 py-0.5 rounded text-[8px] hover:bg-blue-200 dark:hover:bg-blue-800/50 transition cursor-pointer"
+                >
+                  <i className="fa-solid fa-arrow-left mr-1"></i>
+                  {lang === 'bn' ? 'ফিরে যান' : 'Back'}
+                </button>
+              )}
             </div>
-            
+
+            {/* Layer Control Component */}
+            <div className="absolute top-2 right-2 z-[1000]">
+              <button 
+                onClick={() => setIsLayerControlOpen(!isLayerControlOpen)}
+                className="bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 w-8 h-8 rounded border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer"
+              >
+                <i className="fa-solid fa-layer-group text-xs"></i>
+              </button>
+              
+              {isLayerControlOpen && (
+                <div className="absolute top-10 right-0 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-lg rounded-lg p-2 w-48 animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-2 border-b border-slate-100 dark:border-slate-800 pb-1">
+                    {lang === 'bn' ? 'ম্যাপ লেয়ার' : 'Map Layers'}
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 dark:hover:bg-slate-800 rounded transition">
+                      <input 
+                        type="radio" 
+                        name="mapType" 
+                        checked={mapType === 'standard'} 
+                        onChange={() => setMapType('standard')}
+                        className="text-blue-600 focus:ring-blue-500 w-3 h-3"
+                      />
+                      <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">
+                        {lang === 'bn' ? 'সাধারণ ম্যাপ' : 'Standard Map'}
+                      </span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 dark:hover:bg-slate-800 rounded transition">
+                      <input 
+                        type="radio" 
+                        name="mapType" 
+                        checked={mapType === 'satellite'} 
+                        onChange={() => setMapType('satellite')}
+                        className="text-blue-600 focus:ring-blue-500 w-3 h-3"
+                      />
+                      <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">
+                        {lang === 'bn' ? 'স্যাটেলাইট ম্যাপ' : 'Satellite Map'}
+                      </span>
+                    </label>
+                    
+                    <div className="h-px bg-slate-100 dark:bg-slate-800 my-1"></div>
+                    
+                    <label className="flex items-center gap-2 cursor-pointer p-1 hover:bg-slate-50 dark:hover:bg-slate-800 rounded transition">
+                      <input 
+                        type="checkbox" 
+                        checked={showOverlays} 
+                        onChange={(e) => setShowOverlays(e.target.checked)}
+                        className="text-blue-600 focus:ring-blue-500 w-3 h-3 rounded"
+                      />
+                      <span className="text-[11px] font-medium text-slate-700 dark:text-slate-300">
+                        {lang === 'bn' ? 'সীমানা লেয়ার' : 'Boundary Overlay'}
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Floating Legend */}
+            {activeTab === 'divisions' && !drillDownDivId && showOverlays && (
+              <div className="absolute bottom-2 left-2 z-[1000] bg-white/95 dark:bg-slate-950/95 border border-slate-200 dark:border-slate-800 shadow-sm rounded-lg p-2 max-h-[150px] overflow-y-auto custom-scrollbar">
+                <div className="text-[9px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1.5 border-b border-slate-100 dark:border-slate-800 pb-1">
+                  {lang === 'bn' ? 'বিভাগীয় রং' : 'Division Colors'}
+                </div>
+                <div className="grid grid-cols-2 gap-x-3 gap-y-1">
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#ef4444'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Dhaka</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#10b981'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Chattogram</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#f97316'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Rajshahi</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#3b82f6'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Khulna</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#a855f7'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Barishal</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#ec4899'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Sylhet</span></div>
+                  <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-sm" style={{backgroundColor: '#14b8a6'}}></div><span className="text-[9px] font-medium text-slate-700 dark:text-slate-300">Rangpur</span></div>
+                </div>
+              </div>
+            )}
+
             {/* Real Leaflet Map Node */}
             <div ref={containerRef} className="absolute inset-0 w-full h-full z-0" />
           </div>
@@ -910,6 +1106,102 @@ export default function InteractiveMap() {
                   </div>
                 </button>
               ))}
+            </div>
+          )}
+
+          {activeTab === 'quiz' && (
+            <div className="w-full md:w-[220px] flex flex-col gap-2 shrink-0 max-h-[350px] overflow-y-auto custom-scrollbar">
+              <div className="p-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-900">
+                {lang === 'bn' ? 'ভৌগোলিক কুইজ' : 'Geographic Quiz'}
+              </div>
+              
+              {mapQuizState.targetDistrictName ? (
+                <div className="space-y-3 p-1">
+                  <div className="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800/50">
+                    <p className="text-[11px] font-bold text-amber-900 dark:text-amber-200">
+                      {lang === 'bn' 
+                        ? `ম্যাপে চিহ্নিত হলুদ রঙের জেলাটি কোন বিভাগের অন্তর্গত?` 
+                        : `Which division does the highlighted yellow district belong to?`}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    {mapQuizState.options.map((div, i) => {
+                      const isSelected = mapQuizState.selectedDivId === div.id;
+                      const showCorrect = mapQuizState.isSubmitted && div.id === mapQuizState.targetDivisionId;
+                      const showIncorrect = mapQuizState.isSubmitted && isSelected && div.id !== mapQuizState.targetDivisionId;
+
+                      return (
+                        <button 
+                          key={i}
+                          disabled={mapQuizState.isSubmitted}
+                          onClick={() => setMapQuizState(prev => ({ ...prev, selectedDivId: div.id }))}
+                          className={`w-full p-2.5 rounded-[10px] border text-[10px] font-bold text-left transition flex items-center justify-between cursor-pointer ${
+                            showCorrect 
+                              ? 'bg-green-100 dark:bg-green-950/30 border-green-300 dark:border-green-900 text-green-800 dark:text-green-300 font-bold' 
+                              : showIncorrect 
+                                ? 'bg-red-100 dark:bg-red-950/30 border-red-300 dark:border-red-900 text-red-800 dark:text-red-300 font-bold'
+                                : isSelected 
+                                  ? 'bg-indigo-600 border-indigo-600 text-white font-bold'
+                                  : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700 text-slate-700 dark:text-slate-300'
+                          }`}
+                        >
+                          <span>{lang === 'bn' ? div.bnName : div.name}</span>
+                          {showCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
+                          {showIncorrect && <i className="fa-solid fa-xmark text-red-600 dark:text-red-400 text-[10px]"></i>}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {!mapQuizState.isSubmitted ? (
+                    <button 
+                      onClick={() => {
+                        if (mapQuizState.selectedDivId === null) return;
+                        const isCorrect = mapQuizState.selectedDivId === mapQuizState.targetDivisionId;
+                        setMapQuizState(prev => ({ 
+                          ...prev, 
+                          isSubmitted: true,
+                          score: isCorrect ? prev.score + 10 : prev.score 
+                        }));
+                      }}
+                      disabled={mapQuizState.selectedDivId === null}
+                      className={`w-full py-2 rounded-[10px] text-[10px] font-bold transition mt-2 ${
+                        mapQuizState.selectedDivId !== null ? 'bg-indigo-600 text-white shadow-sm cursor-pointer hover:bg-indigo-700' : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'
+                      }`}
+                    >
+                      {lang === 'bn' ? 'উত্তর জমা দিন' : 'Submit Answer'}
+                    </button>
+                  ) : (
+                    <div className="space-y-2 mt-2">
+                      <div className="bg-white dark:bg-slate-900 p-3 rounded-[10px] border border-indigo-50 dark:border-indigo-900/30">
+                        <p className="text-[10px] font-black flex items-center gap-1.5">
+                          {mapQuizState.selectedDivId === mapQuizState.targetDivisionId ? (
+                            <span className="text-green-600 dark:text-green-400 flex items-center gap-1"><i className="fa-solid fa-circle-check"></i> {lang === 'bn' ? 'সঠিক উত্তর! +১০ পয়েন্ট' : 'Correct! +10 Points'}</span>
+                          ) : (
+                            <span className="text-red-600 dark:text-red-400 flex items-center gap-1"><i className="fa-solid fa-triangle-exclamation"></i> {lang === 'bn' ? 'ভুল উত্তর' : 'Incorrect'}</span>
+                          )}
+                        </p>
+                      </div>
+                      <button 
+                        onClick={() => startQuizRound()}
+                        className="w-full py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-[10px] text-[10px] font-bold transition cursor-pointer"
+                      >
+                        {lang === 'bn' ? 'পরবর্তী প্রশ্ন' : 'Next Question'}
+                      </button>
+                    </div>
+                  )}
+                  
+                  <div className="text-center text-[10px] text-slate-500 mt-2 font-bold">
+                    {lang === 'bn' ? 'স্কোর' : 'Score'}: <span className="text-indigo-600 dark:text-indigo-400">{mapQuizState.score}</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="p-4 text-center text-[10px] text-slate-500">
+                  <i className="fa-solid fa-spinner fa-spin mr-2"></i>
+                  {lang === 'bn' ? 'ম্যাপ লোড হচ্ছে...' : 'Loading map...'}
+                </div>
+              )}
             </div>
           )}
         </div>

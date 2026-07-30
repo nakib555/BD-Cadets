@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from '../context/RouterContext';
 import MathIcon from '../components/MathIcon';
 import EnglishIcon from '../components/EnglishIcon';
+import GKIcon from '../components/GKIcon';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function AllSubjects() {
@@ -43,7 +44,9 @@ export default function AllSubjects() {
           </button>
           
           <button onClick={() => navigate('study')} className="bg-[#eff6ff] dark:bg-blue-950/20 border border-blue-200 dark:border-blue-900/30 rounded-[10px] p-3 flex flex-col items-center shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#2563eb] to-[#1d4ed8] text-white rounded-[10px] flex items-center justify-center text-[18px] mb-2 shadow-sm"><i className="fa-solid fa-globe"></i></div>
+              <div className="w-10 h-10 mb-2 flex items-center justify-center">
+                  <GKIcon className="w-10 h-10" />
+              </div>
               <span className="text-[12px] font-[Georgia] font-black text-slate-900 dark:text-slate-100 text-center leading-tight">{t('gk')}</span>
               <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-1">30 {t('topics')}</span>
           </button>

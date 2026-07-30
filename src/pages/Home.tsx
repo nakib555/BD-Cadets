@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { Bell, Search, BookOpen, Clock, TrendingUp, Trophy, ArrowRight, ShieldCheck, CheckCircle2, ChevronRight, Calculator, Globe, Languages } from 'lucide-react';
 import MathIcon from '../components/MathIcon';
 import EnglishIcon from '../components/EnglishIcon';
+import GKIcon from '../components/GKIcon';
 import DailyGoalTracker from '../components/DailyGoalTracker';
 import cadetsSplash from '../assets/images/cadets_splash_1785297743949.jpg';
 import bdCadetsLogo from '../assets/images/BD-cadets-logo.png';
@@ -153,15 +154,8 @@ export default function Home() {
 
               <button onClick={() => navigate('study')} className="bg-[#eff6ff] dark:bg-blue-950/20 rounded-[10px] p-2 flex flex-col items-center border border-[#cad9ee] dark:border-blue-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
                   <div className="relative w-12 h-12 flex items-center justify-center">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#2563eb] to-[#1d4ed8] rounded-full relative shadow-[0_4px_8px_rgba(29,78,216,0.3)] flex items-center justify-center overflow-hidden">
-                          <div className="absolute top-0.5 left-0.5 right-0.5 h-[30%] bg-white/20 rounded-full"></div>
-                          <div className="absolute inset-0.5 rounded-full border border-white/20 flex items-center justify-center">
-                              <div className="w-6 h-6 rounded-full border border-white/30 absolute"></div>
-                              <div className="w-[1px] h-full bg-white/40 absolute"></div>
-                              <div className="w-full h-[1px] bg-white/40 absolute"></div>
-                              <div className="w-3 h-full rounded-full border border-white/30 absolute"></div>
-                          </div>
-                          <i className="fa-solid fa-earth-americas text-white/90 text-[10px] z-10"></i>
+                      <div className="w-10 h-10 flex items-center justify-center relative">
+                          <GKIcon className="w-10 h-10" />
                       </div>
                   </div>
                   <span className="text-xs font-black text-slate-900 dark:text-slate-200 mt-2">{t('general_knowledge')}</span>
