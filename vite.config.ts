@@ -14,12 +14,14 @@ export default defineConfig(() => {
         devOptions: {
           enabled: false,
         },
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'BD-cadets-logo.png'],
         manifest: {
-          name: 'Cadet Prep',
-          short_name: 'CadetPrep',
-          description: 'A study app for Cadet College Admission',
-          theme_color: '#ffffff',
+          name: 'বিডি ক্যাডেট (BD Cadets)',
+          short_name: 'বিডি ক্যাডেট',
+          description: 'ক্যাডেট কলেজ ভর্তি প্রস্তুতির একটি সম্পূর্ণ ইন্টারেক্টিভ ও গ্যামিফাইড প্ল্যাটফর্ম।',
+          theme_color: '#3b82f6',
+          background_color: '#ffffff',
+          display: 'standalone',
           icons: [
             {
               src: '/pwa-192x192.png',
