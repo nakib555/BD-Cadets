@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
+
+body, button, input, select, textarea, [class*="font-sans"] {
+  font-family: 'Shonar Bangla', 'Sonar Bangla', 'Tiro Bangla', 'Hind Siliguri', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif !important;
+}
 
 @variant dark (&:where(.dark, .dark *));
 

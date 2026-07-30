@@ -1,6 +1,6 @@
 {
-  "name": "BD Cadets",
-  "description": "A comprehensive, gamified Cadet College Admission preparation platform with interactive maps, diagnostic mock tests, and offline study notes.",
+  "name": "বিডি ক্যাডেট",
+  "description": "ক্যাডেট কলেজ ভর্তি প্রস্তুতির একটি সম্পূর্ণ ইন্টারেক্টিভ ও গ্যামিফাইড প্ল্যাটফর্ম। এতে রয়েছে ইন্টারেক্টিভ মানচিত্র, ডায়াগনস্টিক মক টেস্ট এবং অফলাইন স্টাডি নোট।",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

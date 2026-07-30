@@ -2,16 +2,30 @@ import React, { createContext, useContext } from 'react';
 import { useOfflineData } from '../hooks/useOfflineData';
 import { useDarkMode } from '../hooks/useDarkMode';
 
-interface UserData {
+export interface UserData {
   dailyGoalProgress: number;
+  dailyGoalTarget: number;
+  completedNotesToday: number;
+  completedTestsToday: number;
+  readNoteIdsToday: string[];
+  completedTestIdsToday: string[];
+  lastActiveDate: string;
   studyStreak: number;
   testsTaken: number;
   avgScore: number;
   bestScore: number;
 }
 
+const todayStr = new Date().toISOString().split('T')[0];
+
 const defaultUserData: UserData = {
   dailyGoalProgress: 6,
+  dailyGoalTarget: 8,
+  completedNotesToday: 3,
+  completedTestsToday: 3,
+  readNoteIdsToday: ['note-alg', 'photosynthesis', 'bangladesh-map'],
+  completedTestIdsToday: ['mock-test-1', 'mock-test-2', 'mock-test-3'],
+  lastActiveDate: todayStr,
   studyStreak: 12,
   testsTaken: 48,
   avgScore: 82,
@@ -21,6 +35,9 @@ const defaultUserData: UserData = {
 interface DataContextType {
   userData: UserData;
   setUserData: React.Dispatch<React.SetStateAction<UserData>>;
+  markNoteCompleted: (noteId: string) => void;
+  markTestCompleted: (testId: string, scorePercentage: number) => void;
+  updateDailyGoalTarget: (newTarget: number) => void;
   isLoading: boolean;
   isDark: boolean;
   setIsDark: (dark: boolean) => void;
@@ -34,15 +51,106 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useDarkMode();
 
   React.useEffect(() => {
-    // Simulate network latency for data fetching
+    // Check for day rollover
+    const currentToday = new Date().toISOString().split('T')[0];
+    if (userData.lastActiveDate && userData.lastActiveDate !== currentToday) {
+      setUserData(prev => ({
+        ...prev,
+        lastActiveDate: currentToday,
+        completedNotesToday: 0,
+        completedTestsToday: 0,
+        readNoteIdsToday: [],
+        completedTestIdsToday: [],
+        dailyGoalProgress: 0,
+      }));
+    }
+
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1200);
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
+  const markNoteCompleted = (noteId: string) => {
+    setUserData(prev => {
+      const currentToday = new Date().toISOString().split('T')[0];
+      const isNewDay = prev.lastActiveDate !== currentToday;
+
+      const readIds = isNewDay ? [] : (prev.readNoteIdsToday || []);
+      if (readIds.includes(noteId)) {
+        return prev;
+      }
+
+      const newReadIds = [...readIds, noteId];
+      const newNotesCount = isNewDay ? 1 : (prev.completedNotesToday || 0) + 1;
+      const testsCount = isNewDay ? 0 : (prev.completedTestsToday || 0);
+      const newProgress = newNotesCount + testsCount;
+
+      return {
+        ...prev,
+        lastActiveDate: currentToday,
+        readNoteIdsToday: newReadIds,
+        completedNotesToday: newNotesCount,
+        completedTestsToday: testsCount,
+        completedTestIdsToday: isNewDay ? [] : (prev.completedTestIdsToday || []),
+        dailyGoalProgress: newProgress,
+      };
+    });
+  };
+
+  const markTestCompleted = (testId: string, scorePercentage: number) => {
+    setUserData(prev => {
+      const currentToday = new Date().toISOString().split('T')[0];
+      const isNewDay = prev.lastActiveDate !== currentToday;
+
+      const testIds = isNewDay ? [] : (prev.completedTestIdsToday || []);
+      const newTestIds = testIds.includes(testId) ? testIds : [...testIds, testId];
+
+      const newNotesCount = isNewDay ? 0 : (prev.completedNotesToday || 0);
+      const newTestsCount = isNewDay ? 1 : (prev.completedTestsToday || 0) + 1;
+      const newProgress = newNotesCount + newTestsCount;
+
+      const newTestsTaken = (prev.testsTaken || 0) + 1;
+      const prevAvg = prev.avgScore || 0;
+      const prevTaken = prev.testsTaken || 0;
+      const newAvgScore = Math.round((prevAvg * prevTaken + scorePercentage) / newTestsTaken);
+      const newBestScore = Math.max(prev.bestScore || 0, scorePercentage);
+
+      return {
+        ...prev,
+        lastActiveDate: currentToday,
+        completedTestIdsToday: newTestIds,
+        completedNotesToday: newNotesCount,
+        completedTestsToday: newTestsCount,
+        readNoteIdsToday: isNewDay ? [] : (prev.readNoteIdsToday || []),
+        dailyGoalProgress: newProgress,
+        testsTaken: newTestsTaken,
+        avgScore: newAvgScore,
+        bestScore: newBestScore,
+      };
+    });
+  };
+
+  const updateDailyGoalTarget = (newTarget: number) => {
+    setUserData(prev => ({
+      ...prev,
+      dailyGoalTarget: Math.max(1, newTarget),
+    }));
+  };
+
   return (
-    <DataContext.Provider value={{ userData, setUserData, isLoading, isDark, setIsDark }}>
+    <DataContext.Provider
+      value={{
+        userData,
+        setUserData,
+        markNoteCompleted,
+        markTestCompleted,
+        updateDailyGoalTarget,
+        isLoading,
+        isDark,
+        setIsDark,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );
@@ -55,3 +163,4 @@ export function useData() {
   }
   return context;
 }
+
