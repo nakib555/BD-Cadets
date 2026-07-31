@@ -100,8 +100,8 @@ function AppContent() {
     <div className={`flex justify-center items-center h-[100dvh] overflow-hidden bg-slate-100 transition-colors duration-300 ${isDark ? 'dark bg-slate-900' : ''}`}>
       <MetadataManager />
       <ReloadPrompt />
-      <PWAInstallButton />
       <div className="w-full max-w-[414px] h-full bg-white dark:bg-slate-950 relative shadow-[0_0_40px_rgba(0,0,0,0.15)] flex flex-col overflow-hidden transition-colors duration-300">
+        <PWAInstallButton />
         
         {/* Main Content Area */}
         <main 
