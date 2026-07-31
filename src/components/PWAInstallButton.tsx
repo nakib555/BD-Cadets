@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import bdCadetsLogo from '../assets/images/BD-cadets-logo.png';
+import bdCadetsLogo from '../assets/images/BD-cadets-logo.svg';
 
 export default function PWAInstallButton() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);

@@ -8,7 +8,7 @@ import EnglishIcon from '../components/EnglishIcon';
 import GKIcon from '../components/GKIcon';
 import DailyGoalTracker from '../components/DailyGoalTracker';
 import cadetsSplash from '../assets/images/cadets_splash_1785297743949.jpg';
-import bdCadetsLogo from '../assets/images/BD-cadets-logo.png';
+import bdCadetsLogo from '../assets/images/BD-cadets-logo.svg';
 
 export default function Home() {
   const { navigate } = useRouter();

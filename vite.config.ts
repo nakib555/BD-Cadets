@@ -14,7 +14,7 @@ export default defineConfig(() => {
         devOptions: {
           enabled: false,
         },
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'BD-cadets-logo.png', 'pwa-192x192.png', 'pwa-512x512.png'],
+        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'BD-cadets-logo.png', 'BD-logo.svg', 'BD-cadets-logo.svg', 'pwa-192x192.png', 'pwa-512x512.png'],
         manifest: {
           name: 'বিডি ক্যাডেট (BD Cadets)',
           short_name: 'বিডি ক্যাডেট',

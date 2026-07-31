@@ -20,7 +20,7 @@ import InteractiveMap from './pages/InteractiveMap';
 import Photosynthesis from './pages/Photosynthesis';
 import PadmaBridge from './pages/PadmaBridge';
 import cadetsSplash from './assets/images/cadets_splash_1785297743949.jpg';
-import bdCadetsLogo from './assets/images/BD-cadets-logo.png';
+import bdCadetsLogo from './assets/images/BD-cadets-logo.svg';
 
 function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
