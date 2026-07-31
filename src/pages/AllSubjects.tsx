@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from '../context/RouterContext';
 import MathIcon from '../components/MathIcon';
 import EnglishIcon from '../components/EnglishIcon';
+import BanglaIcon from '../components/BanglaIcon';
 import GKIcon from '../components/GKIcon';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -52,7 +53,9 @@ export default function AllSubjects() {
           </button>
           
           <button onClick={() => navigate('study')} className="bg-[#fffbeb] dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/30 rounded-[10px] p-3 flex flex-col items-center shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#f59e0b] to-[#d97706] text-white rounded-[10px] flex items-center justify-center text-[18px] mb-2 shadow-sm font-serif font-black">{t('bangla_icon_char')}</div>
+              <div className="w-10 h-10 mb-2 flex items-center justify-center">
+                  <BanglaIcon className="w-10 h-10" />
+              </div>
               <span className="text-[12px] font-[Georgia] font-black text-slate-900 dark:text-slate-100 text-center leading-tight">{t('bangla')}</span>
               <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-1">20 {t('topics')}</span>
           </button>

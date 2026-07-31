@@ -5,6 +5,7 @@ import { useLanguage, T } from '../context/LanguageContext';
 import { triggerHaptic } from '../utils/haptics';
 import MathIcon from '../components/MathIcon';
 import EnglishIcon from '../components/EnglishIcon';
+import BanglaIcon from '../components/BanglaIcon';
 import GKIcon from '../components/GKIcon';
 import DailyGoalTracker from '../components/DailyGoalTracker';
 import cadetsSplash from '../assets/images/cadets_splash_1785297743949.jpg';
@@ -169,9 +170,7 @@ export default function Home() {
 
               <button onClick={() => { triggerHaptic('light'); navigate('study'); }} className="bg-amber-50/60 dark:bg-amber-950/20 rounded-2xl p-2.5 flex flex-col items-center border border-amber-200/80 dark:border-amber-900/30 shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition">
                   <div className="relative w-12 h-12 flex items-center justify-center">
-                      <div className="w-10 h-10 bg-gradient-to-br from-[#f59e0b] to-[#d97706] rounded-xl relative shadow-md flex items-center justify-center">
-                          <span className="text-white font-sans font-black text-base select-none"><T id="bangla_icon_char" /></span>
-                      </div>
+                      <BanglaIcon className="w-10 h-10" />
                   </div>
                   <span className="text-xs font-black text-slate-900 dark:text-slate-200 mt-2"><T id="bangla" /></span>
               </button>

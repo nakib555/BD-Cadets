@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import MathIcon from '../components/MathIcon';
+import BanglaIcon from '../components/BanglaIcon';
 import { useLanguage } from '../context/LanguageContext';
 import { triggerHaptic } from '../utils/haptics';
 
@@ -152,7 +153,7 @@ export default function Progress() {
                   <div>
                       <div className="flex justify-between items-center mb-2">
                            <div className="flex items-center gap-2.5">
-                               <div className="w-6 h-6 bg-orange-50 dark:bg-orange-950/40 text-orange-500 dark:text-orange-400 rounded-lg flex items-center justify-center text-xs font-serif font-bold">{t('bangla_icon_char')}</div>
+                               <div className="w-6 h-6 flex items-center justify-center"><BanglaIcon className="w-6 h-6" /></div>
                                <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{t('bangla')}</span>
                            </div>
                            <span className="text-sm font-extrabold text-slate-900 dark:text-white">৬৫% <i className="fa-solid fa-chevron-right text-xs text-slate-400 dark:text-slate-500 ml-1"></i></span>
