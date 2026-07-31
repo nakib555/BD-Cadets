@@ -34,8 +34,13 @@ export default function PWAInstallButton() {
       e.preventDefault();
       setDeferredPrompt(e);
       
-      // If not standalone and not recently dismissed, trigger prompt
       if (!standalone) {
+        // Automatically trigger native browser install prompt ("Install and create shortcut")
+        try {
+          (e as any).prompt();
+        } catch (err) {
+          console.log('Native prompt deferred:', err);
+        }
         checkAndShowPrompt();
       }
     };
