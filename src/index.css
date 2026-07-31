@@ -119,6 +119,19 @@ body, button, input, select, textarea, [class*="font-sans"] {
   }
 }
 
+@keyframes flicker {
+  0%, 100% { transform: scale(1) rotate(-2deg); opacity: 1; }
+  25% { transform: scale(1.1) rotate(2deg); opacity: 0.9; }
+  50% { transform: scale(0.95) rotate(-1deg); opacity: 1; }
+  75% { transform: scale(1.05) rotate(1deg); opacity: 0.8; }
+}
+
+.animate-flicker {
+  animation: flicker 1.5s infinite ease-in-out;
+  display: inline-block;
+  transform-origin: bottom center;
+}
+
 /* Leaflet Custom Overrides */
 .leaflet-container {
   font-family: inherit !important;

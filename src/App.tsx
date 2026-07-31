@@ -19,6 +19,8 @@ import TestList from './pages/TestList';
 import InteractiveMap from './pages/InteractiveMap';
 import Photosynthesis from './pages/Photosynthesis';
 import PadmaBridge from './pages/PadmaBridge';
+import TestConfig from './pages/TestConfig';
+import DailyGoal from './pages/DailyGoal';
 import cadetsSplash from './assets/images/cadets_splash_1785297743949.jpg';
 import bdCadetsLogo from './assets/images/BD-cadets-logo.svg';
 
@@ -73,14 +75,16 @@ function AppContent() {
   const { currentRoute, isRouteLoading, isMainTab, navigate } = useRouter();
   const { isDark } = useData();
   
-  const showNav = isMainTab(currentRoute.path) || currentRoute.path === 'test-active';
-  const resolvedPath = currentRoute.path === 'test-active' ? 'test' : currentRoute.path;
+  const showNav = isMainTab(currentRoute.path);
+  const resolvedPath = currentRoute.path;
   const [activeTabIdx, setActiveTabIdx] = useState(() => MAIN_TABS.indexOf(resolvedPath));
   const [dir, setDir] = useState<number>(0);
   const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const rPath = currentRoute.path === 'test-active' ? 'test' : currentRoute.path;
+    const isTestSubRoute = currentRoute.path === 'test-active' || currentRoute.path === 'test-config';
+    const isDailyGoalSubRoute = currentRoute.path === 'daily-goal';
+    const rPath = isTestSubRoute ? 'test' : isDailyGoalSubRoute ? 'home' : currentRoute.path;
     const newIdx = MAIN_TABS.indexOf(rPath);
     if (newIdx !== -1) {
       if (activeTabIdx !== -1 && activeTabIdx !== newIdx) {
@@ -108,9 +112,7 @@ function AppContent() {
           ref={mainRef}
           className={`flex-1 h-full overflow-y-auto overflow-x-hidden custom-scrollbar bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 ${showNav ? 'pb-20' : ''}`}
         >
-          {isRouteLoading ? (
-             <PageSkeleton />
-          ) : (
+          {isRouteLoading ? (             <PageSkeleton path={currentRoute.path} />          ) : (
             <AnimatePresence mode="wait" initial={false}>
               {showNav ? (
                 <motion.div
@@ -119,7 +121,7 @@ function AppContent() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: dir === 1 ? -40 : dir === -1 ? 40 : 0 }}
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  drag={currentRoute.path === 'test-active' ? false : "x"}
+                  drag="x"
                   dragDirectionLock
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.2}
@@ -140,7 +142,6 @@ function AppContent() {
                    {currentRoute.path === 'home' && <Home />}
                    {currentRoute.path === 'study' && <Study />}
                    {currentRoute.path === 'test' && <TestList />}
-                   {currentRoute.path === 'test-active' && <Test />}
                    {currentRoute.path === 'progress' && <Progress />}
                    {currentRoute.path === 'profile' && <Achievements />}
                 </motion.div>
@@ -159,6 +160,9 @@ function AppContent() {
                    {currentRoute.path === 'interactive-map' && <InteractiveMap />}
                    {currentRoute.path === 'photosynthesis' && <Photosynthesis />}
                    {currentRoute.path === 'padma-bridge' && <PadmaBridge />}
+                   {currentRoute.path === 'test-config' && <TestConfig />}
+                   {currentRoute.path === 'test-active' && <Test />}
+                   {currentRoute.path === 'daily-goal' && <DailyGoal />}
                 </motion.div>
               )}
             </AnimatePresence>

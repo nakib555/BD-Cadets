@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 
 type Language = 'bn' | 'en';
 
@@ -389,20 +390,25 @@ const translations: Translations = {
   },
 };
 
+export type AnimationPhase = 'idle' | 'out' | 'in';
+
 interface LanguageContextType {
   lang: Language;
+  phase: AnimationPhase;
   setLang: (lang: Language) => void;
   t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType>({
   lang: 'bn',
+  phase: 'idle',
   setLang: () => {},
   t: (key: string) => key,
 });
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>('bn');
+  const [phase, setPhase] = useState<AnimationPhase>('idle');
 
   useEffect(() => {
     const savedLang = localStorage.getItem('app_lang') as Language;
@@ -412,9 +418,20 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setLang = (newLang: Language) => {
-    setLangState(newLang);
-    localStorage.setItem('app_lang', newLang);
-    document.documentElement.lang = newLang;
+    if (newLang === lang || phase !== 'idle') return;
+
+    setPhase('out');
+
+    setTimeout(() => {
+      setLangState(newLang);
+      localStorage.setItem('app_lang', newLang);
+      document.documentElement.lang = newLang;
+      setPhase('in');
+
+      setTimeout(() => {
+        setPhase('idle');
+      }, 250);
+    }, 180);
   };
 
   const t = (key: string): string => {
@@ -422,7 +439,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, phase, setLang, t }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -430,4 +447,72 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
 export function useLanguage() {
   return useContext(LanguageContext);
+}
+
+export function T({ 
+  id, 
+  children, 
+  className,
+  ...props 
+}: { 
+  id?: string; 
+  children?: React.ReactNode; 
+  className?: string;
+  [key: string]: any;
+}) {
+  const { lang, phase } = useLanguage();
+  
+  let content: React.ReactNode = '';
+  if (id) {
+    content = translations[lang]?.[id] || id;
+  } else if (typeof children === 'string') {
+    content = translations[lang]?.[children] || children;
+  } else {
+    content = children;
+  }
+
+  const variants = {
+    idle: {
+      opacity: 1,
+      scale: 1,
+      z: 0,
+      y: 0,
+      filter: 'blur(0px)',
+    },
+    out: {
+      opacity: 0,
+      scale: 0.88,
+      z: -20,
+      y: 3,
+      filter: 'blur(2px)',
+      transition: {
+        duration: 0.15,
+        ease: [0.4, 0, 1, 1], // easeIn
+      },
+    },
+    in: {
+      opacity: 1,
+      scale: 1,
+      z: 0,
+      y: 0,
+      filter: 'blur(0px)',
+      transition: {
+        duration: 0.22,
+        ease: [0, 0, 0.2, 1], // easeOut
+      },
+    },
+  };
+
+  return (
+    <motion.span
+      className={className}
+      animate={phase}
+      variants={variants}
+      initial="idle"
+      style={{ display: 'inline-block', perspective: 1000 }}
+      {...props}
+    >
+      {content}
+    </motion.span>
+  );
 }
