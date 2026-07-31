@@ -26,25 +26,25 @@ export default defineConfig(() => {
           orientation: 'portrait',
           icons: [
             {
-              src: 'BD-cadets-logo.png',
+              src: '/BD-cadets-logo.png',
               sizes: '1254x1254',
               type: 'image/png',
               purpose: 'any'
             },
             {
-              src: 'pwa-192x192.png',
+              src: '/pwa-192x192.png',
               sizes: '192x192',
               type: 'image/png',
               purpose: 'any'
             },
             {
-              src: 'pwa-512x512.png',
+              src: '/pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any'
             },
             {
-              src: 'pwa-512x512.png',
+              src: '/pwa-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'maskable'
