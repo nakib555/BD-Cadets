@@ -4,6 +4,7 @@ import MathIcon from '../components/MathIcon';
 import BanglaIcon from '../components/BanglaIcon';
 import { useLanguage } from '../context/LanguageContext';
 import { triggerHaptic } from '../utils/haptics';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 export default function Progress() {
   const { userData } = useData();
@@ -14,6 +15,14 @@ export default function Progress() {
     triggerHaptic('selection');
     setActiveTab(tabKey);
   };
+
+  const chartData = [
+    { name: t('math'), accuracy: 85, fill: '#10b981' },
+    { name: t('english'), accuracy: 72, fill: '#a855f7' },
+    { name: t('gk'), accuracy: 80, fill: '#ef4444' },
+    { name: t('iq_and_mental_ability'), accuracy: 70, fill: '#3b82f6' },
+    { name: t('bangla'), accuracy: 65, fill: '#f97316' },
+  ];
 
   return (
     <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-8 transition-colors duration-300 animate-in fade-in duration-300">
@@ -89,6 +98,26 @@ export default function Progress() {
 
           <div className="bg-white dark:bg-slate-950 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors duration-300">
               <h3 className="text-xs font-black text-slate-800 dark:text-white uppercase tracking-wider mb-5">{t('subject_performance')}</h3>
+              
+              <div className="h-60 w-full mb-6">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={chartData} margin={{ top: 10, right: 10, left: -25, bottom: 0 }}>
+                    <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} />
+                    <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#64748b' }} tickFormatter={(value) => `${value}%`} />
+                    <Tooltip 
+                      cursor={{fill: 'rgba(148, 163, 184, 0.1)'}}
+                      contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)' }}
+                      formatter={(value: number) => [`${value}%`, t('accuracy') || 'Accuracy']}
+                    />
+                    <Bar dataKey="accuracy" radius={[6, 6, 0, 0]} maxBarSize={40}>
+                      {chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+
               <div className="flex flex-col gap-4">
                   <div>
                       <div className="flex justify-between items-center mb-2">

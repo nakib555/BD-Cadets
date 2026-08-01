@@ -81,25 +81,51 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     return savedQuestions.some(q => q.id === questionId);
   };
 
+  // Sync data to backend whenever it changes
   React.useEffect(() => {
-    // Check for day rollover
-    const currentToday = new Date().toISOString().split('T')[0];
-    if (userData.lastActiveDate && userData.lastActiveDate !== currentToday) {
-      setUserData(prev => ({
-        ...prev,
-        lastActiveDate: currentToday,
-        completedNotesToday: 0,
-        completedTestsToday: 0,
-        readNoteIdsToday: [],
-        completedTestIdsToday: [],
-        dailyGoalProgress: 0,
-      }));
-    }
+    if (isLoading) return; // Don't overwrite backend data during initial load
+    fetch('/api/user-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userData, savedQuestions }),
+    }).catch(console.error);
+  }, [userData, savedQuestions, isLoading]);
 
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 800);
-    return () => clearTimeout(timer);
+  React.useEffect(() => {
+    // Fetch initial data from backend
+    fetch('/api/user-data')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.userData) {
+          setUserData(data.userData);
+        }
+        if (data && data.savedQuestions) {
+          setSavedQuestions(data.savedQuestions);
+        }
+      })
+      .catch(console.error)
+      .finally(() => {
+        // Check for day rollover
+        const currentToday = new Date().toISOString().split('T')[0];
+        setUserData(prev => {
+           if (prev.lastActiveDate && prev.lastActiveDate !== currentToday) {
+             return {
+               ...prev,
+               lastActiveDate: currentToday,
+               completedNotesToday: 0,
+               completedTestsToday: 0,
+               readNoteIdsToday: [],
+               completedTestIdsToday: [],
+               dailyGoalProgress: 0,
+             };
+           }
+           return prev;
+        });
+
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 800);
+      });
   }, []);
 
   const markNoteCompleted = (noteId: string) => {

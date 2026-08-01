@@ -84,4 +84,42 @@ app.get("/api/questions", (req, res) => {
   });
 });
 
+// Progress and Saved Questions data paths
+const USER_DATA_FILE = path.join(process.cwd(), "backend", "user_data.json");
+
+function loadUserData() {
+  try {
+    if (fs.existsSync(USER_DATA_FILE)) {
+      return JSON.parse(fs.readFileSync(USER_DATA_FILE, "utf-8"));
+    }
+  } catch (error) {
+    console.error("[API Server] Failed to read user_data.json:", error);
+  }
+  return { userData: null, savedQuestions: null };
+}
+
+function saveUserData(data: any) {
+  try {
+    fs.writeFileSync(USER_DATA_FILE, JSON.stringify(data, null, 2), "utf-8");
+    return true;
+  } catch (error) {
+    console.error("[API Server] Failed to write user_data.json:", error);
+    return false;
+  }
+}
+
+app.get("/api/user-data", (req, res) => {
+  const data = loadUserData();
+  res.json(data);
+});
+
+app.post("/api/user-data", (req, res) => {
+  const success = saveUserData(req.body);
+  if (success) {
+    res.json({ status: "ok" });
+  } else {
+    res.status(500).json({ status: "error", message: "Failed to save user data" });
+  }
+});
+
 export default app;
