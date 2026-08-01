@@ -3,6 +3,7 @@ import { useRouter } from '../context/RouterContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
 import { triggerHaptic } from '../utils/haptics';
+import questionsData from '../data/questions.json';
 
 interface LocalizedString {
   bn?: string;
@@ -232,39 +233,17 @@ export default function Test() {
       }
 
       try {
-        const response = await fetch(`/api/questions?subject=${selectedSubject === 'All' ? '' : selectedSubject}&difficulty=${selectedDifficulty === 'All' ? '' : selectedDifficulty}&limit=${questionCountParam}`);
-        if (!response.ok) {
-          throw new Error('API request failed');
-        }
-        const data = await response.json();
+        const allQ = (questionsData as any).questions || [];
+        const localQ = localGenerateQuestions(allQ);
         if (active) {
-          if (data.questions && data.questions.length > 0) {
-            setQuestions(data.questions);
-          } else {
-            setQuestions([]);
-          }
+          setQuestions(localQ);
           setLoading(false);
         }
       } catch (err) {
-        console.warn('Backend API not available, falling back to static questions.json client-side loader', err);
-        try {
-          const staticRes = await fetch('/src/data/questions.json');
-          if (!staticRes.ok) {
-            throw new Error('Static file not found');
-          }
-          const staticData = await staticRes.json();
-          if (active) {
-            const allQ = staticData.questions || [];
-            const localQ = localGenerateQuestions(allQ);
-            setQuestions(localQ);
-            setLoading(false);
-          }
-        } catch (staticErr) {
-          console.error('All question loading strategies failed:', staticErr);
-          if (active) {
-            setError(lang === 'bn' ? 'প্রশ্নপত্র লোড করতে ব্যর্থ হয়েছে।' : 'Failed to load questions.');
-            setLoading(false);
-          }
+        console.error('Failed to generate questions:', err);
+        if (active) {
+          setError(lang === 'bn' ? 'প্রশ্নপত্র লোড করতে ব্যর্থ হয়েছে।' : 'Failed to load questions.');
+          setLoading(false);
         }
       }
     };
