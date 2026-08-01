@@ -52,6 +52,13 @@ export default function Home() {
                   <i className="fa-regular fa-bell text-sm"></i>
                   <span className="absolute top-1.5 right-1.5 bg-red-500 w-2 h-2 rounded-full border border-white dark:border-slate-950"></span>
               </button>
+              <button 
+                onClick={() => { triggerHaptic('light'); navigate('settings'); }}
+                className="text-slate-700 dark:text-slate-300 min-h-[36px] min-w-[36px] bg-slate-100 dark:bg-slate-900 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 transition-all active:scale-95"
+                aria-label="Settings"
+              >
+                  <i className="fa-solid fa-gear text-sm"></i>
+              </button>
           </div>
       </header>
  

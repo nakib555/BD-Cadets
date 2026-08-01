@@ -22,6 +22,7 @@ import Photosynthesis from './pages/Photosynthesis';
 import PadmaBridge from './pages/PadmaBridge';
 import TestConfig from './pages/TestConfig';
 import DailyGoal from './pages/DailyGoal';
+import Settings from './pages/Settings';
 import cadetsSplash from './assets/images/cadets_splash_1785297743949.jpg';
 import bdCadetsLogo from './assets/images/BD-cadets-logo.svg';
 
@@ -165,6 +166,7 @@ function AppContent() {
                    {currentRoute.path === 'test-config' && <TestConfig />}
                    {currentRoute.path === 'test-active' && <Test />}
                    {currentRoute.path === 'daily-goal' && <DailyGoal />}
+                   {currentRoute.path === 'settings' && <Settings />}
                 </motion.div>
               )}
             </AnimatePresence>
