@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: bd-cadets-backend
+    env: node
+    rootDir: .
+    buildCommand: npm install && npx esbuild backend/index.ts --bundle --platform=node --format=cjs --packages=external --outfile=dist/backend.cjs
+    startCommand: node dist/backend.cjs
+    envVars:
+      - key: NODE_ENV
+        value: production

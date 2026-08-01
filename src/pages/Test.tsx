@@ -233,17 +233,41 @@ export default function Test() {
       }
 
       try {
-        const allQ = (questionsData as any).questions || [];
-        const localQ = localGenerateQuestions(allQ);
+        const apiUrl = import.meta.env.VITE_API_URL || '';
+        const response = await fetch(`${apiUrl}/api/questions?subject=${selectedSubject === 'All' ? '' : selectedSubject}&difficulty=${selectedDifficulty === 'All' ? '' : selectedDifficulty}&limit=${questionCountParam}`);
+        
+        if (!response.ok) {
+          throw new Error('API request failed');
+        }
+        
+        const data = await response.json();
+        
         if (active) {
-          setQuestions(localQ);
+          if (data.questions && data.questions.length > 0) {
+            setQuestions(data.questions);
+          } else {
+            // Fallback to local if empty
+            const allQ = (questionsData as any).questions || [];
+            const localQ = localGenerateQuestions(allQ);
+            setQuestions(localQ);
+          }
           setLoading(false);
         }
       } catch (err) {
-        console.error('Failed to generate questions:', err);
-        if (active) {
-          setError(lang === 'bn' ? 'প্রশ্নপত্র লোড করতে ব্যর্থ হয়েছে।' : 'Failed to load questions.');
-          setLoading(false);
+        console.warn('Backend API failed, falling back to local questions.json', err);
+        try {
+          const allQ = (questionsData as any).questions || [];
+          const localQ = localGenerateQuestions(allQ);
+          if (active) {
+            setQuestions(localQ);
+            setLoading(false);
+          }
+        } catch (staticErr) {
+          console.error('Failed to generate questions:', staticErr);
+          if (active) {
+            setError(lang === 'bn' ? 'প্রশ্নপত্র লোড করতে ব্যর্থ হয়েছে।' : 'Failed to load questions.');
+            setLoading(false);
+          }
         }
       }
     };
