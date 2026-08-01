@@ -13,6 +13,7 @@ export default function TestConfig() {
   const [qCount, setQCount] = useState(10);
   const [timeLimit, setTimeLimit] = useState(600); // 10 minutes (600s)
   const [difficulty, setDifficulty] = useState('All');
+  const [isConfigLoading, setIsConfigLoading] = useState(true);
 
   // Redirect back if no test configuration context was provided
   useEffect(() => {
@@ -20,7 +21,14 @@ export default function TestConfig() {
       goBack();
     } else {
       // Sensible defaults based on test selected
-      setQCount(test.qns > 20 ? 15 : 5);
+      let initialCount = test.qns > 20 ? 15 : 5;
+      if (initialCount > test.qns) initialCount = test.qns;
+      setQCount(initialCount);
+      
+      const timer = setTimeout(() => {
+        setIsConfigLoading(false);
+      }, 600);
+      return () => clearTimeout(timer);
     }
   }, [test, goBack]);
 
@@ -139,46 +147,33 @@ export default function TestConfig() {
             </span>
           </div>
 
-          {/* Quick Presets */}
-          <div className="grid grid-cols-6 gap-1.5">
-            {[5, 10, 20, 30, 50, 100].map((count) => (
-              <button
-                key={count}
-                onClick={() => { triggerHaptic('light'); setQCount(count); }}
-                className={`py-2.5 rounded-xl text-xs font-black transition cursor-pointer flex flex-col items-center justify-center border ${
-                  qCount === count
-                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                    : 'bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-blue-300 dark:hover:border-slate-700'
-                }`}
-              >
-                <span>{count}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Custom Questions Amount Input */}
-          <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
-            <i className="fa-solid fa-pen-fancy text-slate-400 text-xs pl-1"></i>
-            <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 whitespace-nowrap">
-              {lang === 'bn' ? 'কাস্টম সংখ্যা:' : 'Custom Amount:'}
-            </span>
-            <input
-              type="number"
-              min={1}
-              max={200}
-              value={qCount}
-              onChange={(e) => {
-                const val = parseInt(e.target.value, 10);
-                if (!isNaN(val) && val > 0) {
-                  setQCount(Math.min(val, 200));
-                } else if (e.target.value === '') {
-                  setQCount(1);
-                }
-              }}
-              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs font-black text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
-              placeholder="e.g. 25"
-            />
-          </div>
+          {isConfigLoading ? (
+            <div className="h-[46px] w-full bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse"></div>
+          ) : (
+            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
+              <i className="fa-solid fa-pen-fancy text-slate-400 text-xs pl-1"></i>
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                {lang === 'bn' ? 'কাস্টম সংখ্যা:' : 'Custom Amount:'}
+              </span>
+              <input
+                type="number"
+                min={1}
+                max={test.qns || 200}
+                value={qCount}
+                onChange={(e) => {
+                  const val = parseInt(e.target.value, 10);
+                  const maxQns = test.qns || 200;
+                  if (!isNaN(val) && val > 0) {
+                    setQCount(Math.min(val, maxQns));
+                  } else if (e.target.value === '') {
+                    setQCount(1);
+                  }
+                }}
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs font-black text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
+                placeholder={`Max ${test.qns || 200}`}
+              />
+            </div>
+          )}
         </div>
 
         {/* Time Limit Selection */}
@@ -192,55 +187,32 @@ export default function TestConfig() {
             </span>
           </div>
 
-          {/* Presets Grid */}
-          <div className="grid grid-cols-4 gap-1.5">
-            {[
-              { label: lang === 'bn' ? '১ মি.' : '1m', val: 60 },
-              { label: lang === 'bn' ? '৫ মি.' : '5m', val: 300 },
-              { label: lang === 'bn' ? '১০ মি.' : '10m', val: 600 },
-              { label: lang === 'bn' ? '১৫ মি.' : '15m', val: 900 },
-              { label: lang === 'bn' ? '২০ মি.' : '20m', val: 1200 },
-              { label: lang === 'bn' ? '৩০ মি.' : '30m', val: 1800 },
-              { label: lang === 'bn' ? '৬০ মি.' : '60m', val: 3600 },
-              { label: lang === 'bn' ? 'অসীম' : 'Unlimited', val: 0 }
-            ].map((item) => (
-              <button
-                key={item.val}
-                onClick={() => { triggerHaptic('light'); setTimeLimit(item.val); }}
-                className={`py-2.5 rounded-xl text-[11px] font-black transition cursor-pointer border ${
-                  timeLimit === item.val
-                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
-                    : 'bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-blue-300 dark:hover:border-slate-700'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Custom Time Input in Minutes */}
-          <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
-            <i className="fa-regular fa-clock text-slate-400 text-xs pl-1"></i>
-            <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 whitespace-nowrap">
-              {lang === 'bn' ? 'কাস্টম মিনিট:' : 'Custom Mins:'}
-            </span>
-            <input
-              type="number"
-              min={0}
-              max={300}
-              value={timeLimit > 0 ? Math.floor(timeLimit / 60) : 0}
-              onChange={(e) => {
-                const mins = parseInt(e.target.value, 10);
-                if (!isNaN(mins) && mins >= 0) {
-                  setTimeLimit(mins * 60);
-                } else if (e.target.value === '') {
-                  setTimeLimit(0);
-                }
-              }}
-              className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs font-black text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
-              placeholder="0 for unlimited"
-            />
-          </div>
+          {isConfigLoading ? (
+            <div className="h-[46px] w-full bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse"></div>
+          ) : (
+            <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800">
+              <i className="fa-regular fa-clock text-slate-400 text-xs pl-1"></i>
+              <span className="text-xs font-semibold text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                {lang === 'bn' ? 'কাস্টম মিনিট:' : 'Custom Mins:'}
+              </span>
+              <input
+                type="number"
+                min={0}
+                max={300}
+                value={timeLimit > 0 ? Math.floor(timeLimit / 60) : 0}
+                onChange={(e) => {
+                  const mins = parseInt(e.target.value, 10);
+                  if (!isNaN(mins) && mins >= 0) {
+                    setTimeLimit(Math.min(mins, 300) * 60);
+                  } else if (e.target.value === '') {
+                    setTimeLimit(0);
+                  }
+                }}
+                className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1 text-xs font-black text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500 font-mono"
+                placeholder="0 for unlimited"
+              />
+            </div>
+          )}
         </div>
 
         {/* Difficulty Selection */}

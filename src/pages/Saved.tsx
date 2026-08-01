@@ -174,43 +174,57 @@ export default function Saved() {
                   </div>
                 </div>
 
-                {/* Expanded Details */}
-                {isExpanded && (
-                  <div className="px-4 pb-4 pt-1 border-t border-slate-100 dark:border-slate-800/60 bg-slate-50/30 dark:bg-slate-950/30 space-y-3">
-                    <div className="grid grid-cols-1 gap-2 pt-2">
-                      {q.options.map((opt, oIdx) => {
-                        const isCorrect = q.correctIndex === oIdx;
-                        return (
-                          <div
-                            key={oIdx}
-                            className={`p-2.5 rounded-lg text-xs font-bold flex justify-between items-center transition ${
-                              isCorrect
-                                ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/40'
-                                : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-350 border border-slate-150 dark:border-slate-800/80'
-                            }`}
-                          >
-                            <span>{opt.label}. {renderMCQText(opt.text)}</span>
-                            {isCorrect && (
-                              <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/55 text-emerald-700 dark:text-emerald-300 font-extrabold px-1.5 py-0.5 rounded uppercase">
-                                {lang === 'bn' ? 'সঠিক' : 'Correct'}
-                              </span>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      key="content"
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { opacity: 1, height: "auto" },
+                        collapsed: { opacity: 0, height: 0 }
+                      }}
+                      transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 pt-1 border-t border-slate-100 dark:border-slate-800/60 bg-slate-50/30 dark:bg-slate-950/30 space-y-3">
+                        <div className="grid grid-cols-1 gap-2 pt-2">
+                          {q.options.map((opt, oIdx) => {
+                            const isCorrect = q.correctIndex === oIdx;
+                            return (
+                              <div
+                                key={oIdx}
+                                className={`p-2.5 rounded-lg text-xs font-bold flex justify-between items-center transition ${
+                                  isCorrect
+                                    ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-900/40'
+                                    : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-350 border border-slate-150 dark:border-slate-800/80'
+                                }`}
+                              >
+                                <span>{opt.label}. {renderMCQText(opt.text)}</span>
+                                {isCorrect && (
+                                  <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/55 text-emerald-700 dark:text-emerald-300 font-extrabold px-1.5 py-0.5 rounded uppercase">
+                                    {lang === 'bn' ? 'সঠিক' : 'Correct'}
+                                  </span>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
 
-                    {q.explanation && (
-                      <div className="bg-indigo-50/40 dark:bg-indigo-950/20 p-3 rounded-lg border border-indigo-100/50 dark:border-indigo-900/30 text-xs text-slate-600 dark:text-slate-350 leading-relaxed font-semibold">
-                        <span className="text-indigo-700 dark:text-indigo-400 font-bold block mb-1 flex items-center gap-1">
-                          <BookOpen className="w-3.5 h-3.5" />
-                          {lang === 'bn' ? 'ব্যাখ্যা' : 'Explanation'}
-                        </span>
-                        {renderMCQText(q.explanation)}
+                        {q.explanation && (
+                          <div className="bg-indigo-50/40 dark:bg-indigo-950/20 p-3 rounded-lg border border-indigo-100/50 dark:border-indigo-900/30 text-xs text-slate-600 dark:text-slate-350 leading-relaxed font-semibold">
+                            <span className="text-indigo-700 dark:text-indigo-400 font-bold block mb-1 flex items-center gap-1">
+                              <BookOpen className="w-3.5 h-3.5" />
+                              {lang === 'bn' ? 'ব্যাখ্যা' : 'Explanation'}
+                            </span>
+                            {renderMCQText(q.explanation)}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             );
           })}

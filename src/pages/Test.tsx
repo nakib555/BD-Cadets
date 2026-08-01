@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from '../context/RouterContext';
 import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -48,6 +48,7 @@ export default function Test() {
   const { currentRoute, goBack, navigate } = useRouter();
   const { userData, setUserData, markTestCompleted, toggleBookmark, isBookmarked } = useData();
   const { t, lang } = useLanguage();
+  const stepContainerRef = useRef<HTMLDivElement>(null);
 
   // Extract navigation configurations
   const [activeTestTitle, setActiveTestTitle] = useState(currentRoute.params?.testTitle || '');
@@ -125,6 +126,22 @@ export default function Test() {
   const [score, setScore] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [reloadTrigger, setReloadTrigger] = useState(0);
+
+  useEffect(() => {
+    if (stepContainerRef.current) {
+      const container = stepContainerRef.current;
+      const activeButton = container.children[currentIdx] as HTMLElement;
+      if (activeButton) {
+        const containerWidth = container.clientWidth;
+        const buttonLeft = activeButton.offsetLeft;
+        const buttonWidth = activeButton.clientWidth;
+        container.scrollTo({
+          left: buttonLeft - containerWidth / 2 + buttonWidth / 2,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }, [currentIdx]);
 
   // Helper generator fallback if API fails
   const localGenerateQuestions = (allQuestions: Question[]): Question[] => {
@@ -339,6 +356,7 @@ export default function Test() {
 
   const handleSelectOption = (optIdx: number) => {
     if (testSubmitted) return;
+    if (selectedAnswers[currentQuestion.id] !== undefined) return; // Prevent reselecting or undoing
     triggerHaptic('light');
     setSelectedAnswers({
       ...selectedAnswers,
@@ -401,11 +419,50 @@ export default function Test() {
 
   if (loading) {
     return (
-      <div className="bg-slate-50 dark:bg-slate-900 h-full flex flex-col items-center justify-center p-6 text-center animate-in fade-in transition-colors duration-300">
-        <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p className="text-sm font-black text-slate-700 dark:text-slate-300">
-          {lang === 'bn' ? 'প্রশ্নপত্র তৈরি হচ্ছে...' : 'Preparing Practice Session...'}
-        </p>
+      <div className="bg-slate-50 dark:bg-slate-900 h-full flex flex-col transition-colors duration-300">
+        {/* Header Skeleton */}
+        <div className="p-4 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center shadow-sm relative z-10">
+          <div className="w-8 h-8 bg-slate-200 dark:bg-slate-800 rounded-lg animate-pulse"></div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-24 h-4 bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse"></div>
+            <div className="w-16 h-3 bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse"></div>
+          </div>
+          <div className="w-16 h-6 bg-slate-200 dark:bg-slate-800 rounded-full animate-pulse"></div>
+        </div>
+        
+        {/* Progress Skeleton */}
+        <div className="h-1 bg-slate-200 dark:bg-slate-800 w-full animate-pulse"></div>
+        
+        {/* Content Skeleton */}
+        <div className="p-4 flex-1 overflow-y-auto space-y-4">
+          <div className="flex gap-1.5 overflow-hidden pb-1 justify-start">
+            {[1, 2, 3, 4, 5, 6, 7].map(i => (
+              <div key={i} className="w-7 h-6.5 bg-slate-200 dark:bg-slate-800 rounded-lg shrink-0 animate-pulse"></div>
+            ))}
+          </div>
+          
+          <div className="flex justify-between items-center mt-2">
+             <div className="w-20 h-4 bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse"></div>
+             <div className="flex gap-2">
+               <div className="w-7 h-7 bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse"></div>
+               <div className="w-16 h-6 bg-slate-200 dark:bg-slate-800 rounded-md animate-pulse"></div>
+             </div>
+          </div>
+          
+          <div className="w-full h-24 bg-slate-200 dark:bg-slate-800 rounded-xl mt-4 animate-pulse"></div>
+          
+          <div className="flex flex-col gap-2.5 mt-6">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="w-full h-[48px] bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse"></div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Footer Skeleton */}
+        <div className="p-4 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 flex justify-between gap-3 pb-8">
+           <div className="flex-1 h-12 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse"></div>
+           <div className="flex-1 h-12 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse"></div>
+        </div>
       </div>
     );
   }
@@ -649,7 +706,7 @@ export default function Test() {
 
       <div className="p-4 flex-1 overflow-y-auto space-y-4">
           {/* Question Step Indicators / Dots */}
-          <div className="flex gap-1.5 overflow-x-auto custom-scrollbar pb-1 justify-start">
+          <div ref={stepContainerRef} className="flex gap-1.5 overflow-x-auto custom-scrollbar pb-1 justify-start">
             {questions.map((_, idx) => {
               const isCurrent = idx === currentIdx;
               const isAnswered = selectedAnswers[_.id] !== undefined;
