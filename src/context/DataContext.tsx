@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import { useOfflineData } from '../hooks/useOfflineData';
 import { useDarkMode } from '../hooks/useDarkMode';
+import { Question } from '../types';
 
 export interface UserData {
   dailyGoalProgress: number;
@@ -41,6 +42,9 @@ interface DataContextType {
   isLoading: boolean;
   isDark: boolean;
   setIsDark: (dark: boolean) => void;
+  savedQuestions: Question[];
+  toggleBookmark: (question: Question) => void;
+  isBookmarked: (questionId: number) => boolean;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -49,6 +53,33 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   const [userData, setUserData] = useOfflineData<UserData>('cadet_user_data', defaultUserData);
   const [isLoading, setIsLoading] = React.useState(true);
   const [isDark, setIsDark] = useDarkMode();
+
+  const [savedQuestions, setSavedQuestions] = React.useState<Question[]>(() => {
+    try {
+      const stored = localStorage.getItem('cadet_global_bookmarks_v1');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  const toggleBookmark = (question: Question) => {
+    setSavedQuestions(prev => {
+      const exists = prev.some(q => q.id === question.id);
+      let updated;
+      if (exists) {
+        updated = prev.filter(q => q.id !== question.id);
+      } else {
+        updated = [...prev, question];
+      }
+      localStorage.setItem('cadet_global_bookmarks_v1', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const isBookmarked = (questionId: number) => {
+    return savedQuestions.some(q => q.id === questionId);
+  };
 
   React.useEffect(() => {
     // Check for day rollover
@@ -149,6 +180,9 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         isLoading,
         isDark,
         setIsDark,
+        savedQuestions,
+        toggleBookmark,
+        isBookmarked,
       }}
     >
       {children}

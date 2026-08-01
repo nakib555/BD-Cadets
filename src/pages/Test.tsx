@@ -45,7 +45,7 @@ const shuffleArray = (array: any[]) => {
 
 export default function Test() {
   const { currentRoute, goBack, navigate } = useRouter();
-  const { userData, setUserData, markTestCompleted } = useData();
+  const { userData, setUserData, markTestCompleted, toggleBookmark, isBookmarked } = useData();
   const { t, lang } = useLanguage();
 
   // Extract navigation configurations
@@ -349,6 +349,7 @@ export default function Test() {
       ...markedQuestions,
       [currentQuestion.id]: !markedQuestions[currentQuestion.id]
     });
+    toggleBookmark(currentQuestion);
   };
 
   const handleNext = () => {
@@ -559,36 +560,32 @@ export default function Test() {
             <h1 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-wider">{t('ongoing_test')}</h1>
             {activeTestTitle && <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500 max-w-[150px] truncate">{activeTestTitle}</span>}
           </div>
-          <button onClick={handleSubmit} className="text-red-500 dark:text-red-400 hover:text-red-600 font-bold text-[11px] uppercase cursor-pointer h-10 px-2 flex items-center">{t('end_test')}</button>
+          
+          {/* Time moved to top right corner */}
+          <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/60 px-2.5 py-1.5 rounded-full flex items-center gap-1 shadow-sm shrink-0">
+              <i className="fa-regular fa-clock text-indigo-600 dark:text-indigo-400 text-[10px] animate-pulse"></i>
+              <span className="text-[10px] font-black text-slate-800 dark:text-slate-200 font-mono">
+                {timeLimit > 0 ? formatTime(timeLeft) : `⏱️ ${formatTime(timeLeft)}`}
+              </span>
+          </div>
       </header>
 
-      {/* Timer & Meta Bar */}
-      <div className="bg-slate-50 dark:bg-slate-900 px-3 py-1.5 flex justify-between items-center border-b border-slate-200 dark:border-slate-800/60 shrink-0 transition-colors duration-300">
-          <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400">
+      {/* Timer & Meta Bar - Progress Bar on right of "বিষয়: বাংলা" */}
+      <div className="bg-slate-50 dark:bg-slate-900 px-3 py-2 flex justify-between items-center border-b border-slate-200 dark:border-slate-800/60 shrink-0 transition-colors duration-300 animate-in fade-in">
+          <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
             <span className="text-[10px] font-black uppercase tracking-wider">{t('subject_label')}{getSubjectName(currentQuestion.subject)}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => {
-                triggerHaptic('light');
-                setIsPaused(prev => !prev);
-              }}
-              className={`px-2 py-1 rounded-full text-[10px] font-black transition flex items-center gap-1 border cursor-pointer ${
-                isPaused
-                  ? 'bg-amber-500 text-white border-amber-500 shadow-sm'
-                  : 'bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900'
-              }`}
-            >
-              <i className={`fa-solid ${isPaused ? 'fa-play text-[8px]' : 'fa-pause text-[8px]'}`}></i>
-              <span>{isPaused ? (lang === 'bn' ? 'চালু করুন' : 'Resume') : (lang === 'bn' ? 'বিরতি' : 'Pause')}</span>
-            </button>
-
-            <div className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
-                <i className="fa-regular fa-clock text-indigo-600 dark:text-indigo-400 text-[10px] animate-pulse"></i>
-                <span className="text-[10px] font-black text-slate-800 dark:text-slate-200 font-mono">
-                  {timeLimit > 0 ? formatTime(timeLeft) : `⏱️ ${formatTime(timeLeft)}`}
-                </span>
+          
+          <div className="flex items-center gap-2 flex-1 justify-end max-w-[200px]">
+            <span className="text-[9px] font-black font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">
+              {currentIdx + 1}/{questions.length}
+            </span>
+            <div className="relative w-24 h-2 bg-slate-200/60 dark:bg-slate-800 rounded-full overflow-hidden border border-slate-300/30 dark:border-slate-700/30">
+              <div 
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-indigo-600 rounded-full transition-all duration-500 ease-out shadow-[0_0_8px_rgba(99,102,241,0.5)]"
+                style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
+              />
             </div>
           </div>
       </div>
@@ -648,52 +645,31 @@ export default function Test() {
       )}
 
       <div className="p-4 flex-1 overflow-y-auto space-y-4">
-          {/* Beautiful interactive progress bar directly above MCQ question card */}
-          <div className="space-y-2 bg-gradient-to-br from-indigo-50/40 to-slate-50/40 dark:from-slate-950/30 dark:to-slate-900/10 p-3 rounded-xl border border-slate-150 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
-            <div className="flex justify-between items-center">
-              <span className="text-[9px] font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest flex items-center gap-1.5">
-                <span className="flex h-1 w-1 rounded-full bg-indigo-500 animate-ping"></span>
-                {t('question')} {currentIdx + 1} of {questions.length}
-              </span>
-              <span className="text-[9px] font-black font-mono text-slate-600 dark:text-slate-400">
-                {Math.round(((currentIdx + 1) / questions.length) * 100)}%
-              </span>
-            </div>
+          {/* Question Step Indicators / Dots */}
+          <div className="flex gap-1.5 overflow-x-auto custom-scrollbar pb-1 justify-start">
+            {questions.map((_, idx) => {
+              const isCurrent = idx === currentIdx;
+              const isAnswered = selectedAnswers[_.id] !== undefined;
+              const isMarked = markedQuestions[_.id];
 
-            {/* Glowing Gradient Track */}
-            <div className="relative w-full h-2 bg-slate-200/60 dark:bg-slate-800 rounded-full overflow-hidden border border-slate-300/30 dark:border-slate-700/30">
-              <div 
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-indigo-600 rounded-full transition-all duration-500 ease-out shadow-[0_0_8px_rgba(99,102,241,0.5)]"
-                style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
-              />
-            </div>
-
-            {/* Question Step Indicators / Dots */}
-            <div className="flex gap-1 overflow-x-auto custom-scrollbar pt-1 justify-start md:justify-center">
-              {questions.map((_, idx) => {
-                const isCurrent = idx === currentIdx;
-                const isAnswered = selectedAnswers[_.id] !== undefined;
-                const isMarked = markedQuestions[_.id];
-
-                return (
-                  <button
-                    key={idx}
-                    onClick={() => { triggerHaptic('light'); setCurrentIdx(idx); }}
-                    className={`h-5 min-w-[20px] px-1 rounded-md text-[8px] font-black flex items-center justify-center transition-all cursor-pointer border shrink-0 ${
-                      isCurrent
-                        ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm scale-105'
-                        : isMarked
-                          ? 'bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-300 dark:border-amber-900/40'
-                          : isAnswered
-                            ? 'bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-900/40'
-                            : 'bg-slate-100/80 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-800'
-                    }`}
-                  >
-                    {idx + 1}
-                  </button>
-                );
-              })}
-            </div>
+              return (
+                <button
+                  key={idx}
+                  onClick={() => { triggerHaptic('light'); setCurrentIdx(idx); }}
+                  className={`h-6.5 min-w-[26px] px-1.5 rounded-lg text-[10px] font-black flex items-center justify-center transition-all cursor-pointer border shrink-0 ${
+                    isCurrent
+                      ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm scale-105'
+                      : isMarked
+                        ? 'bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-300 dark:border-amber-900/40 animate-pulse'
+                        : isAnswered
+                          ? 'bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-900/40'
+                          : 'bg-slate-100/80 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border-slate-200 dark:border-slate-800'
+                  }`}
+                >
+                  {idx + 1}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex justify-between items-center">
@@ -704,13 +680,13 @@ export default function Test() {
                 <button 
                   onClick={handleToggleMark}
                   className={`flex items-center justify-center w-7 h-7 rounded-md border transition-colors cursor-pointer ${
-                    markedQuestions[currentQuestion.id] 
+                    isBookmarked(currentQuestion.id) 
                       ? 'bg-amber-100 dark:bg-amber-950/40 border-amber-300 dark:border-amber-900/50 text-amber-600 dark:text-amber-400 shadow-sm' 
                       : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}
                   aria-label="Bookmark Question"
                 >
-                  <i className={`fa-bookmark text-[11px] ${markedQuestions[currentQuestion.id] ? 'fa-solid' : 'fa-regular'}`}></i>
+                  <i className={`fa-bookmark text-[11px] ${isBookmarked(currentQuestion.id) ? 'fa-solid' : 'fa-regular'}`}></i>
                 </button>
                 <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
                   <i className="fa-solid fa-shield text-[8px]"></i> {getDifficultyName(currentQuestion.difficulty)}
@@ -754,7 +730,7 @@ export default function Test() {
       </div>
 
       {/* Bottom controls */}
-      <div className="w-full bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 p-3 flex justify-between gap-2.5 z-20 shadow-lg shrink-0 transition-colors duration-300">
+      <div className="w-full bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 p-3 flex justify-between gap-2 z-20 shadow-lg shrink-0 transition-colors duration-300">
           <button 
             onClick={handlePrevious}
             disabled={currentIdx === 0}
@@ -765,15 +741,27 @@ export default function Test() {
             <i className="fa-solid fa-chevron-left text-[9px]"></i> {t('prev')}
           </button>
           
+          {/* Pause (বিরতি) Button */}
           <button 
-            onClick={handleToggleMark}
+            onClick={() => {
+              triggerHaptic('light');
+              setIsPaused(prev => !prev);
+            }}
             className={`min-h-[44px] flex-1 py-2.5 rounded-xl border text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1 transition cursor-pointer active:scale-95 ${
-              markedQuestions[currentQuestion.id] 
-                ? 'bg-amber-100 dark:bg-amber-950/40 border-amber-300 dark:border-amber-900/50 text-amber-700 dark:text-amber-400' 
-                : 'border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900'
+              isPaused
+                ? 'bg-amber-500 text-white border-amber-500 shadow-sm'
+                : 'border-slate-200 dark:border-slate-800 text-amber-600 dark:text-amber-400 hover:bg-slate-50 dark:hover:bg-slate-900'
             }`}
           >
-            <i className="fa-regular fa-bookmark"></i> {markedQuestions[currentQuestion.id] ? t('marked') : t('mark')}
+            <i className={`fa-solid ${isPaused ? 'fa-play' : 'fa-pause'}`}></i> {isPaused ? (lang === 'bn' ? 'চালু' : 'Resume') : (lang === 'bn' ? 'বিরতি' : 'Pause')}
+          </button>
+
+          {/* End Test (পরীক্ষা শেষ করুন) Button */}
+          <button 
+            onClick={handleSubmit}
+            className="min-h-[44px] flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-red-500 dark:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1 transition cursor-pointer active:scale-95"
+          >
+            <i className="fa-solid fa-stop"></i> {lang === 'bn' ? 'পরীক্ষা শেষ' : 'End Test'}
           </button>
           
           {currentIdx === questions.length - 1 ? (

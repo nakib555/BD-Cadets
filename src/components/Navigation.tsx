@@ -16,6 +16,7 @@ export default function Navigation() {
     { id: 'home', iconClass: 'fa-solid fa-house', labelId: 'home' },
     { id: 'study', iconClass: 'fa-solid fa-book-open-reader', labelId: 'study' },
     { id: 'test', iconClass: 'fa-regular fa-pen-to-square', labelId: 'test' },
+    { id: 'saved', iconClass: 'fa-regular fa-bookmark', labelId: 'saved' },
     { id: 'progress', iconClass: 'fa-solid fa-chart-simple', labelId: 'progress' },
     { id: 'profile', iconClass: 'fa-regular fa-user', labelId: 'profile' },
   ];

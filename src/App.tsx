@@ -11,6 +11,7 @@ import PWAInstallButton from './components/PWAInstallButton';
 import Home from './pages/Home';
 import Study from './pages/Study';
 import Test from './pages/Test';
+import Saved from './pages/Saved';
 import Progress from './pages/Progress';
 import StudyPlan from './pages/StudyPlan';
 import AllSubjects from './pages/AllSubjects';
@@ -142,6 +143,7 @@ function AppContent() {
                    {currentRoute.path === 'home' && <Home />}
                    {currentRoute.path === 'study' && <Study />}
                    {currentRoute.path === 'test' && <TestList />}
+                   {currentRoute.path === 'saved' && <Saved />}
                    {currentRoute.path === 'progress' && <Progress />}
                    {currentRoute.path === 'profile' && <Achievements />}
                 </motion.div>
