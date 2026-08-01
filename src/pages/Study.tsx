@@ -3,6 +3,7 @@ import { useRouter } from '../context/RouterContext';
 import { useData } from '../context/DataContext';
 import { useLanguage, T } from '../context/LanguageContext';
 import { triggerHaptic } from '../utils/haptics';
+import { EmptyState } from '../components/EmptyState';
 
 export default function Study() {
   const { goBack, navigate } = useRouter();
@@ -29,6 +30,17 @@ export default function Study() {
     { id: 'note-vocab', title: lang === 'bn' ? 'শব্দভাণ্ডার নির্মাতা পার্ট ১' : 'Vocabulary Builder Part 1', subject: t('english'), type: lang === 'bn' ? 'ফ্ল্যাرشفার্ড' : 'Flashcards', icon: 'fa-regular fa-copy', color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-950/30', cardBorder: 'border-slate-200 dark:border-slate-800/80', iconBorder: 'border-blue-200 dark:border-blue-900/40' },
     { id: 'note-history', title: lang === 'bn' ? 'বাংলাদেশের ইতিহাস - সময়রেখা' : 'History of Bangladesh - Timeline', subject: t('gk'), type: lang === 'bn' ? 'সারসংক্ষেপ' : 'Summary', icon: 'fa-solid fa-list', color: 'text-emerald-500 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-950/30', cardBorder: 'border-slate-200 dark:border-slate-800/80', iconBorder: 'border-emerald-200 dark:border-emerald-900/40' },
   ];
+
+  const interactiveLessons = [
+    { id: 'photosynthesis', route: 'photosynthesis', title: lang === 'bn' ? 'সালোকসংশ্লেষণ' : 'Photosynthesis', subject: t('biology'), icon: 'fa-solid fa-leaf', desc: lang === 'bn' ? 'ইন্টারেক্টিভ ইনফোগ্রাফিক' : 'Interactive infographic', bg: 'bg-emerald-500', cardBg: 'from-emerald-50/60 to-emerald-50/10 dark:from-emerald-950/30 dark:to-emerald-950/5 hover:from-emerald-50 dark:hover:from-emerald-950', border: 'border-emerald-200 dark:border-emerald-900/40', labelColor: 'text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-900/30' },
+    { id: 'interactive-map', route: 'interactive-map', title: lang === 'bn' ? 'বাংলাদেশ মানচিত্র' : 'BD Map', subject: t('geography'), icon: 'fa-solid fa-map-location-dot', desc: lang === 'bn' ? 'বিভাগ ও স্থান' : 'Divisions and spots', bg: 'bg-blue-500', cardBg: 'from-blue-50/60 to-blue-50/10 dark:from-blue-950/30 dark:to-blue-950/5 hover:from-blue-50 dark:hover:from-blue-950', border: 'border-blue-200 dark:border-blue-900/40', labelColor: 'text-blue-600 dark:text-blue-400 border-blue-100 dark:border-blue-900/30' },
+    { id: 'padma-bridge', route: 'padma-bridge', title: lang === 'bn' ? 'পদ্মা সেতু ইনফোগ্রাফিক' : 'Padma Bridge Infographic', subject: t('gk'), isEmoji: true, icon: '🌉', desc: lang === 'bn' ? 'ইন্টারেক্টিভ ডাবল-ডেক' : 'Interactive double-deck', bg: 'bg-indigo-600', cardBg: 'from-indigo-50/60 to-blue-50/10 dark:from-indigo-950/30 dark:to-blue-950/5 hover:from-indigo-50 dark:hover:from-indigo-950', border: 'border-indigo-200 dark:border-indigo-900/40', labelColor: 'text-indigo-600 dark:text-indigo-400 border-indigo-100 dark:border-indigo-900/30', colSpan: 'col-span-2' }
+  ];
+
+  const filteredInteractiveLessons = interactiveLessons.filter(lesson =>
+    lesson.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    lesson.subject.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const filteredNotes = notes.filter(n => 
     n.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -96,56 +108,36 @@ export default function Study() {
                       <span className="text-[10px] bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 px-2.5 py-0.5 rounded-full font-bold"><T id="new_feature" /></span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                      {/* Photosynthesis science guide card */}
-                      <div 
-                          onClick={() => { triggerHaptic('light'); navigate('photosynthesis'); }}
-                          className="bg-gradient-to-br from-emerald-50/60 to-emerald-50/10 dark:from-emerald-950/30 dark:to-emerald-950/5 hover:from-emerald-50 dark:hover:from-emerald-950 border border-emerald-200 dark:border-emerald-900/40 p-4 rounded-2xl shadow-sm hover:shadow transition cursor-pointer flex flex-col justify-between min-h-[120px] active:scale-[0.98] group"
-                      >
-                          <div className="flex justify-between items-start">
-                              <div className="w-9 h-9 bg-emerald-500 rounded-xl flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
-                                  <i className="fa-solid fa-leaf text-sm"></i>
-                              </div>
-                              <span className="text-[10px] font-black uppercase text-emerald-600 dark:text-emerald-400 bg-white dark:bg-slate-950 border border-emerald-100 dark:border-emerald-900/30 px-2 py-0.5 rounded-full"><T id="biology" /></span>
+                      {filteredInteractiveLessons.map(lesson => (
+                        <div 
+                            key={lesson.id}
+                            onClick={() => { triggerHaptic('light'); navigate(lesson.route); }}
+                            className={`${lesson.colSpan || ''} bg-gradient-to-br ${lesson.cardBg} border ${lesson.border} p-4 rounded-2xl shadow-sm hover:shadow transition cursor-pointer flex flex-col justify-between min-h-[120px] active:scale-[0.98] group`}
+                        >
+                            <div className="flex justify-between items-start">
+                                <div className={`w-9 h-9 ${lesson.bg} rounded-xl flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition`}>
+                                    {lesson.isEmoji ? (
+                                      <span className="text-sm">{lesson.icon}</span>
+                                    ) : (
+                                      <i className={`${lesson.icon} text-sm`}></i>
+                                    )}
+                                </div>
+                                <span className={`text-[10px] font-black uppercase ${lesson.labelColor} bg-white dark:bg-slate-950 border px-2 py-0.5 rounded-full`}>{lesson.subject}</span>
+                            </div>
+                            <div>
+                                <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight">{lesson.title}</h4>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-1">{lesson.desc}</p>
+                            </div>
+                        </div>
+                      ))}
+                      {filteredInteractiveLessons.length === 0 && (
+                          <div className="col-span-2">
+                            <EmptyState
+                                title={lang === 'bn' ? 'কোনো ইন্টারেক্টিভ লেশন পাওয়া যায়নি' : 'No interactive lessons found'}
+                                description={lang === 'bn' ? 'অনুসন্ধান শব্দ পরিবর্তন করুন' : 'Try adjusting your search terms'}
+                            />
                           </div>
-                          <div>
-                              <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight"><T id="photosynthesis" /></h4>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-1"><T id="interactive_infographic" /></p>
-                          </div>
-                      </div>
-
-                      {/* Interactive map card */}
-                      <div 
-                          onClick={() => { triggerHaptic('light'); navigate('interactive-map'); }}
-                          className="bg-gradient-to-br from-blue-50/60 to-blue-50/10 dark:from-blue-950/30 dark:to-blue-950/5 hover:from-blue-50 dark:hover:from-blue-950 border border-blue-200 dark:border-blue-900/40 p-4 rounded-2xl shadow-sm hover:shadow transition cursor-pointer flex flex-col justify-between min-h-[120px] active:scale-[0.98] group"
-                      >
-                          <div className="flex justify-between items-start">
-                              <div className="w-9 h-9 bg-blue-500 rounded-xl flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
-                                  <i className="fa-solid fa-map-location-dot text-sm"></i>
-                              </div>
-                              <span className="text-[10px] font-black uppercase text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-950 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-full"><T id="geography" /></span>
-                          </div>
-                          <div>
-                              <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight"><T id="bd_map" /></h4>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-1"><T id="divisions_and_spots" /></p>
-                          </div>
-                      </div>
-
-                      {/* Padma Bridge card */}
-                      <div 
-                          onClick={() => { triggerHaptic('light'); navigate('padma-bridge'); }}
-                          className="col-span-2 bg-gradient-to-br from-indigo-50/60 to-blue-50/10 dark:from-indigo-950/30 dark:to-blue-950/5 hover:from-indigo-50 dark:hover:from-indigo-950 border border-indigo-200 dark:border-indigo-900/40 p-4 rounded-2xl shadow-sm hover:shadow transition cursor-pointer flex flex-col justify-between min-h-[120px] active:scale-[0.98] group"
-                      >
-                          <div className="flex justify-between items-start">
-                              <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition">
-                                   <span className="text-sm">🌉</span>
-                              </div>
-                              <span className="text-[10px] font-black uppercase text-indigo-600 dark:text-indigo-400 bg-white dark:bg-slate-950 border border-indigo-100 dark:border-indigo-900/30 px-2 py-0.5 rounded-full"><T id="gk" /></span>
-                          </div>
-                          <div>
-                              <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight"><T id="padma_bridge_infographic" /></h4>
-                              <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-1"><T id="interactive_double_deck" /></p>
-                          </div>
-                      </div>
+                      )}
                   </div>
               </div>
           )}
@@ -191,13 +183,10 @@ export default function Study() {
                 );
             })}
             {filteredNotes.length === 0 && (
-              <div className="text-center py-12 bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-                <div className="w-12 h-12 bg-slate-100 dark:bg-slate-900 rounded-full flex items-center justify-center mx-auto text-slate-400 mb-3">
-                  <i className="fa-solid fa-folder-open text-xl"></i>
-                </div>
-                <h4 className="text-sm font-bold text-slate-800 dark:text-slate-200">No matching study materials</h4>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Try adjusting your search terms</p>
-              </div>
+              <EmptyState
+                title={lang === 'bn' ? 'কোনো স্টাডি ম্যাটেরিয়াল পাওয়া যায়নি' : 'No matching study materials'}
+                description={lang === 'bn' ? 'অনুসন্ধান শব্দ পরিবর্তন করুন' : 'Try adjusting your search terms'}
+              />
             )}
           </div>
       </div>

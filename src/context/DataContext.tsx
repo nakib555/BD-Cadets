@@ -15,6 +15,7 @@ export interface UserData {
   testsTaken: number;
   avgScore: number;
   bestScore: number;
+  attemptedQuestions?: Record<string, number[]>;
 }
 
 const todayStr = new Date().toISOString().split('T')[0];
@@ -45,6 +46,8 @@ interface DataContextType {
   savedQuestions: Question[];
   toggleBookmark: (question: Question) => void;
   isBookmarked: (questionId: number) => boolean;
+  markQuestionAsAttempted: (subject: string, questionIds: number[]) => void;
+  resetAttemptedQuestions: (subject: string) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -84,7 +87,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
   // Sync data to backend whenever it changes
   React.useEffect(() => {
     if (isLoading) return; // Don't overwrite backend data during initial load
-    fetch('/api/user-data', {
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    fetch(`${apiUrl}/api/user-data`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userData, savedQuestions }),
@@ -93,7 +97,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     // Fetch initial data from backend
-    fetch('/api/user-data')
+    const apiUrl = import.meta.env.VITE_API_URL || '';
+    fetch(`${apiUrl}/api/user-data`)
       .then(res => res.json())
       .then(data => {
         if (data && data.userData) {
@@ -195,6 +200,39 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     }));
   };
 
+  const markQuestionAsAttempted = (subject: string, questionIds: number[]) => {
+    if (!subject || subject === 'All' || questionIds.length === 0) return;
+    
+    setUserData(prev => {
+      const subjectKey = subject.toLowerCase();
+      const currentAttempted = prev.attemptedQuestions?.[subjectKey] || [];
+      const newAttempted = Array.from(new Set([...currentAttempted, ...questionIds]));
+      
+      return {
+        ...prev,
+        attemptedQuestions: {
+          ...prev.attemptedQuestions,
+          [subjectKey]: newAttempted
+        }
+      };
+    });
+  };
+
+  const resetAttemptedQuestions = (subject: string) => {
+    if (!subject || subject === 'All') return;
+    
+    setUserData(prev => {
+      const subjectKey = subject.toLowerCase();
+      const newAttemptedQuestions = { ...prev.attemptedQuestions };
+      delete newAttemptedQuestions[subjectKey];
+      
+      return {
+        ...prev,
+        attemptedQuestions: newAttemptedQuestions
+      };
+    });
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -209,6 +247,8 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         savedQuestions,
         toggleBookmark,
         isBookmarked,
+        markQuestionAsAttempted,
+        resetAttemptedQuestions,
       }}
     >
       {children}

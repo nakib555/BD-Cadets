@@ -6,18 +6,8 @@ import { triggerHaptic } from '../utils/haptics';
 import { Question } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { Bookmark, Search, Trash2, ChevronDown, ChevronUp, BookOpen, AlertCircle } from 'lucide-react';
+import { EmptyState } from '../components/EmptyState';
 
-function renderMCQText(textObj: any): string {
-  if (!textObj) return '';
-  if (typeof textObj === 'string') return textObj;
-  const bn = textObj.bn?.trim() || '';
-  const en = textObj.en?.trim() || '';
-  if (bn && en) {
-    if (bn === en) return bn;
-    return `${bn} / ${en}`;
-  }
-  return bn || en || '';
-}
 
 export default function Saved() {
   const { savedQuestions, toggleBookmark } = useData();
@@ -67,9 +57,9 @@ export default function Saved() {
 
   const filteredQuestions = savedQuestions.filter(q => {
     const matchesSubject = selectedSubject === 'All' || q.subject === selectedSubject;
-    const qText = renderMCQText(q.question).toLowerCase();
-    const expText = renderMCQText(q.explanation).toLowerCase();
-    const optText = q.options.map(o => renderMCQText(o.text)).join(' ').toLowerCase();
+    const qText = q.question.toLowerCase();
+    const expText = q.explanation.toLowerCase();
+    const optText = q.options.map(o => o.text).join(' ').toLowerCase();
     const matchesSearch = qText.includes(searchQuery.toLowerCase()) || 
                           expText.includes(searchQuery.toLowerCase()) ||
                           optText.includes(searchQuery.toLowerCase());
@@ -148,16 +138,30 @@ export default function Saved() {
                   className="p-4 flex justify-between items-start gap-3 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-900/20 transition-colors"
                 >
                   <div className="space-y-1.5 flex-1 min-w-0">
-                    <div className="flex gap-2 items-center flex-wrap">
-                      <span className="text-[9px] font-black bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
-                        {getSubjectName(q.subject)}
-                      </span>
-                      <span className="text-[9px] font-black bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
-                        {getDifficultyName(q.difficulty)}
-                      </span>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex gap-2 items-center flex-wrap">
+                        <span className="text-[9px] font-black bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                          {getSubjectName(q.subject)}
+                        </span>
+                        <span className="text-[9px] font-black bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                          {getDifficultyName(q.difficulty)}
+                        </span>
+                        {q.year && (
+                          <span className="text-[9px] font-black bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider flex items-center gap-1">
+                            <i className="fa-regular fa-calendar"></i> {q.year}
+                          </span>
+                        )}
+                      </div>
+                      {(q.partName || q.chapterName) && (
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                          {q.partName && `${q.partName}`}
+                          {q.partName && q.chapterName && ' • '}
+                          {q.chapterName && `${q.chapterName}`}
+                        </span>
+                      )}
                     </div>
                     <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100 leading-snug">
-                      {renderMCQText(q.question)}
+                      {q.question}
                     </h3>
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0 self-center">
@@ -201,7 +205,7 @@ export default function Saved() {
                                     : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-350 border border-slate-150 dark:border-slate-800/80'
                                 }`}
                               >
-                                <span>{opt.label}. {renderMCQText(opt.text)}</span>
+                                <span>{opt.label}. {opt.text}</span>
                                 {isCorrect && (
                                   <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/55 text-emerald-700 dark:text-emerald-300 font-extrabold px-1.5 py-0.5 rounded uppercase">
                                     {lang === 'bn' ? 'সঠিক' : 'Correct'}
@@ -218,7 +222,7 @@ export default function Saved() {
                               <BookOpen className="w-3.5 h-3.5" />
                               {lang === 'bn' ? 'ব্যাখ্যা' : 'Explanation'}
                             </span>
-                            {renderMCQText(q.explanation)}
+                            {q.explanation}
                           </div>
                         )}
                       </div>
@@ -231,25 +235,20 @@ export default function Saved() {
         </AnimatePresence>
 
         {filteredQuestions.length === 0 && (
-          <div className="text-center py-16 px-6 bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 max-w-md mx-auto shadow-xs">
-            <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4 border border-indigo-100 dark:border-indigo-900/30">
-              <Bookmark className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-            </div>
-            <h3 className="text-sm font-extrabold text-slate-800 dark:text-slate-200">
-              {lang === 'bn' ? 'কোনো সংরক্ষিত প্রশ্ন নেই' : 'No saved questions'}
-            </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed font-medium">
-              {lang === 'bn'
-                ? 'মক টেস্ট বা অনুশীলনের সময় কঠিন প্রশ্নগুলো সেভ করে পরবর্তীতে এখানে রিভিশন দিন।'
-                : 'Bookmark difficult MCQ questions during exams to save and review them later.'}
-            </p>
+          <EmptyState
+            title={lang === 'bn' ? 'কোনো সংরক্ষিত প্রশ্ন নেই' : 'No saved questions'}
+            description={lang === 'bn'
+              ? 'মক টেস্ট বা অনুশীলনের সময় কঠিন প্রশ্নগুলো সেভ করে পরবর্তীতে এখানে রিভিশন দিন।'
+              : 'Bookmark difficult MCQ questions during exams to save and review them later.'}
+            icon={<Bookmark className="w-8 h-8 text-indigo-400" />}
+          >
             <button
               onClick={() => { triggerHaptic('medium'); navigate('test'); }}
-              className="mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[11px] uppercase tracking-wider px-5 py-3 rounded-xl shadow-xs hover:shadow-sm cursor-pointer transition active:scale-95"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[11px] uppercase tracking-wider px-5 py-3 rounded-xl shadow-xs hover:shadow-sm cursor-pointer transition active:scale-95"
             >
               {lang === 'bn' ? 'পরীক্ষা সেকশনে যান' : 'Go to Practice Exams'}
             </button>
-          </div>
+          </EmptyState>
         )}
       </div>
     </div>

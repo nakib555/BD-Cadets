@@ -54,7 +54,7 @@ app.get("/api/questions", (req, res) => {
     loadQuestions();
   }
 
-  const { subject, difficulty, limit } = req.query;
+  const { subject, difficulty, limit, ignoreIds } = req.query;
   let filtered = [...cachedQuestions];
 
   if (subject && subject !== "All" && subject !== "") {
@@ -67,6 +67,13 @@ app.get("/api/questions", (req, res) => {
     filtered = filtered.filter(
       q => q.difficulty && q.difficulty.toLowerCase() === (difficulty as string).toLowerCase()
     );
+  }
+
+  if (ignoreIds && typeof ignoreIds === 'string' && ignoreIds.trim() !== '') {
+    const idsToIgnore = ignoreIds.split(',').map(id => parseInt(id, 10)).filter(id => !isNaN(id));
+    if (idsToIgnore.length > 0) {
+      filtered = filtered.filter(q => !idsToIgnore.includes(q.id));
+    }
   }
 
   // Shuffle the filtered subset to ensure randomness in tests

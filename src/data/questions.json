@@ -4,401 +4,526 @@
       "id": 1,
       "subject": "GK",
       "difficulty": "Easy",
-      "question": {
-        "bn": "বাংলাদেশের প্রথম ক্যাডেট কলেজ কোনটি?",
-        "en": "Which is the first Cadet College in Bangladesh?"
-      },
+      "question": "বাংলাদেশের প্রথম ক্যাডেট কলেজ কোনটি?",
       "options": [
-        { "label": "A", "text": { "bn": "সিলেট ক্যাডেট কলেজ", "en": "Sylhet Cadet College" } },
-        { "label": "B", "text": { "bn": "ফৌজদারহাট ক্যাডেট কলেজ", "en": "Faujdarhat Cadet College" } },
-        { "label": "C", "text": { "bn": "মির্জাপুর ক্যাডেট কলেজ", "en": "Mirzapur Cadet College" } },
-        { "label": "D", "text": { "bn": "রাজশাহী ক্যাডেট কলেজ", "en": "Rajshahi Cadet College" } }
+        {
+          "label": "A",
+          "text": "সিলেট ক্যাডেট কলেজ"
+        },
+        {
+          "label": "B",
+          "text": "ফৌজদারহাট ক্যাডেট কলেজ"
+        },
+        {
+          "label": "C",
+          "text": "মির্জাপুর ক্যাডেট কলেজ"
+        },
+        {
+          "label": "D",
+          "text": "রাজশাহী ক্যাডেট কলেজ"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "ফৌজদারহাট ক্যাডেট কলেজ ১৯৫৮ সালে চট্টগ্রামে প্রতিষ্ঠিত হয়, যা বাংলাদেশের ইতিহাসের সর্বপ্রথম ক্যাডেট কলেজ।",
-        "en": "Faujdarhat Cadet College was established in 1958 in Chittagong, making it the first cadet college in Bangladesh."
-      }
+      "explanation": "ফৌজদারহাট ক্যাডেট কলেজ ১৯৫৮ সালে চট্টগ্রামে প্রতিষ্ঠিত হয়, যা বাংলাদেশের ইতিহাসের সর্বপ্রথম ক্যাডেট কলেজ।",
+      "year": 2023,
+      "partName": "General Knowledge Part 1",
+      "chapterName": "History of Bengal"
     },
     {
       "id": 2,
       "subject": "Mathematics",
       "difficulty": "Medium",
-      "question": {
-        "bn": "যদি a = ৩ এবং b = -২ হয়, তবে 2a² - 3ab + b² এর মান কত?",
-        "en": "If a = 3 and b = -2, what is the value of 2a² - 3ab + b²?"
-      },
+      "question": "যদি a = ৩ এবং b = -২ হয়, তবে 2a² - 3ab + b² এর মান কত?",
       "options": [
-        { "label": "A", "text": { "bn": "২০", "en": "20" } },
-        { "label": "B", "text": { "bn": "৩০", "en": "30" } },
-        { "label": "C", "text": { "bn": "৪০", "en": "40" } },
-        { "label": "D", "text": { "bn": "৫০", "en": "50" } }
+        {
+          "label": "A",
+          "text": "২০"
+        },
+        {
+          "label": "B",
+          "text": "৩০"
+        },
+        {
+          "label": "C",
+          "text": "৪০"
+        },
+        {
+          "label": "D",
+          "text": "৫০"
+        }
       ],
       "correctIndex": 2,
-      "explanation": {
-        "bn": "2a² - 3ab + b² = 2(3)² - 3(3)(-2) + (-2)² = 2(9) - (-18) + 4 = 18 + 18 + 4 = 40।",
-        "en": "2a² - 3ab + b² = 2(3)² - 3(3)(-2) + (-2)² = 2(9) - (-18) + 4 = 18 + 18 + 4 = 40."
-      }
+      "explanation": "2a² - 3ab + b² = 2(3)² - 3(3)(-2) + (-2)² = 2(9) - (-18) + 4 = 18 + 18 + 4 = 40।",
+      "partName": "Mathematics Paper 1",
+      "chapterName": "Algebra basics"
     },
     {
       "id": 3,
       "subject": "English",
       "difficulty": "Medium",
-      "question": {
-        "bn": "নিচের কোনটি সঠিক বানান? (Choose the correct spelling)",
-        "en": "Which of the following is the correct spelling?"
-      },
+      "question": "নিচের কোনটি সঠিক বানান? (Choose the correct spelling)",
       "options": [
-        { "label": "A", "text": { "bn": "Lieutennant", "en": "Lieutennant" } },
-        { "label": "B", "text": { "bn": "Lieutenant", "en": "Lieutenant" } },
-        { "label": "C", "text": { "bn": "Leiutenant", "en": "Leiutenant" } },
-        { "label": "D", "text": { "bn": "Lieutenent", "en": "Lieutenent" } }
+        {
+          "label": "A",
+          "text": "Lieutennant"
+        },
+        {
+          "label": "B",
+          "text": "Lieutenant"
+        },
+        {
+          "label": "C",
+          "text": "Leiutenant"
+        },
+        {
+          "label": "D",
+          "text": "Lieutenent"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "Lieutenant শব্দের সঠিক বানান হলো 'L-i-e-u-t-e-n-a-n-t'।",
-        "en": "The correct spelling of the word is 'L-i-e-u-t-e-n-a-n-t'."
-      }
+      "explanation": "Lieutenant শব্দের সঠিক বানান হলো 'L-i-e-u-t-e-n-a-n-t'।"
     },
     {
       "id": 4,
       "subject": "Bangla",
       "difficulty": "Medium",
-      "question": {
-        "bn": "'কবর' কবিতাটি কে লিখেছেন?",
-        "en": "Who wrote the poem 'Kabar'?"
-      },
+      "question": "'কবর' কবিতাটি কে লিখেছেন?",
       "options": [
-        { "label": "A", "text": { "bn": "রবীন্দ্রনাথ ঠাকুর", "en": "Rabindranath Tagore" } },
-        { "label": "B", "text": { "bn": "কাজী নজরুল ইসলাম", "en": "Kazi Nazrul Islam" } },
-        { "label": "C", "text": { "bn": "পল্লীকবি জসীমউদ্দীন", "en": "Jasimuddin" } },
-        { "label": "D", "text": { "bn": "জীবনানন্দ দাশ", "en": "Jibanananda Das" } }
+        {
+          "label": "A",
+          "text": "রবীন্দ্রনাথ ঠাকুর"
+        },
+        {
+          "label": "B",
+          "text": "কাজী নজরুল ইসলাম"
+        },
+        {
+          "label": "C",
+          "text": "পল্লীকবি জসীমউদ্দীন"
+        },
+        {
+          "label": "D",
+          "text": "জীবনানন্দ দাশ"
+        }
       ],
       "correctIndex": 2,
-      "explanation": {
-        "bn": "পল্লীকবি জসীমউদ্দীনের বিখ্যাত কবিতা 'কবর' তাঁর 'রাখালী' কাব্যগ্রন্থের অন্তর্ভুক্ত।",
-        "en": "The famous poem 'Kabar' by rural poet Jasimuddin is included in his poetry book 'Rakhali'."
-      }
+      "explanation": "পল্লীকবি জসীমউদ্দীনের বিখ্যাত কবিতা 'কবর' তাঁর 'রাখালী' কাব্যগ্রন্থের অন্তর্ভুক্ত।"
     },
     {
       "id": 5,
       "subject": "GK",
       "difficulty": "Easy",
-      "question": {
-        "bn": "ক্যাডেট কলেজ ভর্তি লিখিত পরীক্ষায় গণিতের জন্য কত নম্বর বরাদ্দ থাকে?",
-        "en": "How many marks are allocated for Mathematics in the Cadet College Admission Written Test?"
-      },
+      "question": "ক্যাডেট কলেজ ভর্তি লিখিত পরীক্ষায় গণিতের জন্য কত নম্বর বরাদ্দ থাকে?",
       "options": [
-        { "label": "A", "text": { "bn": "৫০ নম্বর", "en": "50 Marks" } },
-        { "label": "B", "text": { "bn": "৬০ নম্বর", "en": "60 Marks" } },
-        { "label": "C", "text": { "bn": "১০০ নম্বর", "en": "100 Marks" } },
-        { "label": "D", "text": { "bn": "১২০ নম্বর", "en": "120 Marks" } }
+        {
+          "label": "A",
+          "text": "৫০ নম্বর"
+        },
+        {
+          "label": "B",
+          "text": "৬০ নম্বর"
+        },
+        {
+          "label": "C",
+          "text": "১০০ নম্বর"
+        },
+        {
+          "label": "D",
+          "text": "১২০ নম্বর"
+        }
       ],
       "correctIndex": 2,
-      "explanation": {
-        "bn": "লিখিত ভর্তি পরীক্ষা মোট ৩০০ নম্বরের হয়ে থাকে, যার মধ্যে গণিতে ১০০ নম্বর, ইংরেজিতে ১০০ নম্বর, বাংলায় ৬০ নম্বর এবং সাধারণ জ্ঞানে ৪০ নম্বর থাকে।",
-        "en": "The written admission test is of total 300 marks, out of which Mathematics has 100 marks, English 100 marks, Bengali 60 marks and General Knowledge 40 marks."
-      }
+      "explanation": "লিখিত ভর্তি পরীক্ষা মোট ৩০০ নম্বরের হয়ে থাকে, যার মধ্যে গণিতে ১০০ নম্বর, ইংরেজিতে ১০০ নম্বর, বাংলায় ৬০ নম্বর এবং সাধারণ জ্ঞানে ৪০ নম্বর থাকে।"
     },
     {
       "id": 6,
       "subject": "Mathematics",
       "difficulty": "Easy",
-      "question": {
-        "bn": "একটি বৃত্তের ব্যাসার্ধ ৭ সেমি হলে এর ক্ষেত্রফল কত বর্গ সেমি? (pi = ২২/৭)",
-        "en": "If the radius of a circle is 7 cm, what is its area in sq cm? (pi = 22/7)"
-      },
+      "question": "একটি বৃত্তের ব্যাসার্ধ ৭ সেমি হলে এর ক্ষেত্রফল কত বর্গ সেমি? (pi = ২২/৭)",
       "options": [
-        { "label": "A", "text": { "bn": "১৫৪", "en": "154" } },
-        { "label": "B", "text": { "bn": "৪৪", "en": "44" } },
-        { "label": "C", "text": { "bn": "১৪", "en": "14" } },
-        { "label": "D", "text": { "bn": "৪৯", "en": "49" } }
+        {
+          "label": "A",
+          "text": "১৫৪"
+        },
+        {
+          "label": "B",
+          "text": "৪৪"
+        },
+        {
+          "label": "C",
+          "text": "১৪"
+        },
+        {
+          "label": "D",
+          "text": "৪৯"
+        }
       ],
       "correctIndex": 0,
-      "explanation": {
-        "bn": "ক্ষেত্রফল = pi * r² = (২২/৭) * ৭ * ৭ = ১৫৪ বর্গ সেমি।",
-        "en": "Area = pi * r² = (22/7) * 7 * 7 = 154 sq cm."
-      }
+      "explanation": "ক্ষেত্রফল = pi * r² = (২২/৭) * ৭ * ৭ = ১৫৪ বর্গ সেমি।"
     },
     {
       "id": 7,
       "subject": "English",
       "difficulty": "Medium",
-      "question": {
-        "bn": "কোনটি 'DILIGENT' শব্দের সমার্থক শব্দ?",
-        "en": "Which is the synonym of the word 'DILIGENT'?"
-      },
+      "question": "কোনটি 'DILIGENT' শব্দের সমার্থক শব্দ?",
       "options": [
-        { "label": "A", "text": { "bn": "Lazy (অলস)", "en": "Lazy" } },
-        { "label": "B", "text": { "bn": "Active (সক্রিয়)", "en": "Active" } },
-        { "label": "C", "text": { "bn": "Industrious (পরিশ্রমী)", "en": "Industrious" } },
-        { "label": "D", "text": { "bn": "Intelligent (বুদ্ধিমান)", "en": "Intelligent" } }
+        {
+          "label": "A",
+          "text": "Lazy (অলস)"
+        },
+        {
+          "label": "B",
+          "text": "Active (সক্রিয়)"
+        },
+        {
+          "label": "C",
+          "text": "Industrious (পরিশ্রমী)"
+        },
+        {
+          "label": "D",
+          "text": "Intelligent (বুদ্ধিমান)"
+        }
       ],
       "correctIndex": 2,
-      "explanation": {
-        "bn": "'Diligent' শব্দের অর্থ পরিশ্রমী বা অধ্যবসায়ী। এর উপযুক্ত সমার্থক শব্দ হলো 'Industrious'।",
-        "en": "'Diligent' means hardworking or persistent. Its correct synonym is 'Industrious'."
-      }
+      "explanation": "'Diligent' শব্দের অর্থ পরিশ্রমী বা অধ্যবসায়ী। এর উপযুক্ত সমার্থক শব্দ হলো 'Industrious'।"
     },
     {
       "id": 8,
       "subject": "Bangla",
       "difficulty": "Easy",
-      "question": {
-        "bn": "জাতীয় কবি কাজী নজরুল ইসলামের সমাধি কোথায় অবস্থিত?",
-        "en": "Where is the tomb of national poet Kazi Nazrul Islam located?"
-      },
+      "question": "জাতীয় কবি কাজী নজরুল ইসলামের সমাধি কোথায় অবস্থিত?",
       "options": [
-        { "label": "A", "text": { "bn": "মিরপুর বুদ্ধিজীবী কবরস্থান", "en": "Mirpur Intellectual Graveyard" } },
-        { "label": "B", "text": { "bn": "ঢাকা বিশ্ববিদ্যালয় কেন্দ্রীয় মসজিদ প্রাঙ্গণ", "en": "Dhaka University Central Mosque Premises" } },
-        { "label": "C", "text": { "bn": "বনানী কবরস্থান", "en": "Banani Graveyard" } },
-        { "label": "D", "text": { "bn": "সোহরাওয়ার্দী উদ্যান", "en": "Suhrawardy Udyan" } }
+        {
+          "label": "A",
+          "text": "মিরপুর বুদ্ধিজীবী কবরস্থান"
+        },
+        {
+          "label": "B",
+          "text": "ঢাকা বিশ্ববিদ্যালয় কেন্দ্রীয় মসজিদ প্রাঙ্গণ"
+        },
+        {
+          "label": "C",
+          "text": "বনানী কবরস্থান"
+        },
+        {
+          "label": "D",
+          "text": "সোহরাওয়ার্দী উদ্যান"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "কবি কাজী নজরুল ইসলামকে তাঁর জীবনের শেষ ইচ্ছা অনুযায়ী ঢাকা বিশ্ববিদ্যালয় কেন্দ্রীয় মসজিদের পাশে রাষ্ট্রীয় মর্যাদায় দাফন করা হয়।",
-        "en": "According to his final wish, poet Kazi Nazrul Islam was buried with state honors beside the Dhaka University Central Mosque."
-      }
+      "explanation": "কবি কাজী নজরুল ইসলামকে তাঁর জীবনের শেষ ইচ্ছা অনুযায়ী ঢাকা বিশ্ববিদ্যালয় কেন্দ্রীয় মসজিদের পাশে রাষ্ট্রীয় মর্যাদায় দাফন করা হয়।"
     },
     {
       "id": 9,
       "subject": "GK",
       "difficulty": "Easy",
-      "question": {
-        "bn": "জাতির পিতা বঙ্গবন্ধু শেখ মুজিবুর রহমান কত তারিখে ঐতিহাসিক ৭ই মার্চের ভাষণ দেন?",
-        "en": "On which date did the Father of the Nation Bangabandhu Sheikh Mujibur Rahman deliver the historic March 7 speech?"
-      },
+      "question": "জাতির পিতা বঙ্গবন্ধু শেখ মুজিবুর রহমান কত তারিখে ঐতিহাসিক ৭ই মার্চের ভাষণ দেন?",
       "options": [
-        { "label": "A", "text": { "bn": "৭ মার্চ ১৯৭১", "en": "7 March 1971" } },
-        { "label": "B", "text": { "bn": "২৫ মার্চ ১৯৭১", "en": "25 March 1971" } },
-        { "label": "C", "text": { "bn": "১৭ এপ্রিল ১৯৭১", "en": "17 April 1971" } },
-        { "label": "D", "text": { "bn": "১৬ ডিসেম্বর ১৯৭১", "en": "16 December 1971" } }
+        {
+          "label": "A",
+          "text": "৭ মার্চ ১৯৭১"
+        },
+        {
+          "label": "B",
+          "text": "২৫ মার্চ ১৯৭১"
+        },
+        {
+          "label": "C",
+          "text": "১৭ এপ্রিল ১৯৭১"
+        },
+        {
+          "label": "D",
+          "text": "১৬ ডিসেম্বর ১৯৭১"
+        }
       ],
       "correctIndex": 0,
-      "explanation": {
-        "bn": "বঙ্গবন্ধু শেখ মুজিবুর রহমান ১৯৭১ সালের ৭ই মার্চ তৎকালীন রেসকোর্স ময়দানে (বর্তমান সোহরাওয়ার্দী উদ্যান) ঐতিহাসিক দিকনির্দেশনামূলক ভাষণ দেন।",
-        "en": "Bangabandhu Sheikh Mujibur Rahman delivered the historic guidance speech on 7th March 1971 at the Race Course Ground (now Suhrawardy Udyan)."
-      }
+      "explanation": "বঙ্গবন্ধু শেখ মুজিবুর রহমান ১৯৭১ সালের ৭ই মার্চ তৎকালীন রেসকোর্স ময়দানে (বর্তমান সোহরাওয়ার্দী উদ্যান) ঐতিহাসিক দিকনির্দেশনামূলক ভাষণ দেন।"
     },
     {
       "id": 10,
       "subject": "Mathematics",
       "difficulty": "Hard",
-      "question": {
-        "bn": "একটি ত্রিভুজের তিনটি কোণের অনুপাত ১:২:৩ হলে বৃহত্তম কোণটি কত ডিগ্রি?",
-        "en": "If the ratio of three angles of a triangle is 1:2:3, what is the degree of the largest angle?"
-      },
+      "question": "একটি ত্রিভুজের তিনটি কোণের অনুপাত ১:২:৩ হলে বৃহত্তম কোণটি কত ডিগ্রি?",
       "options": [
-        { "label": "A", "text": { "bn": "৬০°", "en": "60°" } },
-        { "label": "B", "text": { "bn": "৯০°", "en": "90°" } },
-        { "label": "C", "text": { "bn": "৪৫°", "en": "45°" } },
-        { "label": "D", "text": { "bn": "১২০°", "en": "120°" } }
+        {
+          "label": "A",
+          "text": "৬০°"
+        },
+        {
+          "label": "B",
+          "text": "৯০°"
+        },
+        {
+          "label": "C",
+          "text": "৪৫°"
+        },
+        {
+          "label": "D",
+          "text": "১২০°"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "ত্রিভুজের তিন কোণের সমষ্টি ১৮০°। ধরি কোণগুলো x, 2x, 3x। সুতরাং x + 2x + 3x = ১৮০ => ৬x = ১৮০ => x = ৩০। বৃহত্তম কোণটি ৩x = ৯০°।",
-        "en": "The sum of three angles of a triangle is 180°. Let the angles be x, 2x, and 3x. So x + 2x + 3x = 180 => 6x = 180 => x = 30. The largest angle is 3x = 90°."
-      }
+      "explanation": "ত্রিভুজের তিন কোণের সমষ্টি ১৮০°। ধরি কোণগুলো x, 2x, 3x। সুতরাং x + 2x + 3x = ১৮০ => ৬x = ১৮০ => x = ৩০। বৃহত্তম কোণটি ৩x = ৯০°।"
     },
     {
       "id": 11,
       "subject": "English",
       "difficulty": "Easy",
-      "question": {
-        "bn": "'He has no control ___ himself.' শূন্যস্থানে কোন preposition বসবে?",
-        "en": "Which preposition fits in: 'He has no control ___ himself'?"
-      },
+      "question": "'He has no control ___ himself.' শূন্যস্থানে কোন preposition বসবে?",
       "options": [
-        { "label": "A", "text": { "bn": "on", "en": "on" } },
-        { "label": "B", "text": { "bn": "over", "en": "over" } },
-        { "label": "C", "text": { "bn": "with", "en": "with" } },
-        { "label": "D", "text": { "bn": "at", "en": "at" } }
+        {
+          "label": "A",
+          "text": "on"
+        },
+        {
+          "label": "B",
+          "text": "over"
+        },
+        {
+          "label": "C",
+          "text": "with"
+        },
+        {
+          "label": "D",
+          "text": "at"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "'Control over' হলো একটি প্রচলিত অ্যাপ্রোপ্রিয়েট প্রিপজিশন যার অর্থ কারও ওপর বা নিজের ওপর নিয়ন্ত্রণ থাকা।",
-        "en": "'Control over' is the appropriate prepositional phrase meaning to have self-regulation or authority over someone/oneself."
-      }
+      "explanation": "'Control over' হলো একটি প্রচলিত অ্যাপ্রোপ্রিয়েট প্রিপজিশন যার অর্থ কারও ওপর বা নিজের ওপর নিয়ন্ত্রণ থাকা।"
     },
     {
       "id": 12,
       "subject": "Bangla",
       "difficulty": "Medium",
-      "question": {
-        "bn": "বাংলা সাহিত্যের প্রথম সার্থক উপন্যাস কোনটি?",
-        "en": "Which is the first successful novel in Bengali literature?"
-      },
+      "question": "বাংলা সাহিত্যের প্রথম সার্থক উপন্যাস কোনটি?",
       "options": [
-        { "label": "A", "text": { "bn": "দুর্গেশনন্দিনী", "en": "Durgeshnondini" } },
-        { "label": "B", "text": { "bn": "আলালের ঘরের দুলাল", "en": "Alaler Gherer Dulal" } },
-        { "label": "C", "text": { "bn": "চোখের বালি", "en": "Chokher Bali" } },
-        { "label": "D", "text": { "bn": "দেবদাস", "en": "Devdas" } }
+        {
+          "label": "A",
+          "text": "দুর্গেশনন্দিনী"
+        },
+        {
+          "label": "B",
+          "text": "আলালের ঘরের দুলাল"
+        },
+        {
+          "label": "C",
+          "text": "চোখের বালি"
+        },
+        {
+          "label": "D",
+          "text": "দেবদাস"
+        }
       ],
       "correctIndex": 0,
-      "explanation": {
-        "bn": "বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের 'দুর্গেশনন্দিনী' উপন্যাসটি ১৮৬৫ সালে প্রকাশিত হয়, যা বাংলা সাহিত্যের প্রথম সার্থক উপন্যাস হিসেবে স্বীকৃত।",
-        "en": "Bankim Chandra Chattopadhyay's novel 'Durgeshnondini' was published in 1865, recognized as the first successful novel in Bengali literature."
-      }
+      "explanation": "বঙ্কিমচন্দ্র চট্টোপাধ্যায়ের 'দুর্গেশনন্দিনী' উপন্যাসটি ১৮৬৫ সালে প্রকাশিত হয়, যা বাংলা সাহিত্যের প্রথম সার্থক উপন্যাস হিসেবে স্বীকৃত।"
     },
     {
       "id": 13,
       "subject": "GK",
       "difficulty": "Medium",
-      "question": {
-        "bn": "বাংলাদেশের প্রথম অস্থায়ী সরকার (মুজিবনগর সরকার) কবে গঠিত হয়?",
-        "en": "When was the first provisional government of Bangladesh (Mujibnagar Government) formed?"
-      },
+      "question": "বাংলাদেশের প্রথম অস্থায়ী সরকার (মুজিবনগর সরকার) কবে গঠিত হয়?",
       "options": [
-        { "label": "A", "text": { "bn": "১০ এপ্রিল ১৯৭১", "en": "10 April 1971" } },
-        { "label": "B", "text": { "bn": "১৭ এপ্রিল ১৯৭১", "en": "17 April 1971" } },
-        { "label": "C", "text": { "bn": "২৬ মার্চ ১৯৭১", "en": "26 March 1971" } },
-        { "label": "D", "text": { "bn": "১৬ ডিসেম্বর ১৯৭১", "en": "16 December 1971" } }
+        {
+          "label": "A",
+          "text": "১০ এপ্রিল ১৯৭১"
+        },
+        {
+          "label": "B",
+          "text": "১৭ এপ্রিল ১৯৭১"
+        },
+        {
+          "label": "C",
+          "text": "২৬ মার্চ ১৯৭১"
+        },
+        {
+          "label": "D",
+          "text": "১৬ ডিসেম্বর ১৯৭১"
+        }
       ],
       "correctIndex": 0,
-      "explanation": {
-        "bn": "মুজিবনগর সরকার ১৯৭১ সালের ১০ই এপ্রিল গঠিত হয় এবং ১৭ই এপ্রিল মেহেরপুরের বৈদ্যনাথতলায় (বর্তমান মুজিবনগর) শপথ গ্রহণ করে।",
-        "en": "The Mujibnagar Government was formed on 10 April 1971 and took oath on 17 April at Baidyanathtala (now Mujibnagar) in Meherpur."
-      }
+      "explanation": "মুজিবনগর সরকার ১৯৭১ সালের ১০ই এপ্রিল গঠিত হয় এবং ১৭ই এপ্রিল মেহেরপুরের বৈদ্যনাথতলায় (বর্তমান মুজিবনগর) শপথ গ্রহণ করে।"
     },
     {
       "id": 14,
       "subject": "Mathematics",
       "difficulty": "Medium",
-      "question": {
-        "bn": "বার্ষিক ১০% সরল মুনাফায় ৮০০ টাকার ৩ বছরের মুনাফা কত টাকা হবে?",
-        "en": "What will be the 3-year simple interest on 800 Taka at 10% annual interest rate?"
-      },
+      "question": "বার্ষিক ১০% সরল মুনাফায় ৮০০ টাকার ৩ বছরের মুনাফা কত টাকা হবে?",
       "options": [
-        { "label": "A", "text": { "bn": "২৪০", "en": "240" } },
-        { "label": "B", "text": { "bn": "৮০", "en": "80" } },
-        { "label": "C", "text": { "bn": "১২০", "en": "120" } },
-        { "label": "D", "text": { "bn": "১৬০", "en": "160" } }
+        {
+          "label": "A",
+          "text": "২৪০"
+        },
+        {
+          "label": "B",
+          "text": "৮০"
+        },
+        {
+          "label": "C",
+          "text": "১২০"
+        },
+        {
+          "label": "D",
+          "text": "১৬০"
+        }
       ],
       "correctIndex": 0,
-      "explanation": {
-        "bn": "মুনাফা I = Pnr। এখানে P = ৮০০, n = ৩, r = ১০% = ০.১। মুনাফা = ৮০০ * ৩ * ০.১ = ২৪০ টাকা।",
-        "en": "Interest I = Pnr. Here P = 800, n = 3, r = 10% = 0.1. Interest = 800 * 3 * 0.1 = 240 Taka."
-      }
+      "explanation": "মুনাফা I = Pnr। এখানে P = ৮০০, n = ৩, r = ১০% = ০.১। মুনাফা = ৮০০ * ৩ * ০.১ = ২৪০ টাকা।"
     },
     {
       "id": 15,
       "subject": "English",
       "difficulty": "Hard",
-      "question": {
-        "bn": "কোনটি 'ABUNDANT' শব্দের বিপরীতার্থক শব্দ?",
-        "en": "Which is the antonym of the word 'ABUNDANT'?"
-      },
+      "question": "কোনটি 'ABUNDANT' শব্দের বিপরীতার্থক শব্দ?",
       "options": [
-        { "label": "A", "text": { "bn": "Ample (প্রচুর)", "en": "Ample" } },
-        { "label": "B", "text": { "bn": "Plentiful (পর্যাপ্ত)", "en": "Plentiful" } },
-        { "label": "C", "text": { "bn": "Scarce (দুর্লভ/অপ্রতুল)", "en": "Scarce" } },
-        { "label": "D", "text": { "bn": "Rich (সমৃদ্ধ)", "en": "Rich" } }
+        {
+          "label": "A",
+          "text": "Ample (প্রচুর)"
+        },
+        {
+          "label": "B",
+          "text": "Plentiful (পর্যাপ্ত)"
+        },
+        {
+          "label": "C",
+          "text": "Scarce (দুর্লভ/অপ্রতুল)"
+        },
+        {
+          "label": "D",
+          "text": "Rich (সমৃদ্ধ)"
+        }
       ],
       "correctIndex": 2,
-      "explanation": {
-        "bn": "'Abundant' অর্থ প্রচুর বা পর্যাপ্ত। এর সঠিক বিপরীত শব্দ হলো 'Scarce' যার অর্থ অপ্রতুল বা আকাল।",
-        "en": "'Abundant' means existing in large quantities. Its antonym is 'Scarce' which means insufficient or hard to find."
-      }
+      "explanation": "'Abundant' অর্থ প্রচুর বা পর্যাপ্ত। এর সঠিক বিপরীত শব্দ হলো 'Scarce' যার অর্থ অপ্রতুল বা আকাল।"
     },
     {
       "id": 16,
       "subject": "Bangla",
       "difficulty": "Easy",
-      "question": {
-        "bn": "কাকে বাংলা গদ্যের জনক বলা হয়?",
-        "en": "Who is known as the father of Bengali prose?"
-      },
+      "question": "কাকে বাংলা গদ্যের জনক বলা হয়?",
       "options": [
-        { "label": "A", "text": { "bn": "ঈশ্বরচন্দ্র বিদ্যাসাগর", "en": "Ishwar Chandra Vidyasagar" } },
-        { "label": "B", "text": { "bn": "রাজা রামমোহন রায়", "en": "Raja Rammohan Roy" } },
-        { "label": "C", "text": { "bn": "প্রমথ চৌধুরী", "en": "Pramatha Chaudhuri" } },
-        { "label": "D", "text": { "bn": "রবীন্দ্রনাথ ঠাকুর", "en": "Rabindranath Tagore" } }
+        {
+          "label": "A",
+          "text": "ঈশ্বরচন্দ্র বিদ্যাসাগর"
+        },
+        {
+          "label": "B",
+          "text": "রাজা রামমোহন রায়"
+        },
+        {
+          "label": "C",
+          "text": "প্রমথ চৌধুরী"
+        },
+        {
+          "label": "D",
+          "text": "রবীন্দ্রনাথ ঠাকুর"
+        }
       ],
       "correctIndex": 0,
-      "explanation": {
-        "bn": "ঈশ্বরচন্দ্র বিদ্যাসাগর বাংলা গদ্যে প্রথম সুশৃঙ্খল যতিচিহ্ন ও সৌন্দর্য সংযোজন করেন, তাই তাঁকে বাংলা গদ্যের জনক বলা হয়।",
-        "en": "Ishwar Chandra Vidyasagar introduced standard punctuation marks and aesthetic structure to Bengali prose, earning him the title of the Father of Bengali Prose."
-      }
+      "explanation": "ঈশ্বরচন্দ্র বিদ্যাসাগর বাংলা গদ্যে প্রথম সুশৃঙ্খল যতিচিহ্ন ও সৌন্দর্য সংযোজন করেন, তাই তাঁকে বাংলা গদ্যের জনক বলা হয়।"
     },
     {
       "id": 17,
       "subject": "GK",
       "difficulty": "Medium",
-      "question": {
-        "bn": "স্বাধীন বাংলাদেশকে স্বীকৃতিদানকারী প্রথম ইউরোপীয় দেশ কোনটি?",
-        "en": "Which was the first European country to recognize independent Bangladesh?"
-      },
+      "question": "স্বাধীন বাংলাদেশকে স্বীকৃতিদানকারী প্রথম ইউরোপীয় দেশ কোনটি?",
       "options": [
-        { "label": "A", "text": { "bn": "পোল্যান্ড", "en": "Poland" } },
-        { "label": "B", "text": { "bn": "পূর্ব জার্মানি", "en": "East Germany" } },
-        { "label": "C", "text": { "bn": "যুক্তরাজ্য", "en": "United Kingdom" } },
-        { "label": "D", "text": { "bn": "রাশিয়া", "en": "Russia" } }
+        {
+          "label": "A",
+          "text": "পোল্যান্ড"
+        },
+        {
+          "label": "B",
+          "text": "পূর্ব জার্মানি"
+        },
+        {
+          "label": "C",
+          "text": "যুক্তরাজ্য"
+        },
+        {
+          "label": "D",
+          "text": "রাশিয়া"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "পূর্ব জার্মানি ১৯৭২ সালের ১১ই জানুয়ারি প্রথম ইউরোপীয় দেশ হিসেবে বাংলাদেশকে আনুষ্ঠানিক স্বীকৃতি প্রদান করে।",
-        "en": "East Germany was the first European country to officially recognize independent Bangladesh on 11 January 1972."
-      }
+      "explanation": "পূর্ব জার্মানি ১৯৭২ সালের ১১ই জানুয়ারি প্রথম ইউরোপীয় দেশ হিসেবে বাংলাদেশকে আনুষ্ঠানিক স্বীকৃতি প্রদান করে।"
     },
     {
       "id": 18,
       "subject": "Mathematics",
       "difficulty": "Hard",
-      "question": {
-        "bn": "x² - 5x + 6 = 0 সমীকরণের সমাধান বা মূল দুটি কী কী?",
-        "en": "What are the two roots of the equation x² - 5x + 6 = 0?"
-      },
+      "question": "x² - 5x + 6 = 0 সমীকরণের সমাধান বা মূল দুটি কী কী?",
       "options": [
-        { "label": "A", "text": { "bn": "১ এবং ৬", "en": "1 and 6" } },
-        { "label": "B", "text": { "bn": "২ এবং ৩", "en": "2 and 3" } },
-        { "label": "C", "text": { "bn": "-২ এবং -৩", "en": "-2 and -3" } },
-        { "label": "D", "text": { "bn": "৫ এবং ১", "en": "5 and 1" } }
+        {
+          "label": "A",
+          "text": "১ এবং ৬"
+        },
+        {
+          "label": "B",
+          "text": "২ এবং ৩"
+        },
+        {
+          "label": "C",
+          "text": "-২ এবং -৩"
+        },
+        {
+          "label": "D",
+          "text": "৫ এবং ১"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "উৎপাদকে বিশ্লেষণ করলে পাই: x² - 3x - 2x + 6 = 0 => (x - 3)(x - 2) = 0। সুতরাং মূল দুটি হলো ২ এবং ৩।",
-        "en": "By factoring: x² - 3x - 2x + 6 = 0 => (x - 3)(x - 2) = 0. Therefore, the roots are 2 and 3."
-      }
+      "explanation": "উৎপাদকে বিশ্লেষণ করলে পাই: x² - 3x - 2x + 6 = 0 => (x - 3)(x - 2) = 0। সুতরাং মূল দুটি হলো ২ এবং ৩।"
     },
     {
       "id": 19,
       "subject": "English",
       "difficulty": "Easy",
-      "question": {
-        "bn": "কোনটি 'Accommodate' শব্দের সঠিক বানান?",
-        "en": "Which of the following is the correct spelling of 'Accommodate'?"
-      },
+      "question": "কোনটি 'Accommodate' শব্দের সঠিক বানান?",
       "options": [
-        { "label": "A", "text": { "bn": "Acommodate", "en": "Acommodate" } },
-        { "label": "B", "text": { "bn": "Accomodate", "en": "Accomodate" } },
-        { "label": "C", "text": { "bn": "Accommodate", "en": "Accommodate" } },
-        { "label": "D", "text": { "bn": "Acomodate", "en": "Acomodate" } }
+        {
+          "label": "A",
+          "text": "Acommodate"
+        },
+        {
+          "label": "B",
+          "text": "Accomodate"
+        },
+        {
+          "label": "C",
+          "text": "Accommodate"
+        },
+        {
+          "label": "D",
+          "text": "Acomodate"
+        }
       ],
       "correctIndex": 2,
-      "explanation": {
-        "bn": "Accommodate শব্দের সঠিক বানান হলো 'A-c-c-o-m-m-o-d-a-t-e', যাতে দুটি 'c' এবং দুটি 'm' রয়েছে।",
-        "en": "The correct spelling of the word is 'Accommodate' with double 'c' and double 'm'."
-      }
+      "explanation": "Accommodate শব্দের সঠিক বানান হলো 'A-c-c-o-m-m-o-d-a-t-e', যাতে দুটি 'c' এবং দুটি 'm' রয়েছে।"
     },
     {
       "id": 20,
       "subject": "Bangla",
       "difficulty": "Medium",
-      "question": {
-        "bn": "রবীন্দ্রনাথ ঠাকুর কত সালে সাহিত্যে নোবেল পুরস্কার পান?",
-        "en": "In which year did Rabindranath Tagore win the Nobel Prize in Literature?"
-      },
+      "question": "রবীন্দ্রনাথ ঠাকুর কত সালে সাহিত্যে নোবেল পুরস্কার পান?",
       "options": [
-        { "label": "A", "text": { "bn": "১৯১০", "en": "1910" } },
-        { "label": "B", "text": { "bn": "১৯১৩", "en": "1913" } },
-        { "label": "C", "text": { "bn": "১৯১৫", "en": "1915" } },
-        { "label": "D", "text": { "bn": "১৯২১", "en": "1921" } }
+        {
+          "label": "A",
+          "text": "১৯১০"
+        },
+        {
+          "label": "B",
+          "text": "১৯১৩"
+        },
+        {
+          "label": "C",
+          "text": "১৯১৫"
+        },
+        {
+          "label": "D",
+          "text": "১৯২১"
+        }
       ],
       "correctIndex": 1,
-      "explanation": {
-        "bn": "রবীন্দ্রনাথ ঠাকুর তাঁর বিখ্যাত কাব্যগ্রন্থ 'গীতাঞ্জলি' বা 'Song Offerings'-এর জন্য ১৯১৩ সালে প্রথম এশীয় হিসেবে সাহিত্যে নোবেল পুরস্কার লাভ করেন।",
-        "en": "Rabindranath Tagore became the first Asian to win the Nobel Prize in Literature in 1913 for his poetry collection 'Gitanjali' (Song Offerings)."
-      }
+      "explanation": "রবীন্দ্রনাথ ঠাকুর তাঁর বিখ্যাত কাব্যগ্রন্থ 'গীতাঞ্জলি' বা 'Song Offerings'-এর জন্য ১৯১৩ সালে প্রথম এশীয় হিসেবে সাহিত্যে নোবেল পুরস্কার লাভ করেন।"
     }
   ]
 }

@@ -1,14 +1,12 @@
-export interface LocalizedString {
-  bn?: string;
-  en?: string;
-}
-
 export interface Question {
   id: number;
   subject: 'GK' | 'Mathematics' | 'English' | 'Bangla';
   difficulty: 'Easy' | 'Medium' | 'Hard';
-  question: LocalizedString;
-  options: { label: string; text: LocalizedString }[];
+  year?: number;
+  partName?: string;
+  chapterName?: string;
+  question: string;
+  options: { label: string; text: string }[];
   correctIndex: number;
-  explanation: LocalizedString;
+  explanation: string;
 }

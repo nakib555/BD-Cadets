@@ -5,6 +5,22 @@ import app from "./backend/server";
 
 const PORT = 3000;
 
+// Self-ping to prevent Render free tier backend from sleeping
+const PING_INTERVAL = 14 * 60 * 1000; // 14 minutes
+setInterval(() => {
+  const url = process.env.RENDER_EXTERNAL_URL 
+    ? `${process.env.RENDER_EXTERNAL_URL}/api/health`
+    : `http://localhost:${PORT}/api/health`;
+    
+  fetch(url)
+    .then(res => {
+      console.log(`[Keep-Alive] Pinged ${url} - Status: ${res.status}`);
+    })
+    .catch(err => {
+      console.error(`[Keep-Alive] Failed to ping ${url}:`, err.message);
+    });
+}, PING_INTERVAL);
+
 // Vite middleware for development or serving build for production
 async function setupVite() {
   if (process.env.NODE_ENV !== "production") {

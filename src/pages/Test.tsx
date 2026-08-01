@@ -4,36 +4,9 @@ import { useData } from '../context/DataContext';
 import { useLanguage } from '../context/LanguageContext';
 import { triggerHaptic } from '../utils/haptics';
 import questionsData from '../data/questions.json';
-
-interface LocalizedString {
-  bn?: string;
-  en?: string;
-}
-
-interface Question {
-  id: number;
-  subject: 'GK' | 'Mathematics' | 'English' | 'Bangla';
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  question: LocalizedString;
-  options: { label: string; text: LocalizedString }[];
-  correctIndex: number;
-  explanation: LocalizedString;
-}
-
-// Helper to render MCQ text without being affected by global language switcher (ignores active website language)
-export function renderMCQText(textObj: string | LocalizedString | undefined | null): string {
-  if (!textObj) return '';
-  if (typeof textObj === 'string') return textObj;
-  
-  const bn = textObj.bn?.trim() || '';
-  const en = textObj.en?.trim() || '';
-  
-  if (bn && en) {
-    if (bn === en) return bn;
-    return `${bn} / ${en}`;
-  }
-  return bn || en || '';
-}
+import { Question } from '../types';
+import confetti from 'canvas-confetti';
+import { EmptyState } from '../components/EmptyState';
 
 const shuffleArray = (array: any[]) => {
   const arr = [...array];
@@ -46,7 +19,7 @@ const shuffleArray = (array: any[]) => {
 
 export default function Test() {
   const { currentRoute, goBack, navigate } = useRouter();
-  const { userData, setUserData, markTestCompleted, toggleBookmark, isBookmarked } = useData();
+  const { userData, setUserData, markTestCompleted, toggleBookmark, isBookmarked, markQuestionAsAttempted, resetAttemptedQuestions } = useData();
   const { t, lang } = useLanguage();
   const stepContainerRef = useRef<HTMLDivElement>(null);
 
@@ -57,6 +30,7 @@ export default function Test() {
   const selectedSubject = currentRoute.params?.subject || 'All';
   const selectedDifficulty = currentRoute.params?.difficulty || 'All';
   const [sessionId, setSessionId] = useState<string>(currentRoute.params?.sessionId || Date.now().toString());
+
   
   const getSubjectName = (key: string) => {
     switch(key) {
@@ -251,14 +225,28 @@ export default function Test() {
 
       try {
         const apiUrl = import.meta.env.VITE_API_URL || '';
-        const response = await fetch(`${apiUrl}/api/questions?subject=${selectedSubject === 'All' ? '' : selectedSubject}&difficulty=${selectedDifficulty === 'All' ? '' : selectedDifficulty}&limit=${questionCountParam}`);
+        
+        const ignoreIds = (selectedSubject !== 'All' && userData.attemptedQuestions?.[selectedSubject.toLowerCase()]) 
+          ? userData.attemptedQuestions[selectedSubject.toLowerCase()].join(',')
+          : '';
+
+        let response = await fetch(`${apiUrl}/api/questions?subject=${selectedSubject === 'All' ? '' : selectedSubject}&difficulty=${selectedDifficulty === 'All' ? '' : selectedDifficulty}&limit=${questionCountParam}&ignoreIds=${ignoreIds}`);
         
         if (!response.ok) {
           throw new Error('API request failed');
         }
         
-        const data = await response.json();
+        let data = await response.json();
         
+        // If we ran out of questions for this subject because we ignored too many, reset and refetch
+        if (data.questions && data.questions.length < questionCountParam && ignoreIds !== '') {
+          resetAttemptedQuestions(selectedSubject);
+          response = await fetch(`${apiUrl}/api/questions?subject=${selectedSubject === 'All' ? '' : selectedSubject}&difficulty=${selectedDifficulty === 'All' ? '' : selectedDifficulty}&limit=${questionCountParam}`);
+          if (response.ok) {
+            data = await response.json();
+          }
+        }
+
         if (active) {
           if (data.questions && data.questions.length > 0) {
             setQuestions(data.questions);
@@ -403,6 +391,21 @@ export default function Test() {
     setScore(correctCount);
     setTestSubmitted(true);
 
+    // Mark questions as attempted to prevent repeats
+    if (selectedSubject !== 'All') {
+      const qIds = questions.map(q => q.id);
+      markQuestionAsAttempted(selectedSubject, qIds);
+    }
+
+    if (finalScorePercentage >= 60) {
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#10b981', '#3b82f6', '#f59e0b', '#6366f1']
+      });
+    }
+
     // Update test stats and daily goal progress
     markTestCompleted('test-session-' + Date.now(), finalScorePercentage);
   };
@@ -470,13 +473,12 @@ export default function Test() {
   if (error || questions.length === 0) {
     return (
       <div className="bg-slate-50 dark:bg-slate-900 h-full flex flex-col items-center justify-center p-6 text-center animate-in fade-in transition-colors duration-300">
-        <div className="text-4xl mb-4">⚠️</div>
-        <p className="text-sm font-black text-slate-700 dark:text-slate-300 mb-6">
-          {error || (lang === 'bn' ? 'কোনো প্রশ্ন পাওয়া যায়নি!' : 'No questions found!')}
-        </p>
+        <EmptyState 
+          description={error || (lang === 'bn' ? 'কোনো প্রশ্ন পাওয়া যায়নি!' : 'No questions found!')} 
+        />
         <button 
           onClick={goBack} 
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase px-6 py-3 rounded-xl shadow-md transition cursor-pointer"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase px-6 py-3 rounded-xl shadow-md transition cursor-pointer mt-4"
         >
           {lang === 'bn' ? 'পিছনে যান' : 'Go Back'}
         </button>
@@ -559,14 +561,30 @@ export default function Test() {
               return (
                 <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-200 dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
                   <div className="flex justify-between items-start gap-2">
-                    <span className="text-[12px] font-black text-slate-400 dark:text-slate-500">{t('question')} {idx + 1} ({getSubjectName(q.subject)})</span>
-                    <span className={`text-[10px] border border-[#f1c0c4] dark:border-red-900/50 rounded-[5px] font-black px-1.5 py-0.5 uppercase ${
+                    <div className="flex flex-col gap-1">
+                      <div className="flex gap-2 items-center flex-wrap">
+                        <span className="text-[12px] font-black text-slate-400 dark:text-slate-500">{t('question')} {idx + 1} ({getSubjectName(q.subject)})</span>
+                        {q.year && (
+                          <span className="text-[10px] font-black text-purple-500 dark:text-purple-400">
+                            <i className="fa-regular fa-calendar mr-1"></i>{q.year}
+                          </span>
+                        )}
+                      </div>
+                      {(q.partName || q.chapterName) && (
+                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                          {q.partName && `${q.partName}`}
+                          {q.partName && q.chapterName && ' • '}
+                          {q.chapterName && `${q.chapterName}`}
+                        </span>
+                      )}
+                    </div>
+                    <span className={`text-[10px] shrink-0 border border-[#f1c0c4] dark:border-red-900/50 rounded-[5px] font-black px-1.5 py-0.5 uppercase ${
                       isCorrect ? 'bg-green-100 dark:bg-green-950/40 text-green-700 dark:text-green-400 !border-green-200 dark:!border-green-800' : 'bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-400'
                     }`}>
                       {isCorrect ? t('correct') : t('wrong')}
                     </span>
                   </div>
-                  <h4 className="text-[14px] font-black text-slate-900 dark:text-white leading-snug">{renderMCQText(q.question)}</h4>
+                  <h4 className="text-[14px] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
                   
                   <div className="grid grid-cols-1 gap-1.5 pt-1">
                     {q.options.map((opt, oIdx) => {
@@ -591,7 +609,7 @@ export default function Test() {
                                 : `bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 border ${customBorder}`
                           }`}
                         >
-                          <span>{opt.label}. {renderMCQText(opt.text)}</span>
+                          <span>{opt.label}. {opt.text}</span>
                           {isCorrectChoice && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
                           {isUserChoice && !isCorrectChoice && <i className="fa-solid fa-xmark text-red-500 dark:text-red-400 text-[10px]"></i>}
                         </div>
@@ -601,7 +619,7 @@ export default function Test() {
 
                   <div className="bg-blue-50/50 dark:bg-blue-950/20 p-2.5 rounded-[10px] border border-blue-50 dark:border-blue-900/30 text-[12px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                     <span className="text-blue-700 dark:text-blue-400 font-bold block mb-0.5">💡 {t('explanation_title')}</span>
-                    {renderMCQText(q.explanation)}
+                    {q.explanation}
                   </div>
                 </div>
               );
@@ -732,11 +750,20 @@ export default function Test() {
             })}
           </div>
 
-          <div className="flex justify-between items-center">
-              <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                {getSubjectName(currentQuestion.subject)}
-              </span>
-              <div className="flex items-center gap-2">
+          <div className="flex justify-between items-start gap-4">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                  {getSubjectName(currentQuestion.subject)}
+                </span>
+                {(currentQuestion.partName || currentQuestion.chapterName) && (
+                  <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500">
+                    {currentQuestion.partName && `${currentQuestion.partName}`}
+                    {currentQuestion.partName && currentQuestion.chapterName && ' • '}
+                    {currentQuestion.chapterName && `${currentQuestion.chapterName}`}
+                  </span>
+                )}
+              </div>
+              <div className="flex items-center gap-2 flex-wrap justify-end">
                 <button 
                   onClick={handleToggleMark}
                   className={`flex items-center justify-center w-7 h-7 rounded-md border transition-colors cursor-pointer ${
@@ -751,11 +778,16 @@ export default function Test() {
                 <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
                   <i className="fa-solid fa-shield text-[8px]"></i> {getDifficultyName(currentQuestion.difficulty)}
                 </span>
+                {currentQuestion.year && (
+                  <span className="bg-purple-50 dark:bg-purple-950/45 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30 text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
+                    <i className="fa-regular fa-calendar text-[8px]"></i> {currentQuestion.year}
+                  </span>
+                )}
               </div>
           </div>
 
           <h2 className="text-sm font-extrabold text-slate-900 dark:text-white leading-relaxed bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-300">
-            {renderMCQText(currentQuestion.question)}
+            {currentQuestion.question}
           </h2>
 
           {/* Options */}
@@ -776,7 +808,7 @@ export default function Test() {
                             <div className={`w-8 h-8 rounded-lg text-xs font-black flex items-center justify-center transition-colors shrink-0 ${
                               isSelected ? 'bg-indigo-600 dark:bg-indigo-500 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-400'
                             }`}>{opt.label}</div>
-                            <span className={`text-sm font-bold ${isSelected ? 'text-indigo-950 dark:text-indigo-100 font-extrabold' : 'text-slate-800 dark:text-slate-200'}`}>{renderMCQText(opt.text)}</span>
+                            <span className={`text-sm font-bold ${isSelected ? 'text-indigo-950 dark:text-indigo-100 font-extrabold' : 'text-slate-800 dark:text-slate-200'}`}>{opt.text}</span>
                         </div>
                         {isSelected && (
                           <div className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] shadow-sm shrink-0">
