@@ -494,40 +494,40 @@ export default function Test() {
       <div className="bg-slate-50 dark:bg-slate-900 h-full flex flex-col overflow-hidden transition-colors duration-300 animate-in fade-in duration-300">
         <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
             <button onClick={goBack} className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
-            <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider">{t('result')}</h1>
+            <h1 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">{t('result')}</h1>
             <div className="w-8"></div>
         </header>
 
         <div className="p-4 space-y-4 flex-1 overflow-y-auto">
           {/* Main score badge */}
-          <div className="bg-white dark:bg-slate-950 p-6 rounded-[10px] border border-slate-200 dark:border-slate-800/80 shadow-sm flex flex-col items-center text-center space-y-3 transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-950 p-6 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm flex flex-col items-center text-center space-y-3 transition-colors duration-300">
               <div className={`w-16 h-16 rounded-full flex items-center justify-center text-[24px] ${passed ? 'bg-green-100 dark:bg-green-950/40 text-green-600 dark:text-green-400' : 'bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400'}`}>
                 {passed ? '🏆' : '📚'}
               </div>
               <div>
-                <h2 className="text-[16px] font-black text-slate-900 dark:text-white">{passed ? t('congrats') : t('keep_practicing')}</h2>
-                <p className="text-[12px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">{passed ? t('passed_msg') : t('failed_msg')}</p>
+                <h2 className="text-base font-black text-slate-900 dark:text-white">{passed ? t('congrats') : t('keep_practicing')}</h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-0.5">{passed ? t('passed_msg') : t('failed_msg')}</p>
               </div>
 
               <div className="grid grid-cols-3 gap-6 w-full pt-4 border-t border-slate-200 dark:border-slate-800/60 text-center">
                 <div>
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('score_obtained')}</p>
-                  <p className="text-[14px] font-black text-slate-800 dark:text-slate-200">{score} / {questions.length}</p>
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('score_obtained')}</p>
+                  <p className="text-sm font-black text-slate-800 dark:text-slate-200">{score} / {questions.length}</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('accuracy')}</p>
-                  <p className="text-[14px] font-black text-slate-800 dark:text-slate-200">{percentage}%</p>
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('accuracy')}</p>
+                  <p className="text-sm font-black text-slate-800 dark:text-slate-200">{percentage}%</p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('status')}</p>
-                  <p className={`text-[12px] font-black uppercase ${passed ? 'text-green-600 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>{passed ? t('passed') : t('failed')}</p>
+                  <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{t('status')}</p>
+                  <p className={`text-xs font-black uppercase ${passed ? 'text-green-600 dark:text-green-400' : 'text-red-500 dark:text-red-400'}`}>{passed ? t('passed') : t('failed')}</p>
                 </div>
               </div>
 
               <div className="flex gap-2 w-full pt-2 flex-wrap sm:flex-nowrap">
                 <button 
                   onClick={handleRestart}
-                  className="flex-1 py-2.5 px-2 rounded-[10px] border border-blue-200 dark:border-blue-900/50 text-blue-600 dark:text-blue-400 font-black uppercase tracking-wider text-[10px] hover:bg-blue-50 dark:hover:bg-blue-950/20 transition cursor-pointer flex items-center justify-center gap-1"
+                  className="flex-1 py-2.5 px-2 rounded-xl border border-blue-200 dark:border-blue-900/50 text-blue-600 dark:text-blue-400 font-black uppercase tracking-wider text-xs hover:bg-blue-50 dark:hover:bg-blue-950/20 transition cursor-pointer flex items-center justify-center gap-1"
                 >
                   <i className="fa-solid fa-rotate-left"></i> {t('retake_test')}
                 </button>
@@ -537,14 +537,14 @@ export default function Test() {
                     triggerHaptic('success');
                     setShowResetAlert(true);
                   }}
-                  className="py-2.5 px-2 rounded-[10px] border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-[10px] hover:bg-slate-100 dark:hover:bg-slate-900 transition cursor-pointer flex items-center justify-center gap-1"
+                  className="py-2.5 px-2 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider text-xs hover:bg-slate-100 dark:hover:bg-slate-900 transition cursor-pointer flex items-center justify-center gap-1"
                   title="Reset repetition tracking memory"
                 >
-                  <i className="fa-solid fa-trash-can text-[10px]"></i> {lang === 'bn' ? 'হিসাব রিসেট' : 'Reset History'}
+                  <i className="fa-solid fa-trash-can text-xs"></i> {lang === 'bn' ? 'হিসাব রিসেট' : 'Reset History'}
                 </button>
                 <button 
                   onClick={() => navigate('home')}
-                  className="flex-1 py-2.5 px-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-wider text-[10px] shadow-sm transition cursor-pointer flex items-center justify-center gap-1"
+                  className="flex-1 py-2.5 px-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black uppercase tracking-wider text-xs shadow-sm transition cursor-pointer flex items-center justify-center gap-1"
                 >
                   <i className="fa-solid fa-house"></i> {t('dashboard')}
                 </button>
@@ -553,38 +553,38 @@ export default function Test() {
 
           {/* Question Explanations */}
           <div className="space-y-3">
-            <h3 className="text-[12px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">{t('review_answers')}</h3>
+            <h3 className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">{t('review_answers')}</h3>
             {questions.map((q, idx) => {
               const selectedOpt = selectedAnswers[q.id];
               const isCorrect = selectedOpt === q.correctIndex;
 
               return (
-                <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-[10px] border border-slate-200 dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
+                <div key={q.id} className="bg-white dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 shadow-sm space-y-2 transition-colors duration-300">
                   <div className="flex justify-between items-start gap-2">
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-2 items-center flex-wrap">
-                        <span className="text-[12px] font-black text-slate-400 dark:text-slate-500">{t('question')} {idx + 1} ({getSubjectName(q.subject)})</span>
+                        <span className="text-xs font-black text-slate-400 dark:text-slate-500">{t('question')} {idx + 1} ({getSubjectName(q.subject)})</span>
                         {q.year && (
-                          <span className="text-[10px] font-black text-purple-500 dark:text-purple-400">
+                          <span className="text-xs font-black text-purple-500 dark:text-purple-400">
                             <i className="fa-regular fa-calendar mr-1"></i>{q.year}
                           </span>
                         )}
                       </div>
                       {(q.partName || q.chapterName) && (
-                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                        <span className="text-xs font-bold text-slate-400 dark:text-slate-500">
                           {q.partName && `${q.partName}`}
                           {q.partName && q.chapterName && ' • '}
                           {q.chapterName && `${q.chapterName}`}
                         </span>
                       )}
                     </div>
-                    <span className={`text-[10px] shrink-0 border border-[#f1c0c4] dark:border-red-900/50 rounded-[5px] font-black px-1.5 py-0.5 uppercase ${
+                    <span className={`text-xs shrink-0 border border-[#f1c0c4] dark:border-red-900/50 rounded-[5px] font-black px-1.5 py-0.5 uppercase ${
                       isCorrect ? 'bg-green-100 dark:bg-green-950/40 text-green-700 dark:text-green-400 !border-green-200 dark:!border-green-800' : 'bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-400'
                     }`}>
                       {isCorrect ? t('correct') : t('wrong')}
                     </span>
                   </div>
-                  <h4 className="text-[14px] font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
+                  <h4 className="text-sm font-black text-slate-900 dark:text-white leading-snug">{q.question}</h4>
                   
                   <div className="grid grid-cols-1 gap-1.5 pt-1">
                     {q.options.map((opt, oIdx) => {
@@ -601,7 +601,7 @@ export default function Test() {
                       return (
                         <div 
                           key={oIdx}
-                          className={`p-2 rounded-[10px] text-[14px] font-black flex justify-between items-center transition ${
+                          className={`p-2 rounded-xl text-sm font-black flex justify-between items-center transition ${
                             isCorrectChoice 
                               ? 'bg-green-50 dark:bg-green-950/20 text-green-800 dark:text-green-400 border border-green-200 dark:border-green-900/40' 
                               : isUserChoice
@@ -610,14 +610,14 @@ export default function Test() {
                           }`}
                         >
                           <span>{opt.label}. {opt.text}</span>
-                          {isCorrectChoice && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
-                          {isUserChoice && !isCorrectChoice && <i className="fa-solid fa-xmark text-red-500 dark:text-red-400 text-[10px]"></i>}
+                          {isCorrectChoice && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-xs"></i>}
+                          {isUserChoice && !isCorrectChoice && <i className="fa-solid fa-xmark text-red-500 dark:text-red-400 text-xs"></i>}
                         </div>
                       );
                     })}
                   </div>
 
-                  <div className="bg-blue-50/50 dark:bg-blue-950/20 p-2.5 rounded-[10px] border border-blue-50 dark:border-blue-900/30 text-[12px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
+                  <div className="bg-blue-50/50 dark:bg-blue-950/20 p-2.5 rounded-xl border border-blue-50 dark:border-blue-900/30 text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                     <span className="text-blue-700 dark:text-blue-400 font-bold block mb-0.5">💡 {t('explanation_title')}</span>
                     {q.explanation}
                   </div>
@@ -635,14 +635,14 @@ export default function Test() {
       <header className="flex justify-between items-center p-3 sticky top-0 bg-white dark:bg-slate-950 z-10 border-b border-slate-200 dark:border-slate-800/80 shrink-0 transition-colors duration-300">
           <button onClick={() => { triggerHaptic('medium'); setShowExitConfirm(true); }} className="text-slate-800 dark:text-slate-200 w-10 h-10 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition"><i className="fa-solid fa-arrow-left text-sm"></i></button>
           <div className="flex flex-col items-center">
-            <h1 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-wider">{t('ongoing_test')}</h1>
-            {activeTestTitle && <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500 max-w-[150px] truncate">{activeTestTitle}</span>}
+            <h1 className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider">{t('ongoing_test')}</h1>
+            {activeTestTitle && <span className="text-xs font-bold text-slate-400 dark:text-slate-500 max-w-[150px] truncate">{activeTestTitle}</span>}
           </div>
           
           {/* Time moved to top right corner */}
           <div className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/60 px-2.5 py-1.5 rounded-full flex items-center gap-1 shadow-sm shrink-0">
-              <i className="fa-regular fa-clock text-indigo-600 dark:text-indigo-400 text-[10px] animate-pulse"></i>
-              <span className="text-[10px] font-black text-slate-800 dark:text-slate-200 font-mono">
+              <i className="fa-regular fa-clock text-indigo-600 dark:text-indigo-400 text-xs animate-pulse"></i>
+              <span className="text-xs font-black text-slate-800 dark:text-slate-200 font-mono">
                 {timeLimit > 0 ? formatTime(timeLeft) : `⏱️ ${formatTime(timeLeft)}`}
               </span>
           </div>
@@ -652,11 +652,11 @@ export default function Test() {
       <div className="bg-slate-50 dark:bg-slate-900 px-3 py-2 flex justify-between items-center border-b border-slate-200 dark:border-slate-800/60 shrink-0 transition-colors duration-300 animate-in fade-in">
           <div className="flex items-center gap-1.5 text-slate-600 dark:text-slate-400 shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[10px] font-black uppercase tracking-wider">{t('subject_label')}{getSubjectName(currentQuestion.subject)}</span>
+            <span className="text-xs font-black uppercase tracking-wider">{t('subject_label')}{getSubjectName(currentQuestion.subject)}</span>
           </div>
           
           <div className="flex items-center gap-2 flex-1 justify-end max-w-[200px]">
-            <span className="text-[9px] font-black font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">
+            <span className="text-xs font-black font-mono text-slate-500 dark:text-slate-400 whitespace-nowrap">
               {currentIdx + 1}/{questions.length}
             </span>
             <div className="relative w-24 h-2 bg-slate-200/60 dark:bg-slate-800 rounded-full overflow-hidden border border-slate-300/30 dark:border-slate-700/30">
@@ -686,12 +686,12 @@ export default function Test() {
 
             <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-600 dark:text-slate-300 flex justify-around">
               <div>
-                <span className="text-[10px] uppercase text-slate-400 block font-bold">{lang === 'bn' ? 'অবশিষ্ট সময়' : 'Time Left'}</span>
+                <span className="text-xs uppercase text-slate-400 block font-bold">{lang === 'bn' ? 'অবশিষ্ট সময়' : 'Time Left'}</span>
                 <span className="font-mono text-sm text-blue-600 dark:text-blue-400">{formatTime(timeLeft)}</span>
               </div>
               <div className="border-r border-slate-200 dark:border-slate-800"></div>
               <div>
-                <span className="text-[10px] uppercase text-slate-400 block font-bold">{lang === 'bn' ? 'উত্তর দেওয়া' : 'Answered'}</span>
+                <span className="text-xs uppercase text-slate-400 block font-bold">{lang === 'bn' ? 'উত্তর দেওয়া' : 'Answered'}</span>
                 <span className="font-mono text-sm text-emerald-600 dark:text-emerald-400">{Object.keys(selectedAnswers).length} / {questions.length}</span>
               </div>
             </div>
@@ -734,7 +734,7 @@ export default function Test() {
                 <button
                   key={idx}
                   onClick={() => { triggerHaptic('light'); setCurrentIdx(idx); }}
-                  className={`h-6.5 min-w-[26px] px-1.5 rounded-lg text-[10px] font-black flex items-center justify-center transition-all cursor-pointer border shrink-0 ${
+                  className={`h-6.5 min-w-[26px] px-1.5 rounded-lg text-xs font-black flex items-center justify-center transition-all cursor-pointer border shrink-0 ${
                     isCurrent
                       ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm scale-105'
                       : isMarked
@@ -752,11 +752,11 @@ export default function Test() {
 
           <div className="flex justify-between items-start gap-4">
               <div className="flex flex-col gap-1">
-                <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <span className="text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   {getSubjectName(currentQuestion.subject)}
                 </span>
                 {(currentQuestion.partName || currentQuestion.chapterName) && (
-                  <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500">
+                  <span className="text-xs font-bold text-slate-400 dark:text-slate-500">
                     {currentQuestion.partName && `${currentQuestion.partName}`}
                     {currentQuestion.partName && currentQuestion.chapterName && ' • '}
                     {currentQuestion.chapterName && `${currentQuestion.chapterName}`}
@@ -773,14 +773,14 @@ export default function Test() {
                   }`}
                   aria-label="Bookmark Question"
                 >
-                  <i className={`fa-bookmark text-[11px] ${isBookmarked(currentQuestion.id) ? 'fa-solid' : 'fa-regular'}`}></i>
+                  <i className={`fa-bookmark text-xs ${isBookmarked(currentQuestion.id) ? 'fa-solid' : 'fa-regular'}`}></i>
                 </button>
-                <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
-                  <i className="fa-solid fa-shield text-[8px]"></i> {getDifficultyName(currentQuestion.difficulty)}
+                <span className="bg-blue-50 dark:bg-blue-950/45 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 text-xs font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
+                  <i className="fa-solid fa-shield text-xs"></i> {getDifficultyName(currentQuestion.difficulty)}
                 </span>
                 {currentQuestion.year && (
-                  <span className="bg-purple-50 dark:bg-purple-950/45 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30 text-[10px] font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
-                    <i className="fa-regular fa-calendar text-[8px]"></i> {currentQuestion.year}
+                  <span className="bg-purple-50 dark:bg-purple-950/45 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30 text-xs font-black px-2 py-0.5 rounded-md flex items-center gap-1 uppercase">
+                    <i className="fa-regular fa-calendar text-xs"></i> {currentQuestion.year}
                   </span>
                 )}
               </div>
@@ -811,7 +811,7 @@ export default function Test() {
                             <span className={`text-sm font-bold ${isSelected ? 'text-indigo-950 dark:text-indigo-100 font-extrabold' : 'text-slate-800 dark:text-slate-200'}`}>{opt.text}</span>
                         </div>
                         {isSelected && (
-                          <div className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px] shadow-sm shrink-0">
+                          <div className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs shadow-sm shrink-0">
                             <i className="fa-solid fa-check"></i>
                           </div>
                         )}
@@ -826,11 +826,11 @@ export default function Test() {
           <button 
             onClick={handlePrevious}
             disabled={currentIdx === 0}
-            className={`min-h-[44px] flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-wider text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1 transition ${
+            className={`min-h-[44px] flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-black uppercase tracking-wider text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1 transition ${
               currentIdx === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-slate-50 dark:hover:bg-slate-900 cursor-pointer active:scale-95'
             }`}
           >
-            <i className="fa-solid fa-chevron-left text-[9px]"></i> {t('prev')}
+            <i className="fa-solid fa-chevron-left text-xs"></i> {t('prev')}
           </button>
           
           {/* Pause (বিরতি) Button */}
@@ -839,7 +839,7 @@ export default function Test() {
               triggerHaptic('light');
               setIsPaused(prev => !prev);
             }}
-            className={`min-h-[44px] flex-1 py-2.5 rounded-xl border text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1 transition cursor-pointer active:scale-95 ${
+            className={`min-h-[44px] flex-1 py-2.5 rounded-xl border text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1 transition cursor-pointer active:scale-95 ${
               isPaused
                 ? 'bg-amber-500 text-white border-amber-500 shadow-sm'
                 : 'border-slate-200 dark:border-slate-800 text-amber-600 dark:text-amber-400 hover:bg-slate-50 dark:hover:bg-slate-900'
@@ -851,7 +851,7 @@ export default function Test() {
           {/* End Test (পরীক্ষা শেষ করুন) Button */}
           <button 
             onClick={handleSubmit}
-            className="min-h-[44px] flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-red-500 dark:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1 transition cursor-pointer active:scale-95"
+            className="min-h-[44px] flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-800 text-red-500 dark:text-red-400 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1 transition cursor-pointer active:scale-95"
           >
             <i className="fa-solid fa-stop"></i> {lang === 'bn' ? 'পরীক্ষা শেষ' : 'End Test'}
           </button>
@@ -859,16 +859,16 @@ export default function Test() {
           {currentIdx === questions.length - 1 ? (
             <button 
               onClick={handleSubmit}
-              className="min-h-[44px] flex-1 py-2.5 rounded-xl bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider hover:bg-emerald-700 shadow-md transition cursor-pointer active:scale-95"
+              className="min-h-[44px] flex-1 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-black uppercase tracking-wider hover:bg-emerald-700 shadow-md transition cursor-pointer active:scale-95"
             >
               {t('submit_test')}
             </button>
           ) : (
             <button 
               onClick={handleNext}
-              className="min-h-[44px] flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-[10px] font-black uppercase tracking-wider hover:bg-indigo-700 shadow-md transition cursor-pointer active:scale-95 flex items-center justify-center gap-1"
+              className="min-h-[44px] flex-1 py-2.5 rounded-xl bg-indigo-600 text-white text-xs font-black uppercase tracking-wider hover:bg-indigo-700 shadow-md transition cursor-pointer active:scale-95 flex items-center justify-center gap-1"
             >
-              {t('next')} <i className="fa-solid fa-chevron-right text-[9px]"></i>
+              {t('next')} <i className="fa-solid fa-chevron-right text-xs"></i>
             </button>
           )}
       </div>

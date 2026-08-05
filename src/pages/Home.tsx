@@ -34,7 +34,7 @@ export default function Home() {
               <img src={bdCadetsLogo} alt="BD Cadets Logo" className="w-10 h-10 object-contain rounded-xl border border-slate-200/80 dark:border-slate-800 p-1 bg-slate-50 dark:bg-slate-900 shadow-sm" />
               <div>
                   <h1 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-1.5"><T id="greeting_morning" /> <span className="text-lg animate-bounce">👋</span></h1>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">{lang === 'bn' ? <T>আজকের পড়াশোনা, আপনাদের সাফল্য।</T> : <T id="motto" />}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">{lang === 'bn' ? <T>আজকের পড়াশোনা, আপনাদের সাফল্য।</T> : <T id="motto" />}</p>
               </div>
           </div>
           <div className="flex gap-2 items-center">
@@ -76,19 +76,19 @@ export default function Home() {
                   <div>
                     <h2 className="text-base font-black text-slate-900 dark:text-white tracking-tight leading-tight"><T id="app_title" /></h2>
                     <div className="flex gap-1 mt-0.5">
-                      <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-200/60 dark:border-slate-700/60">
+                      <span className="text-xs font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-200/60 dark:border-slate-700/60">
                         <T>{lang === 'bn' ? 'এইচএসসি' : 'HSC'}</T>
                       </span>
-                      <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-200/60 dark:border-slate-700/60">
+                      <span className="text-xs font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-200/60 dark:border-slate-700/60">
                         <T>{lang === 'bn' ? 'অ্যাডমিশন' : 'Admission'}</T>
                       </span>
-                      <span className="text-[9px] font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-200/60 dark:border-slate-700/60">
+                      <span className="text-xs font-bold text-slate-600 dark:text-slate-300 bg-white/80 dark:bg-slate-800/80 px-1.5 py-0.2 rounded border border-slate-200/60 dark:border-slate-700/60">
                         <T>{lang === 'bn' ? 'সমকক্ষ' : 'Academic'}</T>
                       </span>
                     </div>
                   </div>
                 </div>
-                <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-2 leading-relaxed font-medium">
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed font-medium">
                   {lang === 'bn' ? <T>ক্যাডেট কলেজ ভর্তি প্রস্তুতির জন্য আপনার সম্পূর্ণ নির্ভরযোগ্য প্ল্যাটফর্ম</T> : <T id="hero_desc" />}
                 </p>
               </div>
@@ -107,12 +107,12 @@ export default function Home() {
                   <i className="fa-solid fa-fire text-orange-500 bg-orange-100/80 dark:bg-orange-950/50 p-2 rounded-xl text-xs animate-pulse"></i>
               </div>
               <div className="flex justify-between mt-3 px-0.5">
-                  <div className="flex flex-col items-center gap-1"><span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold"><T id="mon_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
-                  <div className="flex flex-col items-center gap-1"><span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold"><T id="tue_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
-                  <div className="flex flex-col items-center gap-1"><span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold"><T id="wed_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
-                  <div className="flex flex-col items-center gap-1"><span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold"><T id="thu_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
-                  <div className="flex flex-col items-center gap-1"><span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold"><T id="fri_short" /></span><div className="w-2 h-2 bg-slate-200 dark:bg-slate-800 rounded-full"></div></div>
-                  <div className="flex flex-col items-center gap-1"><span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold"><T id="sat_short" /></span><div className="w-2 h-2 bg-slate-200 dark:bg-slate-800 rounded-full"></div></div>
+                  <div className="flex flex-col items-center gap-1"><span className="text-xs text-slate-400 dark:text-slate-500 font-bold"><T id="mon_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
+                  <div className="flex flex-col items-center gap-1"><span className="text-xs text-slate-400 dark:text-slate-500 font-bold"><T id="tue_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
+                  <div className="flex flex-col items-center gap-1"><span className="text-xs text-slate-400 dark:text-slate-500 font-bold"><T id="wed_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
+                  <div className="flex flex-col items-center gap-1"><span className="text-xs text-slate-400 dark:text-slate-500 font-bold"><T id="thu_short" /></span><div className="w-2 h-2 bg-emerald-500 rounded-full"></div></div>
+                  <div className="flex flex-col items-center gap-1"><span className="text-xs text-slate-400 dark:text-slate-500 font-bold"><T id="fri_short" /></span><div className="w-2 h-2 bg-slate-200 dark:bg-slate-800 rounded-full"></div></div>
+                  <div className="flex flex-col items-center gap-1"><span className="text-xs text-slate-400 dark:text-slate-500 font-bold"><T id="sat_short" /></span><div className="w-2 h-2 bg-slate-200 dark:bg-slate-800 rounded-full"></div></div>
               </div>
           </div>
       </div>
@@ -195,13 +195,13 @@ export default function Home() {
       <div className="px-4 pt-5 pb-4 border-t border-slate-200/80 dark:border-slate-800/80 mt-3">
           <div className="flex justify-between items-center mb-3">
               <div>
-                  <span className="text-[10px] font-black tracking-wider text-emerald-600 dark:text-emerald-400 uppercase flex items-center gap-1.5">
+                  <span className="text-xs font-black tracking-wider text-emerald-600 dark:text-emerald-400 uppercase flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                       <T id="visual_smart_study" />
                   </span>
                   <h3 className="text-base font-black text-slate-900 dark:text-white leading-tight mt-0.5"><T id="interactive_infographics" /></h3>
               </div>
-              <span className="text-[10px] font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-800"><T id="special_lessons" /></span>
+              <span className="text-xs font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 px-2.5 py-1 rounded-full border border-blue-200 dark:border-blue-800"><T id="special_lessons" /></span>
           </div>
           
           <div className="space-y-3">
@@ -217,7 +217,7 @@ export default function Home() {
                       <div>
                           <div className="flex items-center gap-2 mb-0.5">
                               <h4 className="text-sm font-extrabold text-slate-950 dark:text-white leading-tight"><T id="photosynthesis_title" /></h4>
-                              <span className="text-[9px] font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded-md"><T id="smart_visual" /></span>
+                              <span className="text-xs font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded-md"><T id="smart_visual" /></span>
                           </div>
                           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium line-clamp-1"><T id="photosynthesis_desc" /></p>
                       </div>
@@ -239,7 +239,7 @@ export default function Home() {
                       <div>
                           <div className="flex items-center gap-2 mb-0.5">
                               <h4 className="text-sm font-extrabold text-slate-950 dark:text-white leading-tight"><T id="bd_map_title" /></h4>
-                              <span className="text-[9px] font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 px-2 py-0.5 rounded-md"><T id="interactive" /></span>
+                              <span className="text-xs font-black bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300 px-2 py-0.5 rounded-md"><T id="interactive" /></span>
                           </div>
                           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium line-clamp-1"><T id="bd_map_desc" /></p>
                       </div>
@@ -261,7 +261,7 @@ export default function Home() {
                       <div>
                           <div className="flex items-center gap-2 mb-0.5">
                               <h4 className="text-sm font-extrabold text-slate-950 dark:text-white leading-tight"><T id="padma_bridge_title" /></h4>
-                              <span className="text-[9px] font-black bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 px-2 py-0.5 rounded-md"><T id="simulator_quiz" /></span>
+                              <span className="text-xs font-black bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300 px-2 py-0.5 rounded-md"><T id="simulator_quiz" /></span>
                           </div>
                           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium line-clamp-1"><T id="padma_bridge_desc" /></p>
                       </div>

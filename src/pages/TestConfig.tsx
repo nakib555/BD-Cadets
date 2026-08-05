@@ -118,13 +118,13 @@ export default function TestConfig() {
       <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
         {/* Test Summary Info */}
         <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300 space-y-3">
-          <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-wider bg-blue-50/80 dark:bg-blue-950/40 px-2.5 py-1 rounded-full border border-blue-200/50 dark:border-blue-900/30">
+          <span className="text-xs font-black text-blue-600 dark:text-blue-400 uppercase tracking-wider bg-blue-50/80 dark:bg-blue-950/40 px-2.5 py-1 rounded-full border border-blue-200/50 dark:border-blue-900/30">
             {test.type}
           </span>
           <h2 className="text-lg font-black text-slate-900 dark:text-white leading-tight">
             {test.title}
           </h2>
-          <div className="flex gap-4 text-[11px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider pt-1">
+          <div className="flex gap-4 text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider pt-1">
             <span className="flex items-center gap-1">
               <i className="fa-solid fa-list-check text-blue-500"></i> 
               {test.qns} {t('questions_count')}
@@ -139,7 +139,7 @@ export default function TestConfig() {
         {/* Number of Questions Selection */}
         <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300 space-y-4">
           <div className="flex justify-between items-center">
-            <label className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400 tracking-wider">
+            <label className="text-xs font-black uppercase text-slate-500 dark:text-slate-400 tracking-wider">
               {lang === 'bn' ? 'প্রশ্নের সংখ্যা নির্ধারণ করুন' : 'Select Number of Questions'}
             </label>
             <span className="text-xs font-black text-blue-600 dark:text-blue-400 font-mono bg-blue-50 dark:bg-blue-950/40 px-2.5 py-0.5 rounded-lg border border-blue-200/50 dark:border-blue-900/30">
@@ -179,7 +179,7 @@ export default function TestConfig() {
         {/* Time Limit Selection */}
         <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300 space-y-4">
           <div className="flex justify-between items-center">
-            <label className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400 tracking-wider">
+            <label className="text-xs font-black uppercase text-slate-500 dark:text-slate-400 tracking-wider">
               {lang === 'bn' ? 'সময় নির্ধারণ করুন' : 'Select Time Limit'}
             </label>
             <span className="text-xs font-black text-blue-600 dark:text-blue-400 font-mono bg-blue-50 dark:bg-blue-950/40 px-2.5 py-0.5 rounded-lg border border-blue-200/50 dark:border-blue-900/30">
@@ -217,7 +217,7 @@ export default function TestConfig() {
 
         {/* Difficulty Selection */}
         <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl border border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300 space-y-4">
-          <label className="text-[11px] font-black uppercase text-slate-500 dark:text-slate-400 tracking-wider block">
+          <label className="text-xs font-black uppercase text-slate-500 dark:text-slate-400 tracking-wider block">
             {lang === 'bn' ? 'কঠিনতার মাত্রা নির্ধারণ করুন' : 'Select Difficulty'}
           </label>
           <div className="grid grid-cols-4 gap-2">
@@ -230,7 +230,7 @@ export default function TestConfig() {
               <button
                 key={item.val}
                 onClick={() => { triggerHaptic('light'); setDifficulty(item.val); }}
-                className={`py-3 rounded-xl text-[11px] font-black transition cursor-pointer border ${
+                className={`py-3 rounded-xl text-xs font-black transition cursor-pointer border ${
                   difficulty === item.val
                     ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
                     : 'bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-300 border-slate-200/80 dark:border-slate-800 hover:border-blue-300 dark:hover:border-slate-700'
@@ -245,7 +245,7 @@ export default function TestConfig() {
         {/* Info Box */}
         <div className="bg-amber-50 dark:bg-amber-950/25 border border-amber-200/50 dark:border-amber-900/30 rounded-2xl p-4 flex items-start gap-3">
           <span className="text-amber-500 text-lg mt-0.5">⚡</span>
-          <p className="text-[12px] font-semibold text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-xs font-semibold text-slate-600 dark:text-slate-300 leading-relaxed">
             {lang === 'bn' 
               ? 'আপনার প্রস্তুতির সুবিধার্থে র্যান্ডম উপায়ে প্রশ্ন নির্বাচন করা হবে। প্রতিটি প্রশ্নের জন্য যথাযথ ব্যাখ্যা শেষ পাতায় প্রদর্শন করা হবে।' 
               : 'Questions will be dynamically selected. Detailed explanations will be shown upon submission for review.'}
@@ -265,7 +265,7 @@ export default function TestConfig() {
           onClick={handleLaunchTest}
           className="flex-1 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black uppercase text-xs tracking-wider shadow-md shadow-blue-500/15 transition cursor-pointer flex items-center justify-center gap-1.5"
         >
-          {t('start_study')} <i className="fa-solid fa-chevron-right text-[10px]"></i>
+          {t('start_study')} <i className="fa-solid fa-chevron-right text-xs"></i>
         </button>
       </div>
 
@@ -291,7 +291,7 @@ export default function TestConfig() {
                 onClick={handleResumePrevious}
                 className="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-black text-xs uppercase shadow-md transition cursor-pointer flex items-center justify-center gap-1"
               >
-                <i className="fa-solid fa-play text-[10px]"></i> {lang === 'bn' ? 'আগের পরীক্ষাটি চালিয়ে যান' : 'Resume Previous Session'}
+                <i className="fa-solid fa-play text-xs"></i> {lang === 'bn' ? 'আগের পরীক্ষাটি চালিয়ে যান' : 'Resume Previous Session'}
               </button>
               <button
                 onClick={handleStartFresh}

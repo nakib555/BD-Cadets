@@ -70,7 +70,7 @@ export default function Saved() {
     <div className="bg-slate-50 dark:bg-slate-900 min-h-full pb-8 transition-colors duration-300 animate-in fade-in duration-300 flex flex-col">
       <header className="flex justify-between items-center p-4 bg-white dark:bg-slate-950 sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800/80 shadow-sm transition-colors duration-300">
         <div className="w-8"></div>
-        <h1 className="text-[14px] font-black text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
+        <h1 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-1.5">
           <Bookmark className="w-4 h-4 text-amber-500 fill-amber-500" />
           {lang === 'bn' ? 'সংরক্ষিত প্রশ্নসমূহ' : 'Saved Questions'}
         </h1>
@@ -88,7 +88,7 @@ export default function Saved() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={lang === 'bn' ? 'সংরক্ষিত প্রশ্ন খুঁজুন...' : 'Search saved questions...'}
-            className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl py-2.5 pl-9 pr-10 text-[13px] font-medium text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-400 dark:focus:border-indigo-500 transition shadow-xs"
+            className="w-full bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-xl py-2.5 pl-9 pr-10 text-sm font-medium text-slate-700 dark:text-slate-200 focus:outline-none focus:border-indigo-400 dark:focus:border-indigo-500 transition shadow-xs"
           />
           {searchQuery && (
             <button
@@ -107,7 +107,7 @@ export default function Saved() {
           <button
             key={sub.id}
             onClick={() => { triggerHaptic('light'); setSelectedSubject(sub.id as any); }}
-            className={`whitespace-nowrap px-3.5 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-colors cursor-pointer active:scale-95 ${
+            className={`whitespace-nowrap px-3.5 py-1.5 rounded-lg text-xs font-black uppercase tracking-wider transition-colors cursor-pointer active:scale-95 ${
               selectedSubject === sub.id
                 ? 'bg-indigo-600 text-white shadow-sm'
                 : 'bg-white dark:bg-slate-950 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800'
@@ -140,20 +140,20 @@ export default function Saved() {
                   <div className="space-y-1.5 flex-1 min-w-0">
                     <div className="flex flex-col gap-1">
                       <div className="flex gap-2 items-center flex-wrap">
-                        <span className="text-[9px] font-black bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                        <span className="text-xs font-black bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
                           {getSubjectName(q.subject)}
                         </span>
-                        <span className="text-[9px] font-black bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                        <span className="text-xs font-black bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider">
                           {getDifficultyName(q.difficulty)}
                         </span>
                         {q.year && (
-                          <span className="text-[9px] font-black bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider flex items-center gap-1">
+                          <span className="text-xs font-black bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-900/30 px-2 py-0.5 rounded-md uppercase tracking-wider flex items-center gap-1">
                             <i className="fa-regular fa-calendar"></i> {q.year}
                           </span>
                         )}
                       </div>
                       {(q.partName || q.chapterName) && (
-                        <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">
+                        <span className="text-xs font-bold text-slate-400 dark:text-slate-500">
                           {q.partName && `${q.partName}`}
                           {q.partName && q.chapterName && ' • '}
                           {q.chapterName && `${q.chapterName}`}
@@ -207,7 +207,7 @@ export default function Saved() {
                               >
                                 <span>{opt.label}. {opt.text}</span>
                                 {isCorrect && (
-                                  <span className="text-[10px] bg-emerald-100 dark:bg-emerald-950/55 text-emerald-700 dark:text-emerald-300 font-extrabold px-1.5 py-0.5 rounded uppercase">
+                                  <span className="text-xs bg-emerald-100 dark:bg-emerald-950/55 text-emerald-700 dark:text-emerald-300 font-extrabold px-1.5 py-0.5 rounded uppercase">
                                     {lang === 'bn' ? 'সঠিক' : 'Correct'}
                                   </span>
                                 )}
@@ -244,7 +244,7 @@ export default function Saved() {
           >
             <button
               onClick={() => { triggerHaptic('medium'); navigate('test'); }}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-[11px] uppercase tracking-wider px-5 py-3 rounded-xl shadow-xs hover:shadow-sm cursor-pointer transition active:scale-95"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-xs hover:shadow-sm cursor-pointer transition active:scale-95"
             >
               {lang === 'bn' ? 'পরীক্ষা সেকশনে যান' : 'Go to Practice Exams'}
             </button>

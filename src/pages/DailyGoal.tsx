@@ -106,7 +106,7 @@ export default function DailyGoal() {
               <span className="text-3xl font-black text-slate-900 dark:text-white leading-none">
                 {percent}%
               </span>
-              <span className="text-[11px] font-bold text-slate-400 dark:text-slate-500 mt-1 uppercase tracking-wider">
+              <span className="text-xs font-bold text-slate-400 dark:text-slate-500 mt-1 uppercase tracking-wider">
                 {progress} / {target} <T id="topics" />
               </span>
             </div>
@@ -192,13 +192,13 @@ export default function DailyGoal() {
                   <BookOpen className="w-4 h-4" />
                 </div>
                 {notesCount > 0 && (
-                  <span className="text-[10px] bg-blue-500 text-white font-black px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+                  <span className="text-xs bg-blue-500 text-white font-black px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
                     <CheckCircle className="w-2.5 h-2.5" />
                   </span>
                 )}
               </div>
               <div>
-                <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <T id="read_notes" />
                 </p>
                 <p className="text-base font-black text-slate-800 dark:text-white mt-0.5">
@@ -214,13 +214,13 @@ export default function DailyGoal() {
                   <FileCheck className="w-4 h-4" />
                 </div>
                 {testsCount > 0 && (
-                  <span className="text-[10px] bg-indigo-500 text-white font-black px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+                  <span className="text-xs bg-indigo-500 text-white font-black px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
                     <CheckCircle className="w-2.5 h-2.5" />
                   </span>
                 )}
               </div>
               <div>
-                <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   <T id="taken_tests" />
                 </p>
                 <p className="text-base font-black text-slate-800 dark:text-white mt-0.5">

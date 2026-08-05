@@ -352,8 +352,8 @@ export default function PadmaBridge() {
           <i className="fa-solid fa-arrow-left text-sm"></i>
         </button>
         <div className="flex flex-col items-center">
-          <span className="text-[8px] font-black tracking-widest text-blue-600 dark:text-blue-400 uppercase">জাতীয় গৌরব সা. জ্ঞান</span>
-          <h1 className="text-[12px] font-black text-slate-900 dark:text-white uppercase tracking-wider">পদ্মা সেতু ইনফোগ্রাফিক</h1>
+          <span className="text-xs font-black tracking-widest text-blue-600 dark:text-blue-400 uppercase">জাতীয় গৌরব সা. জ্ঞান</span>
+          <h1 className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider">পদ্মা সেতু ইনফোগ্রাফিক</h1>
         </div>
         <div className="w-8 h-8 bg-blue-50 dark:bg-blue-950/40 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
           <span className="text-sm">🌉</span>
@@ -375,7 +375,7 @@ export default function PadmaBridge() {
               key={tab}
               id={`padma-tab-${tab.toLowerCase()}`}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-1.5 text-[9px] font-black rounded-full uppercase transition-all tracking-wider cursor-pointer ${
+              className={`flex-1 py-1.5 text-xs font-black rounded-full uppercase transition-all tracking-wider cursor-pointer ${
                 isSelected 
                   ? 'bg-blue-600 text-white shadow-sm' 
                   : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
@@ -392,10 +392,10 @@ export default function PadmaBridge() {
         
         {/* Title Block */}
         <div className="text-center space-y-1">
-          <h1 className="text-[20px] font-black text-slate-900 dark:text-white uppercase leading-[1.15] tracking-tight">
+          <h1 className="text-xl font-black text-slate-900 dark:text-white uppercase leading-[1.15] tracking-tight">
             পদ্মা বহুমুখী সেতু
           </h1>
-          <p className="text-[11px] font-bold text-slate-500 dark:text-slate-400 leading-tight">
+          <p className="text-xs font-bold text-slate-500 dark:text-slate-400 leading-tight">
             বাংলাদেশের দীর্ঘতম বহুমুখী সেতু (Padma Multipurpose Bridge)
           </p>
           <div className="w-12 h-1 bg-blue-500 mx-auto rounded-full mt-2"></div>
@@ -410,7 +410,7 @@ export default function PadmaBridge() {
               <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-1">
                 <span>📊</span> মূল তথ্যসমূহ
               </h2>
-              <p className="text-[11px] text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
+              <p className="text-xs text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
                 পদ্মা সেতু বাংলাদেশের একটি স্বপ্নের মেগা-প্রকল্প, যা সম্পূর্ণ নিজস্ব অর্থায়নে বাস্তবায়িত হয়েছে। এটি দেশের দক্ষিণ-পশ্চিমাঞ্চলের ২১টি জেলাকে সরাসরি রাজধানী ঢাকার সাথে যুক্ত করে একটি অভূতপূর্ব অর্থনৈতিক বিপ্লবের সূচনা করেছে।
               </p>
             </div>
@@ -424,13 +424,13 @@ export default function PadmaBridge() {
                 >
                   <div className="flex justify-between items-center">
                     <span className="text-lg">{fact.icon}</span>
-                    <span className="text-[8px] font-black text-blue-500 bg-blue-50 dark:bg-blue-950/40 px-1.5 py-0.5 rounded-full uppercase">সা. জ্ঞান</span>
+                    <span className="text-xs font-black text-blue-500 bg-blue-50 dark:bg-blue-950/40 px-1.5 py-0.5 rounded-full uppercase">সা. জ্ঞান</span>
                   </div>
                   <div>
-                    <p className="text-[18px] font-black text-blue-600 dark:text-blue-400 leading-none">
+                    <p className="text-lg font-black text-blue-600 dark:text-blue-400 leading-none">
                       {fact.number}
                     </p>
-                    <p className="text-[10px] font-bold text-slate-500 dark:text-slate-400 mt-1 leading-snug">
+                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mt-1 leading-snug">
                       {fact.label}
                     </p>
                   </div>
@@ -443,10 +443,10 @@ export default function PadmaBridge() {
               <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2 flex items-center gap-1.5">
                 <span>💡</span> ঐতিহাসিক গুরুত্ব
               </h3>
-              <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-semibold">
                 এই মেগা-কাঠামোটি নির্মাণের পূর্বে যাত্রীদের প্রমত্তা পদ্মা নদী পার হতে ধীরগতির ও অনিশ্চিত ফেরির ওপর নির্ভর করতে হতো। বর্ষাকালে নদী পারাপার অত্যন্ত ঝুঁকিপূর্ণ হতো এবং ঘাটে মাইলের পর মাইল পণ্যবাহী ট্রাকের জটলা তৈরি হতো। এই সেতু যাতায়াতের সময়কে কয়েক দিন থেকে মাত্র কয়েক মিনিটে নামিয়ে এনেছে।
               </p>
-              <div className="bg-blue-50/50 dark:bg-blue-950/10 p-3 rounded-[10px] border border-blue-100/50 dark:border-blue-900/20 text-[10px] font-extrabold text-blue-800 dark:text-blue-300 leading-snug">
+              <div className="bg-blue-50/50 dark:bg-blue-950/10 p-3 rounded-xl border border-blue-100/50 dark:border-blue-900/20 text-xs font-extrabold text-blue-800 dark:text-blue-300 leading-snug">
                 🇧🇩 <strong>তুমি কি জানতে?</strong> বাংলাদেশ বিভিন্ন আন্তর্জাতিক ঋণের প্রস্তাব ফিরিয়ে দিয়ে সম্পূর্ণ নিজস্ব অর্থায়নে এই সেতুটি নির্মাণ করেছে, যা দেশের আত্মমর্যাদা ও প্রকৌশল সক্ষমতার চূড়ান্ত প্রতীক।
               </div>
             </div>
@@ -471,7 +471,7 @@ export default function PadmaBridge() {
                 <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-1">
                   <span>⚙️</span> প্রকৌশল বিস্ময়
                 </h2>
-                <p className="text-[11px] text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
+                <p className="text-xs text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
                   পদ্মা নদী পানির প্রবাহের দিক থেকে বিশ্বে দ্বিতীয় অবস্থানে রয়েছে। এর তীব্র স্রোতের ওপর দ্বি-স্তরের সেতু নির্মাণ করা ছিল সিভিল ইঞ্জিনিয়ারিংয়ের ইতিহাসে এক ঐতিহাসিক মাইলফলক।
                 </p>
               </div>
@@ -481,7 +481,7 @@ export default function PadmaBridge() {
                 <button
                   id="eng-mode-explorer-btn"
                   onClick={() => setEngMode('explorer')}
-                  className={`flex-1 sm:flex-initial px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition cursor-pointer ${
+                  className={`flex-1 sm:flex-initial px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider transition cursor-pointer ${
                     engMode === 'explorer'
                       ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
@@ -492,7 +492,7 @@ export default function PadmaBridge() {
                 <button
                   id="eng-mode-resilience-btn"
                   onClick={() => setEngMode('resilience')}
-                  className={`flex-1 sm:flex-initial px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition cursor-pointer ${
+                  className={`flex-1 sm:flex-initial px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider transition cursor-pointer ${
                     engMode === 'resilience'
                       ? 'bg-blue-600 text-white shadow-sm'
                       : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
@@ -514,11 +514,11 @@ export default function PadmaBridge() {
                     <h3 className="text-xs font-black uppercase tracking-widest text-blue-600 dark:text-blue-400">
                       🏗️ নির্মাণ যাত্রা (৮টি ধাপ)
                     </h3>
-                    <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">৮ ধাপের ইনফোগ্রাফিক</span>
+                    <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">৮ ধাপের ইনফোগ্রাফিক</span>
                   </div>
 
                   {/* Panoramic Visual Canvas Wrapper */}
-                  <div className="relative aspect-[3/2] w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-[10px] overflow-hidden group shadow-md">
+                  <div className="relative aspect-[3/2] w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-xl overflow-hidden group shadow-md">
                     
                     {/* The Interactive Panning Image */}
                     <div className="absolute inset-0 w-full h-full overflow-hidden flex items-center justify-center p-2">
@@ -537,7 +537,7 @@ export default function PadmaBridge() {
                     </div>
 
                     {/* Step indicator overlay */}
-                    <div className="absolute top-2.5 right-2.5 bg-slate-800/90 dark:bg-slate-950/90 backdrop-blur-md px-2 py-1 rounded border border-slate-700/50 text-[10px] font-black text-white uppercase tracking-wider flex items-center gap-1.5 z-10 select-none">
+                    <div className="absolute top-2.5 right-2.5 bg-slate-800/90 dark:bg-slate-950/90 backdrop-blur-md px-2 py-1 rounded border border-slate-700/50 text-xs font-black text-white uppercase tracking-wider flex items-center gap-1.5 z-10 select-none">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                       <span>ধাপ: {activeStepNum} / ৮</span>
                     </div>
@@ -566,7 +566,7 @@ export default function PadmaBridge() {
                             key={s.step}
                             id={`step-indicator-${s.step}`}
                             onClick={() => setActiveStepNum(s.step)}
-                            className={`w-7 h-7 rounded-full text-[11px] font-black flex items-center justify-center transition-all cursor-pointer ${
+                            className={`w-7 h-7 rounded-full text-xs font-black flex items-center justify-center transition-all cursor-pointer ${
                               activeStepNum === s.step
                                 ? 'bg-blue-600 text-white shadow animate-pulse'
                                 : 'bg-white dark:bg-slate-950 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-850 hover:bg-slate-100'
@@ -595,14 +595,14 @@ export default function PadmaBridge() {
                     {(() => {
                       const activeStep = CONSTRUCTION_STEPS.find(s => s.step === activeStepNum) || CONSTRUCTION_STEPS[0];
                       return (
-                        <div className="bg-slate-50 dark:bg-slate-900/40 p-4 rounded-[10px] border border-slate-200/60 dark:border-slate-800/80 space-y-2 transition-all duration-300">
+                        <div className="bg-slate-50 dark:bg-slate-900/40 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/80 space-y-2 transition-all duration-300">
                           <div className="flex justify-between items-center border-b border-slate-200/50 dark:border-slate-800 pb-2">
                             <h4 className="text-sm font-black text-emerald-700 dark:text-emerald-400 uppercase tracking-widest flex items-center gap-1.5">
                               <span>{activeStep.icon}</span> ধাপ {activeStep.step}: {activeStep.bnName}
                             </h4>
-                            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase">নির্মাণ ধাপ</span>
+                            <span className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase">নির্মাণ ধাপ</span>
                           </div>
-                          <p className="text-[11px] text-emerald-950 dark:text-emerald-350 font-extrabold leading-relaxed">
+                          <p className="text-xs text-emerald-950 dark:text-emerald-350 font-extrabold leading-relaxed">
                             {activeStep.bnDesc}
                           </p>
                         </div>
@@ -619,7 +619,7 @@ export default function PadmaBridge() {
               <div className="space-y-4 animate-in zoom-in-95 duration-200">
                 <div className="bg-white dark:bg-slate-950 p-4 rounded-[12px] border border-slate-200 dark:border-slate-800/80 shadow-sm space-y-4">
                   <div className="text-center">
-                    <span className="text-[10px] font-black tracking-widest text-blue-500 dark:text-blue-400 uppercase">স্ট্রেস ল্যাব</span>
+                    <span className="text-xs font-black tracking-widest text-blue-500 dark:text-blue-400 uppercase">স্ট্রেস ল্যাব</span>
                     <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase mt-0.5">কাঠামোগত স্থায়িত্ব সিমুলেটর</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 leading-snug max-w-md mx-auto mt-1">
                       ভূমিকম্প এবং প্রচণ্ড বাতাসের তীব্রতা নিয়ন্ত্রণ করে দেখুন দ্বিতল ইস্পাত সেতুর সুরক্ষা ব্যবস্থা কীভাবে মানিয়ে নেয়!
@@ -627,7 +627,7 @@ export default function PadmaBridge() {
                   </div>
 
                   {/* Bridge visual schematic block that shakes/sways dynamically */}
-                  <div className="h-44 bg-slate-900 border border-slate-800/60 rounded-[10px] relative overflow-hidden flex flex-col justify-center items-center px-4 shadow-inner">
+                  <div className="h-44 bg-slate-900 border border-slate-800/60 rounded-xl relative overflow-hidden flex flex-col justify-center items-center px-4 shadow-inner">
                     
                     {/* Sky / Lightning Background Effect if stress is critical */}
                     {(seismicValue >= 8 || windValue >= 180) && (
@@ -680,10 +680,10 @@ export default function PadmaBridge() {
                       {/* Warren Truss steel diagonal lattice lines */}
                       <div className="w-[85%] h-8 border-y-2 border-slate-500 relative flex items-center justify-around overflow-hidden my-1 bg-slate-900/40 backdrop-blur-sm">
                         {[...Array(7)].map((_, i) => (
-                          <span key={i} className="text-slate-400/50 font-mono text-[14px]">/\</span>
+                          <span key={i} className="text-slate-400/50 font-mono text-sm">/\</span>
                         ))}
                         {/* Status text overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center text-[8px] font-black tracking-widest text-white/40">
+                        <div className="absolute inset-0 flex items-center justify-center text-xs font-black tracking-widest text-white/40">
                           {seismicValue > 0 ? 'ভূমিকম্প সুরক্ষা সক্রিয়' : windValue > 120 ? 'বায়ুগতিশীল সুরক্ষা সক্রিয়' : 'দ্বিতল ওয়ারেন ট্রাস (DOUBLE DECK)'}
                         </div>
                       </div>
@@ -732,7 +732,7 @@ export default function PadmaBridge() {
                       )}
                       {vesselStatus === 'protected' && (
                         <motion.div
-                          className="absolute bottom-0.5 left-[105px] right-[105px] h-8 bg-blue-500/20 border-2 border-blue-400/40 rounded-full flex items-center justify-center text-[8px] font-black text-blue-300 z-10 animate-pulse"
+                          className="absolute bottom-0.5 left-[105px] right-[105px] h-8 bg-blue-500/20 border-2 border-blue-400/40 rounded-full flex items-center justify-center text-xs font-black text-blue-300 z-10 animate-pulse"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
@@ -774,7 +774,7 @@ export default function PadmaBridge() {
                         onChange={(e) => setSeismicValue(parseFloat(e.target.value))}
                         className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
                       />
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-snug font-bold">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-snug font-bold">
                         {seismicValue === 0 ? 'কোনো ভূমিকম্প সনাক্ত করা হয়নি। সিস্টেমটি পর্যবেক্ষণ মোডে আছে।' :
                          seismicValue <= 4 ? 'সামান্য কম্পন। পিলারের স্বয়ংক্রিয় নমনীয়তার দ্বারা স্থিতিশীল রয়েছে।' :
                          seismicValue <= 8 ? 'ডিজাইন লিমিট (৮.০): মাল্টি-ডিরেকショナル ফ্রিকশন পেন্ডুলাম বিয়ারিং মসৃণভাবে গ্লাইড করছে এবং ট্রাস স্প্যানকে রক্ষা করছে।' :
@@ -807,7 +807,7 @@ export default function PadmaBridge() {
                         onChange={(e) => setWindValue(parseInt(e.target.value))}
                         className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-600"
                       />
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 leading-snug font-bold">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 leading-snug font-bold">
                         {windValue === 0 ? 'শান্ত বাতাস। স্বাভাবিক গতিতে গাড়ি চলছে।' :
                          windValue <= 100 ? 'মাঝারি বাতাস। স্টিল ওয়ারেন ট্রাসের বিশেষ অ্যারোডাইনামিক ডিজাইন বাতাসকে সহজে প্রবাহিত করে দিচ্ছে।' :
                          windValue <= 180 ? 'তীব্র সাইক্লোন। সেফটি এক্সপানশন জয়েন্ট ট্রাস স্প্যানকে নিরাপদে সামান্য বেঁকে যাওয়ার জায়গা দেয়।' :
@@ -821,7 +821,7 @@ export default function PadmaBridge() {
                   <div className="bg-slate-50 dark:bg-slate-900/30 p-4 rounded-xl border border-slate-200/60 dark:border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-3">
                     <div className="space-y-0.5 text-center sm:text-left">
                       <h4 className="text-xs font-black text-slate-900 dark:text-white uppercase">জাহাজ সংঘর্ষ সুরক্ষা (Vessel Protection)</h4>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed font-bold">
+                      <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed font-bold">
                         পিলারের নিচের পাইল ক্যাপগুলোতে কংক্রিট ও স্টিলের তৈরি শক-অ্যাবজর্বার ফেন্ডার রয়েছে যা ৫০,০০০ টন ওজনের কার্গো জাহাজের ধাক্কা থেকে স্তম্ভগুলোকে রক্ষা করে।
                       </p>
                     </div>
@@ -870,7 +870,7 @@ export default function PadmaBridge() {
               <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight flex items-center gap-1">
                 <span>📅</span> সময়রেখা
               </h2>
-              <p className="text-[11px] text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
+              <p className="text-xs text-slate-650 dark:text-slate-300 leading-relaxed font-semibold">
                 পদ্মা সেতুর নির্মাণ কাজ শুরুর দিন থেকে এর সফল উদ্বোধন পর্যন্ত মাইলফলক অর্জনগুলোর সময়রেখা নিচে দেওয়া হলো।
               </p>
             </div>
@@ -883,17 +883,17 @@ export default function PadmaBridge() {
                   <span className="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white dark:border-slate-900 shadow-sm flex items-center justify-center"></span>
                   
                   <div className="flex justify-between items-baseline">
-                    <span className="text-[15px] font-black text-blue-600 dark:text-blue-400">
+                    <span className="text-base font-black text-blue-600 dark:text-blue-400">
                       {evt.year}
                     </span>
-                    <span className="text-[9px] font-bold text-slate-400 dark:text-slate-500">ধাপ {idx + 1}</span>
+                    <span className="text-xs font-bold text-slate-400 dark:text-slate-500">ধাপ {idx + 1}</span>
                   </div>
 
                   <h3 className="text-xs font-black text-slate-900 dark:text-white">
                     {evt.title}
                   </h3>
 
-                  <p className="text-[11px] font-extrabold text-blue-950 dark:text-blue-300 leading-relaxed">
+                  <p className="text-xs font-extrabold text-blue-950 dark:text-blue-300 leading-relaxed">
                     {evt.bnDesc}
                   </p>
                 </div>
@@ -911,15 +911,15 @@ export default function PadmaBridge() {
                 <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-800 pb-2">
                   <div>
                     <h3 className="text-xs font-black text-slate-900 dark:text-white">পদ্মা সেতু কুইজ</h3>
-                    <p className="text-[8px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">পদ্মা সেতু সম্পর্কিত সাধারণ জ্ঞান পরীক্ষা করো</p>
+                    <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mt-0.5">পদ্মা সেতু সম্পর্কিত সাধারণ জ্ঞান পরীক্ষা করো</p>
                   </div>
-                  <span className="text-[9px] font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-full">
+                  <span className="text-xs font-bold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/30 px-2 py-0.5 rounded-full">
                     প্রশ্ন {quizIdx + 1} / {QUIZ.length}
                   </span>
                 </div>
 
                 <div className="space-y-1">
-                  <h4 className="text-[11px] font-bold text-slate-900 dark:text-white leading-snug">
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
                     {QUIZ[quizIdx].bnQuestion}
                   </h4>
                 </div>
@@ -949,11 +949,11 @@ export default function PadmaBridge() {
                         id={`option-${i}`}
                         disabled={quizSubmitted}
                         onClick={() => handleSelectOption(i)}
-                        className={`w-full p-2.5 rounded-[10px] border text-[10px] font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
+                        className={`w-full p-2.5 rounded-xl border text-xs font-bold text-left transition flex justify-between items-center cursor-pointer ${btnStyle}`}
                       >
                         <span>{opt}</span>
-                        {quizSubmitted && isCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-[10px]"></i>}
-                        {quizSubmitted && isSelected && !isCorrect && <i className="fa-solid fa-xmark text-red-600 dark:text-red-400 text-[10px]"></i>}
+                        {quizSubmitted && isCorrect && <i className="fa-solid fa-check text-green-600 dark:text-green-400 text-xs"></i>}
+                        {quizSubmitted && isSelected && !isCorrect && <i className="fa-solid fa-xmark text-red-600 dark:text-red-400 text-xs"></i>}
                       </button>
                     );
                   })}
@@ -965,7 +965,7 @@ export default function PadmaBridge() {
                     id="submit-ans-btn"
                     onClick={handleQuizSubmit}
                     disabled={selectedOpt === null}
-                    className={`w-full py-2.5 rounded-[10px] text-[10px] font-bold transition ${
+                    className={`w-full py-2.5 rounded-xl text-xs font-bold transition ${
                       selectedOpt !== null 
                         ? 'bg-blue-600 text-white shadow-sm cursor-pointer' 
                         : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-600 cursor-not-allowed'
@@ -975,16 +975,16 @@ export default function PadmaBridge() {
                   </button>
                 ) : (
                   <div className="space-y-3">
-                    <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-[10px] border border-slate-200 dark:border-slate-800 text-[10px] text-slate-650 dark:text-slate-400 font-bold leading-relaxed">
+                    <div className="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-xs text-slate-650 dark:text-slate-400 font-bold leading-relaxed">
                       <span className="text-slate-800 dark:text-slate-200 font-extrabold block mb-0.5">💡 ব্যাখ্যা</span>
                       {QUIZ[quizIdx].explanation}
                     </div>
                     <button
                       id="next-quiz-btn"
                       onClick={handleNextQuiz}
-                      className="w-full py-2.5 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold transition flex items-center justify-center gap-1 cursor-pointer"
+                      className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition flex items-center justify-center gap-1 cursor-pointer"
                     >
-                      {quizIdx < QUIZ.length - 1 ? 'পরবর্তী প্রশ্ন' : 'কুইজ শেষ করুন'} <i className="fa-solid fa-chevron-right text-[8px]"></i>
+                      {quizIdx < QUIZ.length - 1 ? 'পরবর্তী প্রশ্ন' : 'কুইজ শেষ করুন'} <i className="fa-solid fa-chevron-right text-xs"></i>
                     </button>
                   </div>
                 )}
@@ -993,11 +993,11 @@ export default function PadmaBridge() {
               <div className="flex flex-col items-center text-center space-y-4 py-4 animate-in zoom-in duration-300">
                 <div className="w-14 h-14 bg-blue-50 dark:bg-blue-950/20 rounded-full flex items-center justify-center text-2xl border border-blue-100 dark:border-blue-900/30">🏆</div>
                 <div>
-                  <h3 className="text-[16px] font-black text-slate-900 dark:text-white">পদ্মা সেতু কুইজ সম্পন্ন!</h3>
-                  <p className="text-[12px] text-slate-500 dark:text-slate-400 font-bold mt-0.5">তুমি {QUIZ.length} টির মধ্যে {quizScore} টি সঠিক উত্তর দিয়েছ</p>
+                  <h3 className="text-base font-black text-slate-900 dark:text-white">পদ্মা সেতু কুইজ সম্পন্ন!</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-bold mt-0.5">তুমি {QUIZ.length} টির মধ্যে {quizScore} টি সঠিক উত্তর দিয়েছ</p>
                 </div>
                 
-                <div className="bg-blue-50 dark:bg-blue-950/20 p-3 rounded-[10px] border border-blue-100 dark:border-blue-900/30 w-full text-[10px] font-bold text-blue-800 dark:text-blue-400 flex items-center justify-center gap-2">
+                <div className="bg-blue-50 dark:bg-blue-950/20 p-3 rounded-xl border border-blue-100 dark:border-blue-900/30 w-full text-xs font-bold text-blue-800 dark:text-blue-400 flex items-center justify-center gap-2">
                   <span>🌟 প্রোফাইলে ক্যাডেট সাধারণ জ্ঞান স্কোর বৃদ্ধি পেয়েছে!</span>
                 </div>
 
@@ -1005,14 +1005,14 @@ export default function PadmaBridge() {
                   <button 
                     id="retry-quiz-btn"
                     onClick={resetQuiz}
-                    className="flex-1 py-2 rounded-[10px] border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-[10px] font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
+                    className="flex-1 py-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-900 text-xs font-bold text-slate-700 dark:text-slate-300 transition cursor-pointer"
                   >
                     <i className="fa-solid fa-rotate-left mr-1"></i> আবার চেষ্টা করুন
                   </button>
                   <button 
                     id="back-to-facts-btn"
                     onClick={() => setActiveTab('Facts')}
-                    className="flex-1 py-2 rounded-[10px] bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold transition cursor-pointer"
+                    className="flex-1 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition cursor-pointer"
                   >
                     <i className="fa-solid fa-house mr-1"></i> তথ্যে ফিরে যান
                   </button>
@@ -1023,7 +1023,7 @@ export default function PadmaBridge() {
         )}
 
         {/* Footer */}
-        <footer className="text-center text-[10px] text-slate-400 dark:text-slate-500 border-t border-slate-200 dark:border-slate-800 pt-4 pb-2">
+        <footer className="text-center text-xs text-slate-400 dark:text-slate-500 border-t border-slate-200 dark:border-slate-800 pt-4 pb-2">
           উৎস: বাংলাদেশ সেতু কর্তৃপক্ষ (Bangladesh Bridge Authority)
         </footer>
 

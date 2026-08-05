@@ -67,7 +67,7 @@ export default function Progress() {
               </div>
                   
               <div className="flex-1 ml-6 flex flex-col relative h-[88px]">
-                  <div className="absolute right-0 top-0 text-[10px] font-black text-slate-500 dark:text-slate-400 bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 px-3 py-1 rounded-full border border-orange-200 dark:border-orange-900/40">
+                  <div className="absolute right-0 top-0 text-xs font-black text-slate-500 dark:text-slate-400 bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 px-3 py-1 rounded-full border border-orange-200 dark:border-orange-900/40">
                       <i className="fa-solid fa-fire mr-1 text-xs"></i>{t('excellent_job')}
                   </div>
                   {/* Line Chart using refined SVG */}
@@ -83,17 +83,17 @@ export default function Progress() {
                           <circle cx="100" cy="0" r="3" className="fill-white dark:fill-slate-950" stroke="#22c55e" strokeWidth="2"></circle>
                        </svg>
                   </div>
-                  <div className="flex justify-between text-[10px] font-bold text-slate-400 dark:text-slate-500 mt-2 px-1">
+                  <div className="flex justify-between text-xs font-bold text-slate-400 dark:text-slate-500 mt-2 px-1">
                       <span>{t('mon')}</span><span>{t('tue')}</span><span>{t('wed')}</span><span>{t('thu')}</span><span>{t('fri')}</span><span>{t('sat')}</span><span>{t('sun')}</span>
                   </div>
               </div>
           </div>
 
           <div className="bg-white dark:bg-slate-950 p-5 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 grid grid-cols-4 divide-x divide-slate-100 dark:divide-slate-800/80 text-center transition-colors duration-300">
-              <div className="px-1"><p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('total_tests')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.testsTaken}</p></div>
-              <div className="px-1"><p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('avg_score')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.avgScore}%</p></div>
-              <div className="px-1"><p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('best_score')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.bestScore}%</p></div>
-              <div className="px-1"><p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('consistency')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.studyStreak} <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">{t('days')}</span></p></div>
+              <div className="px-1"><p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('total_tests')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.testsTaken}</p></div>
+              <div className="px-1"><p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('avg_score')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.avgScore}%</p></div>
+              <div className="px-1"><p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('best_score')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.bestScore}%</p></div>
+              <div className="px-1"><p className="text-xs font-bold text-slate-400 dark:text-slate-500 mb-1 uppercase tracking-wider">{t('consistency')}</p><p className="text-base font-extrabold text-slate-900 dark:text-white">{userData.studyStreak} <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">{t('days')}</span></p></div>
           </div>
 
           <div className="bg-white dark:bg-slate-950 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 transition-colors duration-300">

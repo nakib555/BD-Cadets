@@ -1,6 +1,8 @@
 name = "bd-cadets-frontend"
 compatibility_date = "2024-03-29"
-pages_build_output_dir = "dist"
+
+[assets]
+directory = "./dist"
 
 [vars]
 VITE_API_URL = "https://bd-cadets-backend.onrender.com"

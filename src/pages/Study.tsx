@@ -56,7 +56,7 @@ export default function Study() {
           >
               <i className="fa-solid fa-arrow-left text-sm"></i>
           </button>
-          <h1 className="text-[13px] font-black text-slate-900 dark:text-white uppercase tracking-wider"><T id="study_materials" /></h1>
+          <h1 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider"><T id="study_materials" /></h1>
           <button className="text-slate-800 dark:text-slate-200 w-8 h-8 bg-slate-50 dark:bg-slate-900 rounded-full flex items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 transition active:scale-95">
               <i className="fa-solid fa-filter text-xs"></i>
           </button>
@@ -68,7 +68,7 @@ export default function Study() {
               <button 
                   key={tab}
                   onClick={() => handleTabChange(tab)}
-                  className={`whitespace-nowrap px-4 py-1.5 rounded-[10px] text-[10px] font-black uppercase tracking-wider transition-colors cursor-pointer active:scale-95 ${
+                  className={`whitespace-nowrap px-4 py-1.5 rounded-xl text-xs font-black uppercase tracking-wider transition-colors cursor-pointer active:scale-95 ${
                       activeTab === tab 
                        ? 'bg-blue-600 text-white shadow-sm' 
                        : 'bg-slate-50 dark:bg-slate-900 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-800'
@@ -87,7 +87,7 @@ export default function Study() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={activeTab === 'notes' ? t('search_notes') : activeTab === 'past_papers' ? t('search_past_papers') : t('search_bookmarks')} 
-                className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-[10px] py-2.5 pl-8 pr-10 text-[13px] font-medium text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition shadow-xs" 
+                className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-xl py-2.5 pl-8 pr-10 text-sm font-medium text-slate-700 dark:text-slate-200 focus:outline-none focus:border-blue-400 dark:focus:border-blue-500 transition shadow-xs" 
               />
               {searchQuery && (
                 <button 
@@ -105,7 +105,7 @@ export default function Study() {
               <div className="space-y-3">
                   <div className="flex justify-between items-center">
                       <h3 className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider"><T id="interactive_lessons" /></h3>
-                      <span className="text-[10px] bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 px-2.5 py-0.5 rounded-full font-bold"><T id="new_feature" /></span>
+                      <span className="text-xs bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 px-2.5 py-0.5 rounded-full font-bold"><T id="new_feature" /></span>
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                       {filteredInteractiveLessons.map(lesson => (
@@ -122,7 +122,7 @@ export default function Study() {
                                       <i className={`${lesson.icon} text-sm`}></i>
                                     )}
                                 </div>
-                                <span className={`text-[10px] font-black uppercase ${lesson.labelColor} bg-white dark:bg-slate-950 border px-2 py-0.5 rounded-full`}>{lesson.subject}</span>
+                                <span className={`text-xs font-black uppercase ${lesson.labelColor} bg-white dark:bg-slate-950 border px-2 py-0.5 rounded-full`}>{lesson.subject}</span>
                             </div>
                             <div>
                                 <h4 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight">{lesson.title}</h4>
@@ -155,7 +155,7 @@ export default function Study() {
                               <div className="flex items-center gap-2">
                                 <h3 className="text-sm font-extrabold text-slate-900 dark:text-white leading-tight"><T>{note.title}</T></h3>
                                 {isRead && (
-                                  <span className="text-[9px] font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded-md shrink-0">
+                                  <span className="text-xs font-black bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300 px-2 py-0.5 rounded-md shrink-0">
                                     <T id="read_completed" />
                                   </span>
                                 )}
@@ -170,7 +170,7 @@ export default function Study() {
                       <button 
                         onClick={() => handleNoteRead(note.id)}
                         title={isRead ? t('read_completed') : t('mark_as_read')}
-                        className={`h-8 px-3 rounded-lg text-[11px] font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shrink-0 ${
+                        className={`h-8 px-3 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 shrink-0 ${
                           isRead
                             ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-300/50'
                             : 'bg-blue-50 hover:bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:hover:bg-blue-900/60 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
